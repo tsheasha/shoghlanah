@@ -1,0 +1,86 @@
+  a#logo{
+    float: right;
+    padding-left: 0px;
+    padding-right: 238px;
+    margin-left: 10px;
+    margin-right: 0px;
+  }
+  
+  .navlabel{
+  	margin-right: 42px;
+    margin-left: 0px;
+  }
+
+  .profilepic{
+  	margin-right: 0px;
+    margin-left: 15px;
+  }
+
+  #navcaret{
+  	margin-right: 55px;
+    margin-left: 0px;
+  }
+
+  #search input[type="text"] {
+    margin-left: 12px;
+    margin-right: 0px;
+    padding-right: 10px;
+    padding-left: 24px;
+
+   
+  }
+
+  #search input[type="submit"] {
+    background :url(../img/search.png) no-repeat rgba(255, 255, 255, 0);
+    border:0 none;
+    width:16px;
+    height:16px;
+    overflow:hidden;
+    font-size:0px;
+    text-decoration:none;
+    cursor: pointer;
+/*  margin-top: 10px;
+    margin-right: -35px;
+    margin-left: 0px;
+    margin-bottom: 0px;*/
+    position:relative;
+    right:-40px;
+    bottom:-9px;
+    padding-top: 25px;
+    padding-left: 10px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+
+  }
+
+#notificationdrop{
+  margin-left: 140px;
+  left: 0px;
+}
+
+#E404{
+    margin-left: 0px;
+    margin-right: -20px;
+}
+
+#E500{
+    margin-left: 0px;
+    margin-right: -20px;
+}
+
+.Eheader{
+    line-height:25px;
+    padding-bottom:15px;
+}
+
+.Econtainer{
+    left:0px;
+    right: 272px;
+}
+.Elist{
+    list-style-image: url('/static/img/Earrow-ar.png');
+}
+
+.btn{
+  font-weight: 400;
+}

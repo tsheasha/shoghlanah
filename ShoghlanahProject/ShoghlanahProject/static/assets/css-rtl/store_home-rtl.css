@@ -1,0 +1,39 @@
+
+#one
+{
+	right: auto;
+}
+#two{
+	left: 500px;
+	right: 792px;
+	
+}
+#three{
+	left: 500px;
+	right: 792px;
+}
+
+p.up1{
+	text-align: left;
+	left: 20px;
+	right: auto;
+	top: 20px;
+}
+
+p.down1{
+text-align: left;
+	left: 20px;
+	right: auto;
+}
+
+p.up2{
+	text-align: left;
+	left: 10px;
+	right: auto;
+}
+
+p.down2{
+	text-align: left;
+	left: 10px;
+	right: auto;
+}

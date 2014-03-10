@@ -1,0 +1,67 @@
+{% load i18n %}
+<script>
+	function follow(username,id){
+		console.log(username);
+		console.log(id);
+		var temp = "followbtn-"+id;
+		temp +=" user-follow"
+		console.log(temp);
+		if ($(".followbtn-"+id).attr('value') == 'unfollow'){
+			console.log('in unfollow');
+			$(".followbtn-"+id).attr('class', temp);
+			$(".followbtn-"+id).attr('value', 'follow');
+			$(".followbtn-"+id).html("{% trans 'FOLLOW' %}");
+			$.ajax({
+				type: "GET",
+				url:"/profile/"+username+"/unfollow/",
+			});
+		}
+		else {
+			console.log('in follow');
+			var temp = "followbtn-"+id;
+			temp +=" user-unfollow"
+			console.log(temp);
+			$(".followbtn-"+id).attr('class', temp);
+			$(".followbtn-"+id).attr('value', 'unfollow');
+			$(".followbtn-"+id).html("{% trans 'UNFOLLOW' %}");
+			$.ajax({
+				type: "GET",
+				url:"/profile/"+username+"/follow/",
+			});
+		}
+	};
+
+	function followskill(id){
+		if ($(".followbtn-"+id).attr('value') == 'unfollow'){
+			console.log('in unfollow');
+			$(".followbtn-"+id).removeClass('user-unfollow');
+			$(".followbtn-"+id).addClass('user-follow');
+			$(".followbtn-"+id).removeClass('btn-danger');
+			$(".followbtn-"+id).addClass('btn-primary');
+			$(".followbtn-"+id).attr('value', 'follow');
+			$(".followbtn-"+id).css('background', '#f3592a');
+			$(".followbtn-"+id).html("{% trans 'FOLLOW' %}");
+
+			$.ajax({
+				type: "GET",
+				url:"/skill/"+id+"/unfollow/",
+			});
+		}
+		else {
+			console.log('in follow');
+			$(".followbtn-"+id).removeClass('user-follow');
+			$(".followbtn-"+id).addClass('user-unfollow');
+			$(".followbtn-"+id).removeClass('btn-primary');
+			$(".followbtn-"+id).addClass('btn-danger');
+			$(".followbtn-"+id).attr('value', 'unfollow');
+			$(".followbtn-"+id).html("{% trans 'UNFOLLOW' %}");
+			$(".followbtn-"+id).css('background', '#0A5981');
+			$.ajax({
+				type: "GET",
+				url:"/skill/"+id+"/follow/",
+			});
+		}
+
+	};
+
+</script>

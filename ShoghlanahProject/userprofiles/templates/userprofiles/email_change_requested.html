@@ -1,0 +1,17 @@
+{% extends "master.html" %}
+{% load i18n %}
+
+<link type="text/css" href="{{STATIC_URL}}assets/css/edit_profile.css" rel="stylesheet"/>
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/loading.css" media="screen">
+{% if request.session.django_language == 'ar' %}
+    <link type="text/css" href="{{STATIC_URL}}assets/css-rtl/edit_profile-rtl.css" rel="stylesheet"/>
+{% endif %}
+
+{% block title %}{% trans "Change e-mail address" %}{% endblock %}
+
+{% block dashboard %}
+	<div style="text-align:center;margin-top:20px;" class="hero-unit">
+	    <h3>{% trans "We sent an e-mail including a link, please click the link to continue changing your e-mail address." %}</h3>
+	        {% trans "Go to the" %} <a href="/">{% trans "main page" %}</a> {% trans "and check out some posts" %}.
+	</div>
+{% endblock dashboard %}

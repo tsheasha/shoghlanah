@@ -1,0 +1,6 @@
+{{ object.get_full_name }}
+{{ object.location }}
+{{ object.points }}
+{{ object.job_title }}
+{{ object.address }}
+{{ object.getLevel }}

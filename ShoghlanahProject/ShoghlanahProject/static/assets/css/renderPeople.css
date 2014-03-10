@@ -1,0 +1,20 @@
+.user-span {
+	width:42%;margin-right:2%;margin-bottom: 10px;
+}
+
+.user-pic {
+	border-style:solid;border-color:rgb(155, 155, 155);border-width:4px;border-radius:999px;float:left;
+}
+
+.user-name {
+	margin-top:10px;float:left;margin-left:10px;
+}
+
+.user-follow, .user-unfollow {
+	background-color: #f3592a;margin-left:10px;padding: 3px;color: white;padding-right: 15px;padding-left: 15px;margin-top: 5px;float:left;
+}
+
+.user-unfollow {
+	background-color: #0A5981;
+}
+

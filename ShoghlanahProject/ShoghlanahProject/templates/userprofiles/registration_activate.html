@@ -1,0 +1,23 @@
+{% extends "master.html" %}
+
+    {% block dashboard %}
+    <link type="text/css" href="{{STATIC_URL}}assets/css/profile.css" rel="stylesheet" />
+<div class="profile">
+    <h1>Registration</h1>
+
+    {% if account %}
+        <p>
+            We activated your account. You are now able to log in. Have fun!
+            <br />
+            <a href="/log_in/"><button type="button" class="btn btn-primary">Go To Log In Page</button></a>
+
+        </p>
+    {% else %}
+        <p>
+            The submitted activation code is invalid. Activation is not possible.
+        </p>
+    {% endif %}
+</div>
+    
+
+    {% endblock dashboard %}

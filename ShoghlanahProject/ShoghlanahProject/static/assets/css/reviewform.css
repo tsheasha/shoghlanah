@@ -1,0 +1,25 @@
+#reviewText{
+   width: 437px;
+    height: 80px;
+    max-width: 437px;
+    max-height: 80px
+}
+
+#reviewTextdiv{
+    margin-top: 40px;
+    border-bottom: 2px solid #cacaca;
+    padding-bottom: 15px;
+}
+
+#review_div{
+    width:100%;
+    height: 100%;
+    margin:0px;
+    overflow:hidden;
+    text-align: center;
+}
+
+#recomment_img{
+    margin-right: -4px;
+    margin-top: -4px;
+}

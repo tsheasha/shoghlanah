@@ -1,0 +1,65 @@
+{% load i18n %}
+{% load get_chat %}
+
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/stripe_pay.css"/>
+<div>
+  <div class="formHeader">
+    {% trans "Pay" %}
+  </div>
+  <form id="user_form" accept-charset="UTF-8" action="{% url pay bid.id %}" class="form-stacked"  method="post">
+  <div id="pay_div">
+    <label id="stripehead" class="smallLight">
+      {% trans 'You will be charged' %} <b style="color:#f3592a;">{{bid.message}} {% trans "EGP" %}</b> {% trans 'to' %} 
+      <a href="{% url userprofiles_profile bid.user.username %}" style="text-decoration:none">{{bid.user}}</a>
+    </label>
+    {% csrf_token %}  
+      <input type="hidden" name="last_4_digits" id="last_4_digits" value="{{ form.last_4_digits.value }}">
+      <input type="hidden" name="stripe_token" id="stripe_token" value="{{ form.stripe_token.value }}">
+      <noscript>
+        &lt;p&gt;
+          {% trans 'This form requires Javascript to use' %}
+        &lt;/p&gt;
+      </noscript>
+      <div id="credit-card"{% if form.last_4_digits.value %} style="display: none"{% endif %}>
+        <div id="credit-card-errors" style="display:none">
+          <div class="alert-error" id="stripe-error-message"></div>
+        </div>
+        <!-- these fields have no names, so they are not submitted to django -->
+        <div class="clearfix">
+          <label for="credit_card_number">{% trans 'Credit Card Number'%} <b class="imp">*</b></label>
+          <div class="input">
+            <input class="field" id="credit_card_number" type="text">
+          </div>
+        </div>
+        <div class="clearfix">
+          <label for="cvv">{% trans 'Security Code'%} (CVV) <b class="imp">*</b></label>
+          <div class="input">
+            <input class="small" id="cvv" type="text">
+          </div>
+        </div>
+        <div class="clearfix">
+          <label for="expiry_date">{% trans  'Expiry date'%} <b class="imp">*</b></label>
+          <div class="input">
+            <select class="small" id="expiry_month">
+            {% for month in months %}
+              <option value="{{ month }}"{% if soon.month == month %} selected{% endif %}>{{ month }}</option>
+            {% endfor %}
+            </select>
+            <select class="small" id="expiry_year">
+            {% for year in years %}
+              <option value="{{ year }}"{% if soon.year == year %} selected{% endif %}>{{ year }}</option>
+            {% endfor %}
+            </select>
+          </div>
+          <!-- empty -->
+        </div>
+        <label class="smallLight">
+          {% trans 'Your credit card details will be sent directly to our payment processor' %}
+        </label>
+      </div>  
+    </div>
+    <button class="btn saveBtn" id="user_submit" name="commit" type="submit">{% trans 'CONFIRM' %}</button>
+    <button id="cancel_pay" class="btn cancelBtn" onClick="javascript:getdiscussion('/message/{{bid.user.id}}/{{task.id}}/{{bid.id}}/')" method="POST"> {% trans "CANCEL" %} </button>
+  </form>
+</div>
+{% include "pay_js.html" %}

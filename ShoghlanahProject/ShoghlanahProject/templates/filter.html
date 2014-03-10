@@ -1,0 +1,368 @@
+{% load thumbnail %}
+{% load get_user_info %}
+{% load i18n %}
+{% if filter %}
+<script type="text/javascript">
+
+  $(document).ready(function(){
+        $('#dashboard').css("max-height",$(document).height()-80);
+        $('#v-gradient').css("height", $('#dashboard').height() - $('#info').height());
+   });
+</script>
+  {% for item in filtered_stream %}
+{% ifnotequal item.verb "joined" %}
+		{% ifequal item.verb "task_post" %}
+	<div id="singleton" class="task{{item.id}}" >
+		{% else %}
+		
+		{% ifequal item.verb "followed" %}
+	<div id="singleton" class="follow{{item.id}}" >
+		{% else %}
+		
+		{% ifequal item.verb "followed_skill" %}
+	<div id="singleton" class="follow{{item.id}}" >
+		{% else %}
+		
+	<div id="singleton" >
+		{% endifequal %}
+		{% endifequal %}
+		{% endifequal %}
+		
+	  {% if home %}
+		  <a href ="/accounts/profile/{{item.actor.username}}/">
+	  {% thumbnail item.actor.profile_picture "110x110" crop="center" as im %}
+		  <div class="circular-image-stream" style="background: url({{ im.url }}); no-repeat; background-size: cover; display: inline-block;">
+		  </div>
+	  {% endthumbnail %}
+		  </a> 
+	  {% endif %}
+	  {% ifequal item.verb "upload_photo" %}
+	  <div class="circular-image-stream" id="photo"></div>
+	  <li id="posts" style="min-height: 190px;">
+		<div class="info">
+		  <a href ="/accounts/profile/{{item.actor.username}}/">
+			{{item.actor.first_name}} {{item.actor.last_name}}
+		  </a> 
+		  
+		  {% ifequal item.actor.gender "F" %}
+		{% if request.session.django_language == 'ar' %} رفعت صورة
+		{% else %}
+		uploaded a photo.
+		{% endif %}
+		{% else %}
+		  {% trans  "uploaded a photo." %}
+		{% endifequal %}
+
+		</div>
+		<div class="arrow1"><div class="arrow2"></div></div>
+	  {% thumbnail item.description "110x110" crop="center" as im %}		
+		  <img id="displayPhoto" src="{{im.url}}"></img>
+      {% endthumbnail %}
+	{% endifequal %}
+	
+		{% ifequal item.verb "changed_profile_picture" %}
+	  <div class="circular-image-stream" id="photo"></div>
+	  <li id="posts" style="min-height: 190px;">
+	   
+		<div class="info">
+		  <a href ="/accounts/profile/{{item.actor.username}}/">
+			{{item.actor.first_name}} {{item.actor.last_name}}</a> 
+			
+		{% ifequal item.actor.gender "F" %}
+		{% if request.session.django_language == 'ar' %} غيرت صورة حسابها
+		{% else %}
+		changed her profile picture.
+		{% endif %}
+		{% else %}
+		{% trans  "changed his profile picture." %}
+		{% endifequal %}
+		
+		</div>
+		<div class="arrow1"><div class="arrow2"></div></div>
+	  {% thumbnail item.actor.profile_picture "110x110" crop="center" as im %}		
+		  <img id="displayPhoto" src="{{im.url}}"></img>             
+      {% endthumbnail %}
+	  {% endifequal %}
+
+		{% ifequal item.verb "task_post" %}
+		
+	  <div class="circular-image-stream" id="task"></div>
+		 
+	  {% if item.action_object.reward %} 
+		  <li id="posts" class="rewardposts">
+	  {% else %}      
+		  <li id="posts" class="priceposts">
+	  {% endif %}
+	<div class="verticalLine"></div>
+		  {% if item.action_object.price >= 0 %}
+		  
+				  <div class="info" id="task-info-price">
+		
+        <i class="icon-map-marker"></i>
+		   {% ifnotequal item.action_object.city "" %}                  
+		  <p id="task-details-city-content">
+			{{item.action_object.city}}, {% trans "Egypt" %} </p>
+			
+			{% else %}
+		  <p id="task-details-city-content">
+			{% trans "Egypt" %} </p>
+			
+			{% endifnotequal %}
+			<hr>
+			<p id="task-details">{% trans  "Willing to pay" %} </p>
+			<p id="task-details-price"> <font color="#f3592a" style="font-size: 32px;"> {{item.action_object.price|truncate:7}} </font> {% trans  "EGP" %} 
+			</p> 
+		  {% else %}
+		  
+		  {% if item.action_object.reward %}
+		  
+				  <div class="info" id="task-info-reward">
+				  
+		  <i class="icon-map-marker"></i>         
+		   {% ifnotequal item.action_object.city "" %}                  
+		  <p id="task-details-city-content">
+			{{item.action_object.city}}, {% trans "Egypt" %} </p>
+			
+			{% else %}
+		  <p id="task-details-city-content">
+			{% trans "Egypt" %} </p>
+			
+			{% endifnotequal %}
+			<hr>
+
+			<img id="task-details-reward-img" width="45" height="45" src="{{MEDIA_URL}}{{item.action_object.reward.img}}"/>
+	  
+			<p id="task-details-reward">{% trans  "Reward" %} </p>
+		  {% else %}
+		  				  <div class="info" id="task-info-price">
+		
+        <i class="icon-map-marker"></i>
+		   {% ifnotequal item.action_object.city "" %}                  
+		  <p id="task-details-city-content">
+			{{item.action_object.city}}, {% trans "Egypt" %} </p>
+			
+			{% else %}
+		  <p id="task-details-city-content">
+			{% trans "Egypt" %} </p>
+			
+			{% endifnotequal %}
+			<hr>
+			<p id="task-details">{% trans  "Willing to pay" %} </p>
+			<p id="task-details-price"> <font color="#f3592a" style="font-size: 32px;"> 0 </font> {% trans  "EGP" %} 
+			</p> 
+			{% endif %}
+			{% endif %}
+				 
+		</div>
+		<div class="info-task">
+		  <a href ="/accounts/profile/{{item.actor.username}}/">{{item.actor.first_name}} {{item.actor.last_name}} </a> 
+		  
+		{% ifequal item.actor.gender "F" %}
+		{% if request.session.django_language == 'ar' %} تريد          
+		{% else %}
+		needs
+		{% endif %}
+		{% else %}
+		{% trans  "needs" %}
+		{% endifequal %}
+		  
+		  <a href ="/task/{{item.action_object.id}}/">{{item.action_object.title|truncate:40}}</a> 
+
+			</div>
+
+		<div class="arrow1"><div class="arrow2"></div></div>
+
+	  {% endifequal %}
+
+		{% ifequal item.verb "task_assigned" %}
+		
+	  <div class="circular-image-stream" id="task"></div>
+		 
+	  {% if item.action_object.reward %} 
+		  <li id="posts" class="rewardposts">
+	  {% else %}      
+		  <li id="posts" class="priceposts">
+	  {% endif %}
+
+		  {% if item.action_object.price %}
+		  
+				  <div class="info" id="task-info-price">
+		
+		  <i class="icon-map-marker"></i>         
+		   {% ifnotequal item.action_object.city "" %}                  
+		  <p id="task-details-city-content">
+			{{item.action_object.city}}, {% trans "Egypt" %} </p>
+			
+			{% else %}
+		  <p id="task-details-city-content">
+			{% trans "Egypt" %} </p>
+			
+			{% endifnotequal %}
+			
+			<p id="task-details">{% trans  "Paid" %} </p>
+			<p id="task-details-price"> <font color="#f3592a" style="font-size: 18px;"> {{item.action_object.price|truncate:7}} </font> {% trans  "EGP" %} 
+			</p>         
+		  {% else %}
+		  
+		  {% if item.action_object.reward %}
+		  
+				  <div class="info" id="task-info-reward">
+				  
+		  <i class="icon-map-marker"></i>         
+		   {% ifnotequal item.action_object.city "" %}                  
+		  <p id="task-details-city-content">
+			{{item.action_object.city}}, {% trans "Egypt" %} </p>
+			
+			{% else %}
+		  <p id="task-details-city-content">
+			{% trans "Egypt" %} </p>
+			
+			{% endifnotequal %}
+			<hr>
+
+			<img id="task-details-reward-img" width="45" height="45" src="{{MEDIA_URL}}{{item.action_object.reward.img}}"/>   
+	  
+			<p id="task-details-reward">{% trans  "Rewarded" %} </p>
+		  {% else %}
+		  				  <div class="info" id="task-info-price">
+		
+		  <i class="icon-map-marker"></i>         
+		   {% ifnotequal item.action_object.city "" %}                  
+		  <p id="task-details-city-content">
+			{{item.action_object.city}}, {% trans "Egypt" %} </p>
+			
+			{% else %}
+		  <p id="task-details-city-content">
+			{% trans "Egypt" %} </p>
+			
+			{% endifnotequal %}
+			
+			<p id="task-details">{% trans  "Paid" %} </p>
+			<p id="task-details-price"> <font color="#f3592a" style="font-size: 18px;"> 0 </font> {% trans  "EGP" %} 
+			</p> 
+			{% endif %}
+			{% endif %}
+			
+	{% if request.user.id != item.actor.id %} 
+{% if request.session.django_language == 'ar' %}
+		  {% if item.action_object.reward %}
+		<div class="chatStream" style="margin-top: -9%; margin-right: 75px;">    
+		{% else %}    
+		<div class="chatStream" style="margin-right: 75px;">
+		{% endif %}
+{% else %}    
+		  {% if item.action_object.reward %}
+		<div class="chatStream" style="margin-top: -2%; margin-left: 75px;">
+		{% else %}    
+		<div class="chatStream" style="margin-left: 75px;">
+		{% endif %}
+{% endif %}    
+
+			<a data-toggle="modal" class = "icon-comments icon-large Modalusers" method="POST" action="/chatlist/{{item.action_object.id}}/" href="#chat-modal" rel="tooltip" data-original-title="{% trans 'Open Discussion' %}"></a>
+		</div>       
+		
+		{% endif %}
+		
+		</div>
+		<div class="info-task">
+		  <a href ="/accounts/profile/{{item.target.username}}/">
+			{{item.target.first_name}} {{item.target.last_name}}
+		  </a> 
+		  
+		{% ifequal item.actor.gender "F" %}
+		{% if request.session.django_language == 'ar' %} تم تكليفها الى          
+		{% else %}
+		  was Assigned to
+		  {% endif %}
+		  {% else %}
+		  {% trans  "was Assigned to " %} 
+		  {% endifequal %}
+		  
+		  <a href ="/accounts/profile/{{item.actor.username}}/">{{item.actor.first_name}} {{item.actor.last_name}}</a>
+		  {% trans  "'s shoghlanah" %} : 
+		  <a href ="/task/{{item.action_object.id}}/">{{item.action_object.title|truncate:40}}</a>
+		</div>
+				  
+		<div class="arrow1"><div class="arrow2"></div></div>
+				
+
+  {% endifequal %}
+
+        {% ifequal item.verb "followed" %}
+      <div class="circular-image-stream" id="followStream"></div>
+      <li id="posts">
+     
+        <div class="info">
+          <a href ="/accounts/profile/{{item.actor.username}}/">
+            {{item.actor.first_name|truncate:12}} {{item.actor.last_name|truncate:12}}
+          </a>
+        {% ifequal item.actor.gender "F" %}
+        {% if request.session.django_language == 'ar' %} اﻵن تتابع
+          {% else %}
+          is now Following
+          {% endif %}
+          {% else %}
+          {% trans  "is now Following" %}   
+          {% endifequal %}
+      {% thumbnail item.target.profile_picture "65x65" crop="center" as im %}
+          <div class="circular-image-stream-follow" style="background: url({{ im.url }}); no-repeat; background-size: cover; display: inline-block;">
+          </div>
+      {% endthumbnail %}          
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href ="/accounts/profile/{{item.target.username}}/" >
+            {{item.target.first_name|truncate:12}} {{item.target.last_name|truncate:12}}
+          </a>
+
+          {% ifnotequal item.action_object.username item.actor.username %}
+          {% ifnotequal item.action_object.username item.target.username %}
+          <div>
+          Mutual Followers: <a href ="/accounts/profile/{{item.action_object.username}}/" > {{item.action_object}} </a>
+          </div>
+          {% endifnotequal %}
+          {% endifnotequal %}
+        </div>
+        <div class="arrow1"><div class="arrow2"></div></div>                    
+
+    {% endifequal %}
+    
+        {% ifequal item.verb "followed_skill" %}
+      <div class="circular-image-stream" id="followStream"></div>
+      <li id="posts">
+     
+        <div class="info">
+          <a href ="/accounts/profile/{{item.actor.username}}/">
+            {{item.actor.first_name|truncate:12}} {{item.actor.last_name|truncate:12}}
+          </a> 
+        {% ifequal item.actor.gender "F" %}
+        {% if request.session.django_language == 'ar' %} اﻵن تتابع
+          {% else %}
+          is now Following
+          {% endif %}
+          {% else %}
+          {% trans  "is now Following" %}   
+          {% endifequal %}
+          <div class="tag" style="margin-bottom: 20px;"><a href="/skill/{{item.target.id}}/">{{item.target.name|truncate:25}}</a></div>
+        </div>
+        <div class="arrow1"><div class="arrow2"></div></div>                    
+
+    {% endifequal %}
+    
+    {% ifequal item.verb "edited_profile" %}
+      <div class="circular-image-stream" id="dot"></div>
+      <li id="posts">
+ 
+		<div class="info">
+		  <a href ="/accounts/profile/{{item.actor.username}}/">
+			{{item.actor.first_name}} {{item.actor.last_name}} 
+		  </a> {{item.description}}
+		</div>
+		<div class="arrow1"><div class="arrow2"></div></div>                
+
+	{% endifequal %}
+	<div class="timestamp" id="timestamp{{item.id}}" >{{item.timestamp.date}} &nbsp; | &nbsp; {{item.timestamp.time}}</div>
+		  </li>    
+  </div>
+	{% endifnotequal %}
+  {% endfor %}
+
+{% endif %}

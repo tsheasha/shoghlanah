@@ -1,0 +1,25 @@
+{% extends "master.html" %}
+
+{% block dashboard %}
+<link type="text/css" href="{{STATIC_URL}}assets/css/profile.css" rel="stylesheet" />
+<div class="profile">
+
+    <h1>Registration </h1>
+
+    {% if account_verification_active %}
+        <p>
+            Your registration was successful. We send you a e-mail including a link.<br />
+            Please click the link to activate your account. Thank you!<br />
+            <br />
+            The link is valid for {{ expiration_days }} days.
+        </p>
+
+        <!-- <a href="{% url userprofiles_registration %}"><button type="button" class="btn btn-primary">Back</button></a> -->
+        
+    {% else %}
+        <p>
+            Your registration was successful.
+        </p>
+    {% endif %}
+    </div>
+{% endblock dashboard %}

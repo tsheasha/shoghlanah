@@ -1,0 +1,36 @@
+{% load i18n %}
+
+<style type="text/css">
+    textarea {
+        margin: 0px 0px 9px;
+        width: 545px;
+        height: 62px;
+    }
+</style>
+
+<div class="modal hide fade" id="direct_message">
+        <a data-dismiss="modal"><img src="{{STATIC_URL}}assets/img/close.png" id="closepost" height="29" width="29" aria-hidden="true"></a>
+
+        <div class="modal-header">
+            {% if error_message %}
+                <div class="alert alert-error">{{ error_message }}</div>
+            {% endif %}
+
+            <h5 id='title'>send a direct message to </h5>
+        </div>
+
+        <div class="modal-body">
+            <form id="send_msg_Form" method="post" action="{% url twitter_msg %}">
+                {% csrf_token %}
+                <textarea id='msg' name="msg" rows="3" cols="500" autofocus maxlength='140' required></textarea>
+                <input id="user_to" name="user_to" type="hidden">
+              </form>
+        </div>
+
+        <div class="modal-footer">
+            <span style="float:right">
+                <label style="display:inline;" id="char_count">140</label>
+                <a class='btn' onclick="send();">{% trans "Send message" %}</a>
+            </span>
+        </div>
+</div>

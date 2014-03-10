@@ -1,0 +1,205 @@
+{% load get_skills %}
+{% load get_user_info %}
+{% load i18n %}
+<!-- Skills Tag-it CSS-->
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.tagit.css"/>
+<!-- Skills Tag-it CSS-->
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/map_postTask.css"/>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/postTask.css"/>
+{% if request.session.django_language == 'ar' %}
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/postTask-rtl.css"/>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.ui.slider-rtl.css"/>
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.ui.slider-rtl.js"></script>
+{%endif%}
+
+<form id="postform" class="short" action="/task/post_task/?next={{request.get_full_path}}" method="post" >
+	<div class="modal hide fade" id="postTask">
+		<div class="modal-header">
+			<div class="modal-close" data-dismiss="modal">
+				<label>X</label>
+			</div>
+			<label class="modal-title">{% trans "Post Shoghlanah" %}</label>
+		</div>
+		<div class="modal-body">
+				{% csrf_token %}
+			<div>
+			    <div class='div1a'>
+			    	<div class='modal-block'>
+					    <label for="task_name" class="labeltitle">
+					    	{% trans "Tell us what you need" %}  <b class="imp">*</b>
+					    	<span for="task_name" id='task_name_max_length' class="labelhint" style='display:none;color:red;'>
+					    		{% trans "max length reached" %}
+					    	</span>
+					    </label>
+
+					    <input type="text" id='task_name' name='task_name' maxlength='128' onKeyPress="return disableEnterKey(event)"/>
+					    <label for="task_name" class="labelhint">
+					    	<b>{%trans "Tip: "%}</b>{% trans "Private Art teacher for kids" %}
+					    </label>
+					</div>
+					<div class='modal-block'>
+				    	<label id="task_desc_label" for="task_desc" class="labeltitle">{% trans "Describe in details" %}</label>
+				    	<textarea name="task_desc" id="task_desc"></textarea>
+				    	<label for="task_desc" class="labelhint">
+					    	<b>{%trans "Tip: "%}</b>{% trans "Providing more details will help you have the appropriate applicants" %}
+					    </label>
+			    	</div>
+					<div class="modal-block" >
+						<label for="task_name" class="labeltitle">
+					    	{% trans "How will you compensate ?" %}
+					    </label>
+						<!-- <label id="radioPaid">
+							<input class="regular-radio" type="radio" name="price" style="display: none;" value="Paid" id="trigger_paid" Checked/>
+							<label for="trigger_paid"></label>{% trans "Paid" %}
+						</label>
+						<label id="radioReward">
+							<input class="regular-radio" type="radio" name="price" value="Reward" id="trigger_reward" style="display: none;"/>
+							<label for="trigger_reward"></label>{% trans "Reward" %}
+						</label>
+					    <div id="badges_div">
+					    	{% for r in request|get_rewards%}
+					    	<input type="radio" class="reward" id="reward{{r.id}}" name="reward" value={{r.id}} Checked/>
+					    	<label class="inlinelabel" for="reward{{r.id}}" >
+					    		<img style="margin: 0px;" src="{{MEDIA_URL}}{{r.img}}" rel="tooltip" data-original-title={% if request.session.django_language == 'ar' %}"{{r.ar_name}}"{% else %}"{{r.name}}"{%endif%}>
+					    	</label>
+					    	{% endfor %}
+						</div> -->
+		                <div id="slider_div">
+		                	<div id="slider-range-min" name="slider-range-min"></div>
+		                	<input id="sliderInput" name="sliderInput" type="text" value="500"/>
+					    </div>
+					</div>
+			    </div>
+			    <div class='div1b'>
+			    	<div class='modal-block' style="margin-bottom: 20px;">
+						<label for="map_canvas" class="labeltitle">
+							{% trans "Where ?" %}  <b class="imp">*</b>
+						</label>
+					    <input id='gmaps-input-address' name='where' type='text' onKeyPress="return disableEnterKey(event)"/>
+				        <input name="lat" style="display:none" id='gmaps-output-latitude'></input>
+				        <input name="long" style="display:none" id='gmaps-output-longitude'></input>
+					    <div id='gmaps-error'></div>
+					    <div id='map_canvas'></div>
+					    <label for="map" class="labelhint">
+					    	<b>{%trans "Tip: "%}</b>{% trans "Double click to bring the pin where u need" %}
+					    </label>
+					</div>
+					<div>
+						<label for="skillsDiv" class="labeltitle">{% trans "Add the needed skill(s)" %}</label>
+						<div id='skillsDiv' class='input'>
+					    	<input type="input" id='skills' name='skills'/>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+				<div id="sharediv">
+					{% if request.user.id|checkUserFacebook %}
+						<label class="sharePost"  style="">
+						  <img src="{{STATIC_URL}}img/00fb.png" alt="Facebook">
+					      <input class="regular-checkbox" id="checkbox-1-1" type="checkbox" name='facebook'>
+					      <label for="checkbox-1-1"></label>
+					    </label>
+					{% endif %}
+				    {% if request.user.id|checkUserTwitter %}
+					    <label class="sharePost">
+						    <img src="{{STATIC_URL}}img/00tw.png" alt="Twitter">
+						    <input class="regular-checkbox" id="chechbox-1-2" type="checkbox" name='twitter'>
+						    <label for="checkbox-1-2"></label>
+					    </label>
+				    {% endif %}
+				    <button onclick="loading('#loading');formSubmit(); pushkm();" name="create_task" class="btn btn-primary" id="create_task" data-loading-text="{%trans 'Posting'%}">{% trans "POST" %}</button>
+				</div>
+				<div id="loading"></div>
+		</div>
+	</div>
+</form>
+		<script type="text/javascript" src="{{STATIC_URL}}assets/js/postTask.js"></script>
+		<!-- Skills Javascript-->
+		<script type="text/javascript" src="{{STATIC_URL}}js/tag-it.js" charset="utf-8"></script>
+		<script>
+		    $(document).ready(function() {
+		    	var all_skills = {% get_json_skills %}
+                $("#skills").tagit({
+                	availableTags: all_skills,
+                	classtype: 'simplebox2',
+                	allowSpaces: true,
+                });
+                {% if request.session.django_language == 'ar' %}
+                $(".simplebox2").attr("placeholder", "أضف مهارة");
+                {% endif %}
+
+            	$("#trigger_reward").click( function(){
+            		$('#task_desc_label').html('{% trans "Describe in details" %} <b class="imp">*</b>');
+            		$("#slider_div").slideUp("fast",function() {
+						$("#badges_div").slideDown("fast");
+					});
+            		jQuery("#task_desc").validate({
+            			expression: "if (VAL) return true; else return false;",
+            	        selected:"#trigger_reward"
+            		});
+            	});
+
+            	$("#trigger_paid").click( function(){
+            		$("#badges_div").slideUp("fast", function() {
+			    		$("#slider_div").slideDown("fast");
+			  		});
+            		$('#task_desc_label').html('{% trans "Describe in details" %}');
+              		if($('#task_desc').hasClass('ErrorField')){
+            	  		jQuery('#task_desc').prev().remove();
+            	  		jQuery('#task_desc').removeClass('ErrorField');
+              		}
+            	});
+
+			});
+            function pushkm(){
+                _kmq.push(['record', 'Posted a task',{'User':'{{request.user.email}}'}]);
+                _gaq.push(['_trackEvent', 'Task', 'Posted a Task']);
+            };
+
+            $(function(){
+			// Slider
+				$('#slider-range-min').slider({
+				  isRTL: true,
+				  range: "min",
+				  value: 500,
+				  min: 50,
+				  max: 4000,
+				  step: 10,
+				  slide: function(event, ui) {
+				  	console.log('inslide');
+				    $('#slider-range-min').children('.ui-slider-handle').html('<div id="slidertip" class="tooltip top"><div class="tooltip1-inner">' + ui.value + ' <n class="Scurrancy">{% trans "EGP" %}</n>'+ '</div><div class="arrow-bot"><div class="arrow-botOut"></div><div class="arrow-botIn"></div></div></div>');
+				    $("#sliderInput").val(ui.value)
+				  },
+				  change: function(event, ui) {
+				  	console.log('inchange');
+				  	var x = $( "#sliderInput" ).val();
+				  	console.log(x);
+				  	if(x > 4000){
+				 		console.log('more');
+				 		x = '>'+ 4000;
+				 		console.log($(".tooltip1-inner").innerHTML);
+				 	}
+				 	if(x < 50){
+				 		console.log('less');
+				 		x = '<'+ 50;
+				 		console.log($(".tooltip1-inner").innerHTML);
+				 	}
+				    $('#slider-range-min').children('.ui-slider-handle').html('<div id="slidertip" class="tooltip top"><div class="tooltip1-inner">' + x + ' <n class="Scurrancy">{% trans "EGP" %}</n>'+ '</div><div class="arrow-bot"><div class="arrow-botOut"></div><div class="arrow-botIn"></div></div></div>');
+				  }
+				});
+				 $('#sliderInput').change(function(){
+				 	var inputtext = $('#sliderInput').val();
+				 	if(!isNaN($('#sliderInput').val())){
+					 	$( "#slider-range-min" ).slider("value",inputtext);
+				 	}
+				 });
+            	$('#slider-range-min').prepend('<span class="ui-slider-inner-label leftlabel">'+'50 <n class="Scurrancy">{% trans "EGP" %}</n>'+ '</span>')
+					.append('<span class="ui-slider-inner-label rightlabel">'+'4000 <n class="Scurrancy">{% trans "EGP" %}</n>'+ '</span>');
+			});
+		</script>
+		<!-- Skills Javascript-->
+	</div>
+</div>
+

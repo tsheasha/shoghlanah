@@ -1,0 +1,301 @@
+{% extends 'master.html' %}
+{% block dashboard %}
+{% load get_skills %}
+{% load get_json %}
+{% load get_user_info %}
+{% load get_all_users %}
+{% load i18n %} 
+	
+<script type="text/javascript">
+	function switchpeopletab(){
+		var t = $("#tasktab").children('img')[0];
+		$(t).attr('src',"{{STATIC_URL}}assets/img/unstask.png");
+		var p = $("#peopletab").children('img')[0];
+		$(p).attr('src',"{{STATIC_URL}}assets/img/selectpeople.png");
+		var temp = '{{peopleCount}}{%trans " People for "%}<b class="bluein">&#34; {{keyword}} &#34;</b>';
+		$('#taskcount').hide();
+		$('#peocount').show(); 
+	}
+
+	function switchtasktab(){
+		var t = $("#tasktab").children('img')[0];
+		$(t).attr('src',"{{STATIC_URL}}assets/img/selecttask.png");
+		var p = $("#peopletab").children('img')[0];
+		$(p).attr('src',"{{STATIC_URL}}assets/img/unspeople.png");
+		var temp = '{{taskCount}}{%trans " Shoghlanahs for "%}<b class="bluein">&#34; {{keyword}} &#34;</b>';
+		$('#taskcount').show();
+		$('#peocount').hide(); 
+
+	}
+
+	function searchfiltervotes() { 
+		$('#peocontainer').html('<div class="loadingbody"><span>{% trans "Filtering Results" %}</span><span class="load-1"></span><span class="load-2"></span><span class="load-3"></span><span class="load-4"></span><span class="load-5"></span><span class="load-6"></span></div>');
+		$.ajax({
+			url: "/results/people/filter_by_votes/",
+			type: "POST",
+			data: {
+				"keyword" : '{{keyword}}',
+				"constraint" : $("#filter_votes").val(),
+				"skills" : $("#prfl-skills").val()
+			},
+			success: function(req){
+				$('#peoplecontainer').html(req);
+			}
+		});
+	}
+
+	$(document).ready(function() {
+        _kmq.push(['record', 'Search Results Returned',{'User':'{{request.user.email}}'}]);
+        _gaq.push(['_trackEvent', 'Search', 'Search Results Returned']);
+		$("#filter_votes").keydown(function(event) {
+			// Allow only backspace and delete
+			if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 27){
+				// let it happen, don't do anything
+			}
+			else {
+				// Ensure that it is a number and stop the keypress
+				if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 ) && (event.keyCode < 37 || event.keyCode > 40)) {
+					event.preventDefault(); 
+				}   
+			}
+		});
+
+		$("#from_price").ForceNumericOnly();
+		$("#to_price").ForceNumericOnly();
+		$(".triggerfilter").keyup(function (e) {
+			if (e.keyCode == 13) {
+				if(e.target.id == "filter_votes"){
+					searchfiltervotes();
+				}else{
+					filterTask();
+				}
+			}
+		});
+		var all_skills = {% get_json_skills %}
+		$("#prfl-skills").tagit({
+			availableTags: all_skills,
+			allowSpaces: true,
+		});
+		$("#skills_filter").tagit({
+			availableTags: all_skills,
+			allowSpaces: true,
+		});
+
+		var a = {% get_tasks_json %}
+		$("#word_filter").autocomplete({ source:a });
+		var b = {% get_city_json %}
+		$("#loca_filter").autocomplete({ source:b });
+
+		{% if request.session.django_language == 'ar' %}
+			$(".simplebox").attr("placeholder", "أضف مهارة");
+		{% endif %}
+
+		{% for tag in editor.tags %}
+			$('.simplebox').val('{{tag}}');
+			var e = jQuery.Event("keydown");
+			e.which = 13;
+			$('.simplebox').trigger(e);
+		{% endfor %}
+
+		if ($('#presults-enable').val() == 'true')
+			$('#ready-login').show();
+		else
+			$('#ready-login').hide();
+
+		if ($('#tresults-enable').val() == 'true')
+			$('#did-join').show();
+		else
+			$('#did-join').hide();
+
+		{% if request.user.is_authenticated %}
+			$('#ready-login').hide();
+			$('#did-join').hide();
+		{% endif %}
+
+		$("#loca_filter").on('input', function(){
+			if ($(this).val() == ''){
+				filterTask();
+			}
+		});
+	});
+
+	function filterTask(from, to){
+		$('#taskcontainer').html('<div class="loadingbody"><span>{% trans "Filtering Results" %}</span><span class="load-1"></span><span class="load-2"></span><span class="load-3"></span><span class="load-4"></span><span class="load-5"></span><span class="load-6"></span></div>');
+		from = typeof from !== 'undefined' ? from : '';
+		to = typeof to !== 'undefined' ? to : '';
+		if(from == 'field'){
+			from = $("#from_price").val();
+			to = $("#to_price").val();
+		}
+		$.ajax({
+			type: "POST",
+			url:"/results/filter/",
+			data:{
+				"main": '{{keyword}}',
+				"loca": $("#loca_filter").val(),
+				"skills": $("#skills_filter").val(),
+				"word": $("#word_filter").val(),
+				"from": from,
+				"to": to
+				 },
+			success: function(req){
+				$('#searchcontainer').html(req);
+			}
+		});
+	}
+
+</script>
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+	<label id="taskcount" class="biglight" style="padding:25px;">{{taskCount}} {%trans " Shoghlanahs for "%}<b class="bluein">&#34; {{keyword}} &#34;</b></label>
+	<label id="peocount" class="biglight" style="padding:25px; display:none;">{{peopleCount}} {%trans " People for "%}<b class="bluein">&#34; {{keyword}} &#34;</b></label>
+	<ul id="search-nav-tabs" class="nav nav-tabs">
+		<li class="active"><a id="tasktab" href="#tasks-tab" onclick="switchtasktab();" data-toggle="tab"><img class="shiftimg" src="{{STATIC_URL}}assets/img/selecttask.png" alt="Tasks"/>{%trans "Shoghlanahs"%}</a></li>
+		<li><a id="peopletab" href="#people-tab" onclick="switchpeopletab();" data-toggle="tab"><img class="shiftimg" src="{{STATIC_URL}}assets/img/unspeople.png"/>{%trans "People"%}</a></li>
+	</ul>
+	<div id="search-tab-content" class="tab-content">
+		<div class="tab-pane active" id="tasks-tab">
+			<div class="search_results">
+				<div id="the-bar" class="navbar">
+					<div class="navbar-inner-search ">
+						<div id="filterlabel">{% trans "Filters:" %}</div>
+						<ul id="search_filters" class="nav">
+							<li id="fat-menu" class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="icon-globe"></i><label class="smallLight bluein">{% trans "City"%}</label><b id="searchcaret" class="caret"></b>
+								</a>
+								<ul class="dropdown-menu" style="padding: 2px; width: 165px;">
+									<li>
+										<input type="input" class="triggerfilter" id='loca_filter' placeholder=''/>
+									</li>
+								</ul>
+							</li>
+							<li id="fat-menu" class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="icon-tag"></i><label class="smallLight bluein">{% trans "Skills"%}</label><b id="searchcaret" class="caret"></b>
+								</a>
+								<ul class="dropdown-menu" style="padding: 2px; width: 225px;">
+									<li style="line-height: 20px;">
+										<div class="tag-height">
+											<input type="input" class="simplebox" id='skills_filter' name='skills' style="max-height: 188px;"/>
+										</div>
+									</li>
+									<li>
+										<div id="skillfooter">
+											<button style="margin: 5px;" class="btn btn-primary" onclick="filterTask();">{%trans "Filter" %}</button>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<li id="fat-menu" class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="icon-money" style="padding-right: 3px;"></i><label class="smallLight bluein">{% trans "Compensation"%}</label><b id="searchcaret" class="caret"></b>
+								</a>
+								<ul id="pricefilter" class="dropdown-menu">
+									<li>
+										<a href="javascript:filterTask(0,'all');">{% trans "Any Price" %}</a>
+									</li>
+									<li>
+										<a href="javascript:filterTask(0,500);">0 - 500 {% trans "EGP" %}</a>
+									</li>
+									<li>
+										<a href="javascript:filterTask(500,1000);">500 - 1000 {% trans "EGP" %}</a>
+									</li>
+									<li>
+										<a href="javascript:filterTask(1000,5000);">1000 - 5000 {% trans "EGP" %}</a>
+									</li>
+									<li>
+										<a href="javascript:filterTask(5000,10000);">5000 - 10000 {% trans "EGP" %}</a>
+									</li>
+									<li>
+										<input type="input" class="pricetext" id='from_price' placeholder='{% trans "From"%}'/>
+										{%trans "to" %}
+										<input type="input" class="pricetext" id='to_price' placeholder='{% trans "To"%}'/>
+										<button id="filterprice" onclick="javascript:filterTask('field','field');"> {% trans '>' %} </button>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<!-- <div id="searchbox">
+									<input class="search-query triggerfilter" id="word_filter" type="text" size="30" placeholder='{% trans "Search..."%}' />
+								</div> -->
+							</li>
+						</ul>
+					</div>
+				</div>
+				<br/>
+				<div class="container">
+					<label id="ready-login" class="msghint2"><h4 style="margin-bottom:8px;">{%trans "Ready for any shoghlanah ?"%}</h4><p class="smallLight">{% trans "Login to message the owner" %}.</p> </label>
+					<div id='searchcontainer'>                     
+						{% include "search/results_tasks.html" %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="people-tab">
+			<div class="search_results">
+				<div id="the-bar" class="navbar">
+					<div class="navbar-inner-search ">
+						<div id="filterlabel">{% trans "Filters:" %}</div>
+						<ul id="search_filters" class="nav">
+							<li id="fat-menu" class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="icon-thumbs-up"></i><label class="smallLight bluein">{% trans "Minimum Vote-Ups"%}</label><b id="searchcaret" class="caret"></b>
+								</a>
+								<ul class="dropdown-menu" style="padding: 2px; width: 165px;">
+									<li>
+										<input id="filter_votes" type="text" class="triggerfilter">
+									</li>
+								</ul>
+							</li>
+							<li id="fat-menu" class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="icon-tag"></i><label class="smallLight bluein">{% trans "Skills" %}</label><b id="searchcaret" class="caret"></b>
+								</a>
+								<ul class="dropdown-menu" style="padding: 2px; width: 225px;">
+									<li style="line-height: 20px;">
+										<div id='prfl-skillsDiv' class="tag-height" style="max-height:250px;">
+											<input type="input" class="simplebox" id='prfl-skills' name='skills'/>
+												<!-- {% for tag in editor.tags %}
+												<li>{{tag}}</li>
+												{% endfor %} -->
+										</div>
+									</li>
+									<li>
+										<div id="skillfooter">
+											<button style="margin: 5px;" class="btn btn-primary" onclick="searchfiltervotes();">{%trans "Filter" %}</button>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<!--<li id="fat-menu" class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="icon-ok-sign"></i><label class="smallLight bluein">{% trans "Verification"%}</label><b id="searchcaret" class="caret"></b>
+								</a>
+
+								 <ul id="pricefilter" class="dropdown-menu">
+									<li>
+										<a href="#">{% trans "Verified" %}</a>
+									</li>
+									<li>
+										<a href="#">{% trans "Unverified" %}</a>
+									</li>
+									<li>
+										<a href="#">{% trans "All" %}</a>
+									</li>
+								</ul> -->
+							</li>
+						</ul>
+					</div>
+				</div>
+				<br/>
+				<div class="container">
+					<label class="msghint2" id="did-join"><h4 style="margin-bottom:8px;">{%trans "Did you join Shoghlanah.com ?"%}</h4><p class="smallLight">{% trans "Login to follow our users" %}.</p> </label>
+					<div id="peoplecontainer">
+						{% include "search/results_people.html" %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock dashboard %}

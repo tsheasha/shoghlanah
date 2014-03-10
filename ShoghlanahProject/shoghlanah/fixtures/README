@@ -1,0 +1,25 @@
+Shoghlanah's Fixtures created by the manage.py command db_backup_shoghlanah
+
+Instructions by: Maged Shalaby
+Work flow to add cities and/or regions to database automatically via fixtures:
+
+1) Run manage.py syncdb, this will automatically run the fixture "initial_data.json",
+which contains the cities and regions that you wish to edit.
+2) Use django admin to add/edit the desired regions.
+3) From the command line, the root project directory: 
+	"python manage.py dumpdata --indent=4 shoghlanah.Country shoghlanah.City shoghlanah.Region > shoghlanah/fixtures/locations.json"
+	This will dump all the data from the Country, City & Region tables to a file named "locations.json"
+4) Browse to the shoghlanah/ fixtures directory & run the utf8-fixtures.py 
+	to fix the misbehaving arabic characters. The output is a file by the name "initial_data.json"
+5) Ensure there is no extra non-JSON data in the final "initial_data.json".. In my case there was "Creating Notice Types" sentence in the final line.
+6) Run manage.py syncdb from the root project directory and ensure there are no errors output.
+
+Note: For simple edits such as renaming or deleting an entry, 
+it's recommended to modify the initial_data.json file directly, since it's very easy to understand and modify.
+In this case, backup the file before editing somewhere else, in case the data will be used later.
+
+CAUTION: Doing these steps will overwrite both the locations.json AND the initial_data.json, the latter which might include fixtures for other
+models!
+This can be avoided by changing the file names, in either the dumpdata command, or from the utf8-fixtures.py file. 
+Note that only initial_data.json will be run when running "manage.py syncdb".
+You can run other fixtures by the loaddata command.

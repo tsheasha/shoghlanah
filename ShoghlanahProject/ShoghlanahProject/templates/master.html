@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+{% if request.session.django_language == 'ar' %}
+    <html dir="rtl">
+{% else %}
+    <html dir="ltr">
+{% endif %}
+
+        <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# shoghlanah-test: http://ogp.me/ns/fb/shoghlanah-test#">  <!-- TESTING APP_ID -->
+        <!-- <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# shoghlanah: http://ogp.me/ns/fb/shoghlanah#"> -->  <!-- ALPHA APP_ID -->
+            {% load get_json %}
+            {% load get_user_info %}
+            {% load get_notifications %}
+            {% load thumbnail %}
+            {% load i18n %}
+            <script type="text/javascript">
+
+              var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', 'UA-39717687-1']);
+              _gaq.push(['_setDomainName', 'shoghlanah.com']);
+              _gaq.push(['_trackPageview']);
+
+              (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+              })();
+
+            </script>
+            <script type="text/javascript">
+              var _kmq = _kmq || [];
+              var _kmk = _kmk || '31b49e5d29d65eea3d0808e44493a383c79b5683';
+              function _kms(u){
+                setTimeout(function(){
+                  var d = document, f = d.getElementsByTagName('script')[0],
+                  s = d.createElement('script');
+                  s.type = 'text/javascript'; s.async = true; s.src = u;
+                  f.parentNode.insertBefore(s, f);
+                }, 1);
+              }
+              _kms('//i.kissmetrics.com/i.js');
+              _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+              _kmq.push(['identify', '{{request.user.email}}']);
+            </script>
+            <meta property="fb:app_id" content="130615207082415" />
+            <meta property="og:site_name" content="shoghlanah-test" />
+            {% block metatags %}
+                <meta property="og:type"   content="" />
+                <meta property="og:url"    content=""/>
+                <meta property="og:title"  content="" />
+                <meta property="og:image"  content="" />
+            {% endblock metatags %}
+            <title>  Shoghlanah </title>
+            <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
+            <link rel="stylesheet" href="{{STATIC_URL}}assets/css/product.css"/>
+            <link rel="stylesheet" href="{{STATIC_URL}}assets/css/store_home.css"/>
+
+            <link rel="stylesheet" href="{{STATIC_URL}}css/font-awesome.min.css"/>
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/fonts.css"/>
+            <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,200,600' rel='stylesheet' type='text/css'>
+            <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" />
+            <link rel="stylesheet" href="{{STATIC_URL}}css/jquery-ui-1.8.20.custom.css">
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css"/>
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/master.css"/>
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap-edits.css"/>
+            {% if request.session.django_language == 'ar' %}
+                <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/master-rtl.css"/>
+                <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap-edits-rtl.css"/>
+            {% endif %}
+            <link type="text/css" href="{{STATIC_URL}}css/tag.min.css" rel="stylesheet"/>
+            <!-- slider -->
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery-ui/jquery-ui-1.8.16.custom.css"/>
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.validate.css" />
+            <!-- scrollbar -->
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.mCustomScrollbar.css"/>
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/chat.css"/>
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/reviewform.css"/>
+            <link rel="stylesheet" href="{{STATIC_URL}}assets/css/loading.css" media="screen">
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/all_people.css"/>
+            <link type="text/css" href="{{STATIC_URL}}assets/css/sync_invite.css" rel="stylesheet" />
+            <link rel="stylesheet" href="{{STATIC_URL}}assets/css/all_tasks.css">
+            <link rel="stylesheet" href="{{STATIC_URL}}assets/css/search_results.css">
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/custom_pagination.css"/>
+            {% if request.session.django_language == 'ar' %}
+                <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/all_tasks-rtl.css"/>
+                <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/all_people-rtl.css"/>
+                <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/chat-rtl.css"/>
+                <link href="{{STATIC_URL}}css/rtl-jquery.gritter.css"rel="stylesheet" type="text/css" />
+                <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/sync_invite-rtl.css"/>
+                <link rel="stylesheet" href="{{STATIC_URL}}assets/css-rtl/search_results-rtl.css">
+                <link rel="stylesheet" href="{{STATIC_URL}}assets/css-rtl/product-rtl.css"/>
+                <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/custom_pagination-rtl.css"/>
+                <link rel="stylesheet" href="{{STATIC_URL}}assets/css-rtl/store_home-rtl.css"/>
+            {% else %}
+                <link href="{{STATIC_URL}}css/jquery.gritter.css"rel="stylesheet" type="text/css" />
+            {% endif %}
+
+            <script src="{{STATIC_URL}}js/css_browser_selector.js" type="text/javascript"></script>
+        </head>
+        <body>
+            <div id="fb-root"></div>
+            <script>
+
+            function pushkm_task(){
+                _kmq.push(['record', 'Visited Post Shoghlanah Page',{'User':'{{request.user.email}}'}]);
+                _gaq.push(['_trackEvent', 'Visited Post Shoghlanah Page']);
+            };
+                window.fbAsyncInit = function() {
+                    FB.init({
+                    appId      : '130615207082415', // App ID
+                    status     : true, // check login status
+                    cookie     : true, // enable cookies to allow the server to access the session
+                    xfbml      : true  // parse XFBML
+                    });
+                };
+
+            // Load the SDK Asynchronously
+                (function(d){
+                  var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+                  js = d.createElement('script'); js.id = id; js.async = true;
+                  js.src = "//connect.facebook.net/en_US/all.js";
+                  d.getElementsByTagName('head')[0].appendChild(js);
+                }(document));
+            </script>
+            <div class="wrapper">
+                <div class="navbar navbar-fixed-top" id="mainnav" style="position:fixed;">
+                    <div class="navbar-inner">
+                        <div class="container" id="maincon">
+                            <a id="logo" href="/">
+                                {% if request.session.django_language == 'ar' %}
+                                    <img src="{{STATIC_URL}}img/arlogo2.png" alt="Shoghlanah"/>
+                                {%else%}
+                                    <img src="{{STATIC_URL}}img/enlogo2.png" alt="Shoghlanah"/>
+                                {%endif%}
+                            </a>
+                            <ul class="nav">
+                                {% ifnotequal request.user.id None %}
+                                    <li>
+                                        <a id="bids_tasks" href="{% url my_bids %}">
+                                            <div class="icon" onclick="pushkm_task();">
+                                                <img id="mysicon" src="{{STATIC_URL}}assets/img/myshogh.png" alt="Post"/>
+                                            </div>
+                                            <label class="navlabel">{% trans "My Shoghlanahs"%}</label>
+                                        </a>
+
+                                    </li>
+                                    <li>
+                                        <a href="/discover/" id="discover">
+                                            <div class="icon">
+                                                <img id="discoveicon" src="{{STATIC_URL}}assets/img/binacolars.png" alt="Discover"/>
+                                            </div>
+                                            <label class="navlabel">{% trans "Browse"%}</label>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="Task" data-toggle="modal" href="#postTask">
+                                            <div class="icon" onclick="pushkm_task();">
+                                                <img id="posticon" src="{{STATIC_URL}}assets/img/post.png" alt="Post"/>
+                                            </div>
+                                            <label class="navlabel">{% trans "Post"%}</label>
+                                        </a>
+
+                                    </li>
+                                   <!-- <li>
+                                        <a href="{% url my_bids %}" rel="tooltip" data-original-title='{% trans "Bids"%}'>
+                                            <div class="icon">
+                                                <i class="icon-briefcase icon-large"></i>
+                                            </div>
+                                        </a>
+                                    </li> -->
+                                {% endifnotequal %}
+                            </ul>
+                            <ul class="nav pull-right" id="info_nav">
+                                {% ifnotequal request.user.id None %}
+                                    <li id="notificationdrop" class="dropdown" >
+                                        <a id="notification-icon" href="#" onclick="clearNewNotifications();" class="dropdown-toggle" data-toggle="dropdown">
+                                            <div id="notifications-count" class="badge badge-important">{{ request.user.id|get_user_new_notifications_count }}</div>
+                                        </a>
+                                        <ul id="new-notifications" class="dropdown-menu" >
+                                            <div style="width:275px;">
+                                                <div id="not_header">{% trans "Notifications" %} :</div>
+                                                {% ifnotequal request.user.id|get_user_new_notifications_count 0 %}
+                                                <div id="not_body" style="overflow: -moz-scrollbars-vertical; overflow-y: auto;max-height:374px;">
+                                                    {% for the_notification in request.user.id|get_user_new_notifications %}
+                                                        <li class="not">
+                                                            {% if request.session.django_language == 'ar' %}
+                                                                {% thumbnail the_notification.sender.id|get_profile_pic "30x30" crop="center" as im %}
+                                                                    <a class="notification" href="/notifications/{{the_notification.id}}/"> {{the_notification.message_arabic|truncate:30}}</a>
+                                                                {% endthumbnail %}
+                                                            {% else %}
+                                                                {% thumbnail the_notification.sender.id|get_profile_pic "30x30" crop="center" as im %}
+                                                                    <a class="notification" href="/notifications/{{the_notification.id}}/">  {{the_notification.message|truncate:30}}</a>
+                                                                {% endthumbnail %}
+                                                            {% endif %}
+                                                        </li>
+                                                    {% endfor %}
+                                                </div>
+                                            {% else %}
+                                                <li class="divider"></li>
+                                                <div id="no_not"><li>&nbsp&nbsp&nbsp&nbsp{% trans "No New notifications" %}</li></div>
+                                            {% endifnotequal %}
+                                            <li>
+                                                <div style="background-color:#f3592a;"><a class="seeall" href="/notifications/mark_all_seen/">{% trans "See all" %}</a></div>
+
+                                            </li>
+                                            </div>
+                                        </ul>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="{% url userprofiles_profile request.user.username %}" class="special-a">
+                                            {{request.user.first_name}} {{request.user.last_name}}
+                                        </a>
+                                    </li> -->
+                                    <li id="fat-menu" class="dropdown">
+                                        <a id="pic" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            {% thumbnail request.user.id|get_profile_pic "65x65" crop="center" as pic %}
+                                                <div class="profilepic" style="background: url({{ pic.url }}) no-repeat;background-size: cover;"></div>
+                                            {% endthumbnail %}
+                                            <b id="navcaret" class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu" id="mydrop">
+                                            <li>
+                                                <a href="{% url userprofiles_profile request.user.username %}">{%trans "My Profile"%}</a>
+                                            </li>
+                                            <li>
+                                                <a href="/profile/edit/">{%trans "Edit Profile"%}</a>
+                                            </li>
+                                            <li>
+                                                <a data-toggle="modal" href="#SyncInvitekModal">{% trans "Find and invite people you know" %}</a>
+                                            </li>
+                                            <!-- {# <li>
+                                                <a data-toggle="modal" href="#SocialInviteModal">{% trans "Social invite people you know" %}</a>
+                                            </li> #} -->
+                                            <!-- <li>
+                                                <a href="/accounts/settings/">{%trans "Account Settings"%}</a>
+                                            </li> -->
+                                            <li>
+                                                <a href="{% url logout_view %}">{%trans "Sign Out"%}</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a id="btn-login" class="special-a" href="{% url userprofiles_registration %}?next={{request.get_full_path}}">
+                                            <b>{% trans "Log In" %}</b>
+                                        </a>
+                                    </li>
+                                    <!-- <li>
+                                        <div class="verticalline"></div>
+                                    </li>
+                                    <li>
+                                        <a class="special-a" href="{% url userprofiles_registration %}">
+                                            <b>{% trans "Sign Up"%}</b>
+                                        </a>
+                                    </li> -->
+                                {% endifnotequal %}
+                                {% if request.session.django_language == 'ar' %}
+                                    <li id="lang">
+                                        <a class="special-a" href="/switch/en/?next={{request.get_full_path}}">English</a>
+                                    </li>
+                                {% else %}
+                                    <li id="lang">
+                                        <a class="special-a" href="/switch/ar/?next={{request.get_full_path}}">عربي</a>
+                                    </li>
+                                {% endif%}
+                            </ul>
+                            <ul class="nav pull-right">
+                                <form method="post" onsubmit="return trimSearch();" action="/search/" id="search">
+                                    {% csrf_token %}
+                                    <input class="search-query" id="q" name="q" type="text" size="40" placeholder="{% trans 'Search' %}" />
+                                   <input type="submit" value="" id="searchbutton">
+                                   
+
+                                </form>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.8.0.min.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-1.8.23.custom.min.js"></script>
+                <!-- Scripts for the google maps -->
+                <script type="text/javascript" src="{{STATIC_URL}}assets/js/gmaps.js"></script>
+                <script type= "text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+                <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+                <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}js/noty/jquery.noty.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}js/noty/layouts/top.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}js/noty/themes/default.js"></script>
+                <!--<script src="{{STATIC_URL}}js/jquery.mousewheel.min.js"></script>-->
+                <!--<script src="{{STATIC_URL}}js/jquery.mCustomScrollbar.js"></script>-->
+                <script src="{{STATIC_URL}}js/jquery.mousewheel.min.js"></script>
+                <script src="{{STATIC_URL}}js/jquery.mCustomScrollbar.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}js/jquery.validate.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}js/jquery.placeholder.min.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}assets/js/master.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}assets/js/product.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}assets/js/order.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}js/jTruncate.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}js/jquery.cycle.all.js"></script>
+                <script type="text/javascript" src="{{STATIC_URL}}assets/js/store_home.js"></script>
+
+                {% if request.session.django_language == 'ar' %}
+                <script type="text/javascript" src="{{STATIC_URL}}assets/js/store_home-rtl.js"></script>
+                    {%include 'Notifications/jquery-gritter-js-rtl.html' %}
+                <script type="text/javascript" src="{{STATIC_URL}}assets/js/custom_pagination-rtl.js"></script>
+                {% else %}
+                    {%include 'Notifications/jquery-gritter-js.html' %}
+                <script type="text/javascript" src="{{STATIC_URL}}assets/js/custom_pagination.js"></script>
+                {% endif %}
+                {% include 'session_security/all.html' %}
+                <script src="http://js.pusher.com/1.12/pusher.min.js"></script>
+                {%include 'Notifications/PusherNotifier-js.html' %}
+                <script type="text/javascript">
+                    function clearNewNotifications() {
+                        $("#notifications-count").html("0");
+                        $.ajax({
+                            url: "/clearnewnotifications/",
+                            type: "POST",
+                            data: {
+
+                            },
+                            success: function(data){
+                            }
+                        })
+                    }
+
+                    function shareTask(){
+                        $("#sharetoggle").slideToggle("slow");
+                    }
+                    $(document).ready(function () {
+
+                        if($(".navbar-inner").width() > 1360){
+                            var t = 1357 - $(".navbar-inner").width();
+                            var m = (t/183)*90
+                            var padding = 230 - m
+                            var width = 1160 - m
+                            {% if request.session.django_language == 'ar' %}
+                                $("#logo").css('padding-right',padding);
+                                $("#maincon").width(width);
+                            {% else %}
+                                $("#logo").css('padding-left',padding);
+                                $("#maincon").width(width);
+                            {% endif %}
+                        }
+                        if($(".navbar-inner").width() < 1350){
+                            var t = $(".navbar-inner").width() - 1375;
+                            var m = (t/177)*80
+                            var padding = 230 + m
+                            var width = 1160 + m
+                            {% if request.session.django_language == 'ar' %}
+                                $("#logo").css('padding-right',padding);
+                                $("#maincon").width(width);
+                            {% else %}
+                                $("#logo").css('padding-left',padding);
+                                $("#maincon").width(width);
+                            {% endif %}
+                        }
+                        
+                        var a = {% get_fields_json %}
+                       
+ 
+                        $("#q").autocomplete({
+                            source: a,
+                      
+                            select: function(event , ui){
+                                $('#q').val(ui.item.value);
+                                $('#searchbutton').trigger('click');
+                            }
+                        });
+                        $("#q").blur(function(){
+                            $(this).attr("placeholder","{% trans 'Search'%}");
+                        });
+                        
+                        {% if messages %}
+                            {% for message in messages %}
+                                var n = noty({
+                                    layout: 'top',
+                                    text: '{{message}}',
+                                    type: {% if message.tags == 'warning'%} 'error' {% else %} 'success' {% endif %},
+                                    timeout: '3000'
+                                });
+                            {% endfor %}
+                        {% endif %}
+                    });
+                    var csrftoken = getCookie('csrftoken');
+                    function getCookie(name) {
+                        var cookieValue = null;
+                        if (document.cookie && document.cookie != '') {
+                            var cookies = document.cookie.split(';');
+                            for (var i = 0; i < cookies.length; i++) {
+                                var cookie = jQuery.trim(cookies[i]);
+                                // Does this cookie string begin with the name we want?
+                                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+
+                    function csrfSafeMethod(method) {
+                        // these HTTP methods do not require CSRF protection
+                        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+                    }
+                    $.ajaxSetup({
+                        crossDomain: false, // obviates need for sameOrigin test
+                        beforeSend: function(xhr, settings) {
+                            if (!csrfSafeMethod(settings.type)) {
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            }
+                        }
+                    });
+
+                    WEB_SOCKET_DEBUG = true;
+
+                    var pusher = new Pusher('bbb92b9f5ce229452bee');
+                    var channel = pusher.subscribe('channel_' + '{{request.user.username}}');
+                    var notifier = new PusherNotifier(channel);
+
+                    channel.bind('notification', function(data) {
+                        var count = parseInt(document.getElementById('notifications-count').innerHTML);
+                        count++;
+                        document.getElementById('notifications-count').innerHTML = count;
+                        $.ajax({
+                            url: "/notifications/refresh/",
+                            type: "POST",
+                            data: {
+
+                            },
+                            success: function(req){
+                                document.getElementById('new-notifications').innerHTML = req;
+                            }
+                        })
+                    });
+
+                </script>
+
+                <script src="https://js.stripe.com/v1/" type="text/javascript"></script>
+                {% include 'follow-js.html' %}
+                {%include 'modals/postTask.html' %}
+                {%include 'modals/sync_invite.html' %}
+                <!-- {# {%include 'modals/social_invite.html' %} #} -->
+                <div class="full_width">
+                    {% block header %}
+
+                    {%endblock header %}
+                </div>
+
+                <div class="container" id="dashboard">
+                    {% block dashboard %}
+
+                    {%endblock dashboard %}
+                    <input value="sendgrid" type="hidden"/>
+                </div>
+
+                <!-- Place this tag after the last +1 button tag. -->
+                <script type="text/javascript">
+                    (function() {
+                        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                        po.src = 'https://apis.google.com/js/plusone.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                    })
+                    ();
+                </script>
+
+                <script>
+                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs")
+                </script>
+
+                <!-- UserVoice JavaScript SDK (only needed once on a page) -->
+                <script>(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/OblavV0Olpb0sZi0zxtwkA.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()</script>
+
+                <!-- A tab to launch the Classic Widget -->
+                <script>
+                UserVoice = window.UserVoice || [];
+                UserVoice.push(['showTab', 'classic_widget', {
+                  mode: 'full',
+                  primary_color: '#828282',
+                  link_color: '#20b6e3',
+                  default_mode: 'feedback',
+                  forum_id: 199396,
+                  tab_label: 'Feedback & Support',
+                  tab_color: '#0a5981',
+                  tab_position: 'middle-right',
+                  tab_inverted: false
+                }]);
+                </script>
+
+            </div>
+        </body>
+    </html>

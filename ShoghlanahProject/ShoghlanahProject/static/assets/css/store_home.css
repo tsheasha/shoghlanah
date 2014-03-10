@@ -1,0 +1,95 @@
+.store_header{
+	position: relative;
+	top: 27px;
+	height: 280px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 1280px;
+}
+#one
+{
+	position: relative;
+	top: 30px;
+	width: 798;
+	height: 376;
+}
+#two{
+	position: relative;
+	bottom: 336px;
+	left: 792px;
+
+}
+#three{
+	position: relative;
+	bottom: 388px;
+	left: 792px;
+}
+
+.label1
+{	
+	background: rgba(31, 88, 123, .8);
+	width: 383px;
+	height: 85px;
+	position: relative;
+	bottom: 85px;
+}
+
+p.up1{
+	font-weight: 200;
+	font-size: 24px;
+	color: white;
+	text-align: right;
+	position: relative;
+	right: 20px;
+	top: 20px;
+}
+
+p.down1{
+	font-weight: 200;
+	font-size: 32px;
+	color:#f3592a ;
+	text-align: right;
+	position: relative;
+	right: 20px;
+	top: 20px;
+}
+
+.label2
+{
+	font-weight: 100;
+	background: rgba(31, 88, 123, .8);
+	width: 185px;
+	height: 53px;
+	position: relative;
+	bottom: 53px;
+}
+
+p.up2{
+	font-weight: 100;
+	font-size: 12px;
+	color: white;
+	text-align: right;
+	position: relative;
+	right: 10px;
+	top: 10px;
+}
+
+p.down2{
+	font-weight: 100;
+	font-size: 18px;
+	color:#f3592a ;
+	text-align: right;
+	position: relative;
+	right: 10px;
+	top: 0px;
+}
+
+.img_one{
+	width: 790px;
+	height: 281px;
+}
+
+img.img_two,.img_three{
+	width: 480px;
+	height: 140px;
+}

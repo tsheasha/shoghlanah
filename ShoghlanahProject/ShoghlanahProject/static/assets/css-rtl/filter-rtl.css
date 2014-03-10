@@ -1,0 +1,27 @@
+#filter{
+    z-index: 1;
+	display: block; 
+	margin-right: 120px;
+	margin-top: 12px; 
+	position: absolute;
+}
+
+#filtericon{
+	float:right;
+}
+.dock{
+	float:right;
+	border: 2px solid #1785be;
+	border-radius: 32px;
+	margin-right:-1px;
+	margin-left:0px;
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
+#Ifilter {
+    margin-top: -11px;
+    margin-right: -8px;
+    position: absolute;
+}
+

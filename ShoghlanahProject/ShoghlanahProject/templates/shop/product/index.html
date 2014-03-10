@@ -1,0 +1,17 @@
+<!-- list of product blocks -->
+
+{% extends 'master.html' %}
+
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+
+{% block dashboard %}
+
+	<div class="product_container">
+		{% for product in products %}
+			{% include "shop/product/block.html" %}
+		{% endfor %}
+	</div>
+
+{% endblock dashboard %}

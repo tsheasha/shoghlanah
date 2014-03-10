@@ -1,0 +1,45 @@
+#task{
+	float:right;
+	border-left: 1px solid #cacaca;
+	border-right:0px
+}
+
+.control_icon{
+	margin-left: 20px;
+	margin-right: 0px;
+}
+
+.arrow-bottomOut {
+	left: 0px;
+	right: 173px;
+}
+
+.arrow-bottomIn {
+	left: 0px;
+	right: 170px;
+}
+
+.arrow-upOut {
+	right: 30px;
+	left: 30px;
+}
+
+.arrow-upIn {
+	right: 29px;
+	left: 0px;
+}
+
+#mapModal .modal-close{
+	right: 548px;
+	left:0px;
+}
+
+.shiftimg{
+	margin-right:132px;
+	margin-left:0px;
+}
+
+#taskstatus{
+	margin-top: -15px;
+	float: left;
+}

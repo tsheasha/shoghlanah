@@ -1,0 +1,29 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+{% if sync_social == "facebook" %}
+	<label class="synctitle">{% trans "You have" %} {{ users|length }} {% trans "friends from Facebook on Shoghlanah" %}</label>
+{% elif sync_social == "twitter" %}
+	<label class="synctitle">{% trans "You have" %} {{ users|length }} {% trans "followers from Twitter on Shoghlanah" %}</label>
+{% endif %}
+{% for user in users %}
+    <div class='pcard'>
+        <a href="/accounts/profile/{{ user.username }}/">
+            {% thumbnail user.id|get_profile_pic "65x65" crop="center" as pic %}
+                <img class="propic" src="{{ pic.url }}">
+            {% endthumbnail %}
+        </a>
+        <div class='pinfo'>
+            <a href="/accounts/profile/{{ user.username }}/">
+                <h4 >{{ user|truncate:15}}</h4>
+            </a>
+            {% if not request.user.id == user.id %}
+                {% if not request.user.id|isFollowing:user.id %}
+                    <span class="user-follow followbtn-{{user.id}}" onClick="follow('{{ user.username }}','{{user.id}}');" value="follow" class='idP'>{% trans "FOLLOW" %}</span>
+                {% else %}
+                    <span class="user-unfollow followbtn-{{user.id}}" onClick="follow('{{ user.username }}','{{user.id}}');" value="unfollow" class='idP'>{% trans "UNFOLLOW" %}</span>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

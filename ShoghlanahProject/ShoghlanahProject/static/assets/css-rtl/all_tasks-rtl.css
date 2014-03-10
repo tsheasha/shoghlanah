@@ -1,0 +1,24 @@
+#taskcontainer {
+	min-width: 625px;
+}
+.small-arrow-bottomOut {
+	right: 120px;
+	left:0px;
+}
+
+.small-arrow-bottomIn {
+	right: 118px;
+	left: 0px
+}
+
+.t_price {
+	float: right;
+	padding: 6px 3px 2px 0px;
+	border-left: 1px solid #cacaca;
+	border-right: 0px;
+	text-align: right;
+}
+
+.t_location{
+	float: left;
+}

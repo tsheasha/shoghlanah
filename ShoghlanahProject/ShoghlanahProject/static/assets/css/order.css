@@ -1,0 +1,94 @@
+.product-info{
+	float:left;
+	width:30%;
+	border: 1px solid #cacaca;
+	margin: 35px 30px;
+	padding:15px 20px;
+}
+.order-form{
+	float: right;
+	padding-left:35px;
+	width: 52%;
+	border: 1px solid #cacaca;
+	margin: 35px 30px 10px 0px;
+}
+.product-info > div{
+	float: left;
+	display: inline;
+	margin-left: 10px;
+}
+.product-info > a{
+	float: left;
+}
+.product-info > div > a > h4{
+	margin: 20px 0px 0px;
+}
+.product-info h5{
+	font-size: 16px;
+	color: #22b6e1;
+}
+.product-info img{
+	margin: 10px 0px 30px;
+}
+.order-form .btn{
+	color:white;
+	background: #f3592a;
+}
+.form-input select{
+	border: 1px solid #ccc;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	min-height: 34px;
+}
+.form-input, .form-labels{
+	float: left;
+	display: inline;
+	margin-right: 26px;
+	text-align: right;
+}
+.form-input{
+	text-align: left;
+}
+.form-labels label{
+	line-height: 55px;
+}
+.form-input input[type="text"],  .form-input select{
+	display: block;
+	margin: 2px 0px 8px;
+}
+.form-submit{
+	text-align: center;
+}
+.the-form{
+	margin: 15px 5px;
+	overflow: hidden;
+}
+.terms label{
+	display: inline;
+}
+.payment_radio{
+	margin: 0px 0px 5px;
+}
+.error_style{
+	color:#D00;
+	font-style: italic;
+	display: inline;
+	padding: 0px 71px;
+}
+#order_price{
+	display: block;
+}
+.error_empty{
+	padding:0px;
+}
+#order_quantity{
+	display: inline;
+	max-width: 30px;
+	text-align: center;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+#incdec b{
+	cursor: pointer;
+}

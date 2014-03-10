@@ -1,0 +1,200 @@
+#the-bar{
+    margin-top: 0px;
+    position: absolute;
+    z-index: 1;
+    width: 96%;
+    margin: 0px 19px;
+}
+
+#tabicon{
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    width: 35px;
+    height: 35px;
+    background-size: initial;
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-color: #9d9d9d;
+    border-width: 0px;
+    background-position: 5px 4px;
+}
+
+#skillfooter{
+    background: #EAEAEA;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F6F6F6), to(#DFDFDF));
+    background: -webkit-linear-gradient(0% 0%, 0% 100%, from(#F6F6F6), to(#DFDFDF));
+    background: -moz-linear-gradient(center top, #F6F6F6, #DFDFDF);
+    background: linear-gradient(#F6F6F6, #DFDFDF);
+    -webkit-box-shadow: 0 1px 0 0 white inset;
+    -moz-box-shadow: 0 1px 0 0 white inset;
+    box-shadow: 0 1px 0 0 white inset;
+    border-top: 1px solid #D1D1D1;
+}
+#filter_votes{
+    width: 155px;
+    margin: 0px;
+}
+#pricefilter{
+    text-align: center;
+}
+#pricefilter a {
+    padding: 5px 0px;
+    font-size: 14px;
+    font-family: Helvetica;
+}
+.pricetext{
+    display: inline;
+    width: 44px;
+    margin: 0px;
+    border-radius: 0px;
+    padding: 0px 4px;
+}
+
+#filterprice{
+    padding: 0px 2px;
+}
+
+.navbar-inner-search{
+    width: 885px;
+    min-height: 48px;
+    background: white;
+    border-radius: 0px;
+    margin-top: -54px;
+}
+
+#search-tab-content{
+    margin-top: 75px;
+    overflow-x: hidden;
+}
+
+#searchcontainer{
+    margin-top: -22px;
+}
+
+.tabbable #search-nav-tabs{
+    margin: 23px 20px 0px;
+    padding-left:66px;
+    border-bottom: 1px solid #cacaca;
+}
+
+#search-nav-tabs > li > a{
+    width: 186px;
+    height: 35px;
+    padding: 12px 0px;
+    text-align: center;
+    font-family: 'Raleway', 'GESSMedium', sans-serif;
+    font-weight:600;
+    font-size: 16px;
+    border-radius: 0px;
+    margin: 0px;
+}
+
+#search-nav-tabs > li > a:hover{
+    padding-bottom: 11px;
+}
+
+#search_filters > li{
+    margin-left: 30px;
+}
+
+#filterlabel{
+    float: left;
+    display: block;
+    font-family: 'Raleway', 'GESSMedium', sans-serif;
+    font-weight:600;
+    font-size: 18px;
+    padding: 17px 0px;
+}
+
+#search-nav-tabs > .active > a, #search-nav-tabs > .active > a:hover{
+    background: transparent;
+    border: 1px solid #cacaca;
+    border-bottom-color: #f2f2f2;
+}
+
+#searchcaret{
+    width: 0px;
+    margin: 10px 4px;
+    border-top-color: #1785be;
+    border-bottom-color: #1785be;
+}
+
+.bluein{
+    color:#1785be; 
+    display:inline;
+}
+
+#search_filters > li > a{
+    font-size: 22px;
+    height: 28px;
+    padding: 10px 0px;
+}
+
+.tabbable{
+    margin-top: 25px;
+}
+
+.shiftimg{
+    margin: 0px 9px;
+}
+
+.tag-height ul{
+    height: 70px;
+}
+
+.tabbable .tab-pane{
+    background : transparent;
+}
+
+div.pcard .user-follow{
+    background:#f3592a;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-weight: 600;
+    color: white;
+}
+
+div.pcard .user-unfollow {
+    background: #0A5981;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-weight: 600;
+    color: white;
+}
+
+.pcard{
+    margin: 23px 0px;
+    margin-left: 34px;
+    width: 272px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.ppic{
+    float: left;
+
+}
+.pinfo{
+    padding-top: 5px;
+    width: 183px;
+    float: right;
+}
+
+.msghint2{
+    text-align: center;
+margin: -15px 0px 26px;
+padding: 2px;
+background-color: #cacaca;
+}
+
+#the-bar .nav li.dropdown :hover{
+    background-color: #e5e5e5;
+    color: #555555;
+}
+#the-bar .nav li.dropdown>a>i {
+    color: #afafaf;
+}
+
+#the-bar .nav li.dropdown>a :hover{
+    color: #afafaf;
+}

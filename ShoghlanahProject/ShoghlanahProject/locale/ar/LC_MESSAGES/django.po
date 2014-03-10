@@ -1,0 +1,1377 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-10 22:18+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5\n"
+
+msgid "Arabic"
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "Opened Discussions"
+msgstr "مناقشاتك"
+
+msgid "Last message:"
+msgstr "أخر رسالة:"
+
+msgid "No Discussions"
+msgstr "لا توجد مناقشات"
+
+msgid "Start a discussion with"
+msgstr "أبدأ مناقشة مع"
+
+msgid "You &"
+msgstr "أنت و"
+
+msgid "SEND"
+msgstr "أرسل"
+
+msgid "Facebook"
+msgstr "فيس بوك"
+
+msgid "Twitter"
+msgstr "تويتر"
+
+msgid "Google"
+msgstr "جوجل بلس"
+
+msgid "uploaded a photo."
+msgstr "رفع صورة"
+
+msgid "changed his profile picture."
+msgstr "غير صورة حسابه"
+
+msgid "Picture"
+msgstr "غير الصورة"
+
+msgid "Profile Picture"
+msgstr "صورة ألحساب"
+
+msgid "Wants a"
+msgstr "يريد"
+
+msgid "L.E."
+msgstr "جنيه"
+
+msgid "EGP"
+msgstr "جنيه"
+
+msgid "Any Price"
+msgstr "أي مبلغ"
+
+msgid "Willing to pay"
+msgstr "على استعداد لدفع"
+
+msgid "Reward"
+msgstr "مكافأة"
+
+msgid "was Assigned to "
+msgstr "تم تكليفه الى"
+
+msgid "'s shoghlanah"
+msgstr "شغلانة"
+
+msgid "Paid"
+msgstr "بالدفع"
+
+msgid "Rewarded"
+msgstr "مكافئة"
+
+msgid "is now Following"
+msgstr "اﻵن يتابع"
+
+msgid "joined Shoghlanah"
+msgstr "اشترك في شغلانة"
+
+msgid "Joined"
+msgstr "اشترك"
+
+msgid "Show More"
+msgstr "ارني اكثر"
+
+msgid "Discussions"
+msgstr "مناقشاتي"
+
+msgid "My Shoghlanahs"
+msgstr "شغلاناتي"
+
+msgid "Browse"
+msgstr "اكتشف"
+
+msgid "Post"
+msgstr "اضف"
+
+msgid "POST"
+msgstr "اضف"
+
+msgid "No New notifications"
+msgstr "لا يوجد إشعارات جديده"
+
+msgid "Notifications"
+msgstr "الإشعارات"
+
+msgid "see all"
+msgstr "مشاهدة الكل"
+
+msgid "See all"
+msgstr "مشاهدة الكل"
+
+msgid "My Profile"
+msgstr "صفحتي الشخصيه"
+
+msgid "Get Started"
+msgstr "بدء"
+
+msgid "Sign Out"
+msgstr "تسجيل الخروج"
+
+msgid "Sign in"
+msgstr "تسجيل الدخول"
+
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+msgid "Log In"
+msgstr "تسجيل الدخول"
+
+msgid "SignUp"
+msgstr "التسجيل"
+
+msgid "Search"
+msgstr "ابحث"
+
+msgid "Back to discussions"
+msgstr "العودة الي مناقشاتك"
+
+msgid "view profile"
+msgstr "صفحتي الشخصيه"
+
+msgid "follow"
+msgstr "متابعة"
+
+msgid "unfollow"
+msgstr "إلغاء المتابعة"
+
+msgid "people to invite to shoghlanah"
+msgstr "دعوة الناس إلى شغلانة"
+
+msgid "invite"
+msgstr "دعوة"
+
+msgid "facebook message"
+msgstr "أخر رسالة:"
+
+msgid "needs"
+msgstr "يريد"
+
+msgid "No details are given"
+msgstr "لم يتم إعطاء أي تفاصيل"
+
+msgid ", for more information"
+msgstr "،  للإستفسار عن تفاصيل الشغلانه"
+
+msgid "open a discussion"
+msgstr "تناقش"
+
+msgid "Skills"
+msgstr "المهارات"
+
+msgid "Willing to Pay"
+msgstr "سيدفع"
+
+msgid "Remember password"
+msgstr "تذكر كلمة السر"
+
+msgid "Not a member yet?"
+msgstr "لست عضوا بعد؟"
+
+msgid "Sign up with"
+msgstr "تسجيل الخروج"
+
+msgid "or with"
+msgstr "أو مع"
+
+msgid "your email"
+msgstr "بريدك الإلكتروني"
+
+msgid "Forgot your password?"
+msgstr "نسيت كلمة السر؟"
+
+msgid "Tell us what you need"
+msgstr "ما تحتاج"
+
+msgid "What do you need"
+msgstr "ماذا تحتاج"
+
+msgid "Describe in details"
+msgstr "وصف الشغلانه بالتفصيل"
+
+msgid "Describe"
+msgstr "أوصف"
+
+msgid "Where ?"
+msgstr "المكان ؟"
+
+msgid "Submit"
+msgstr "أبعت"
+
+msgid "Choose the photo"
+msgstr "اختيار الصورة"
+
+msgid "Personal Info"
+msgstr "بيانات شخصية"
+
+msgid "First Name"
+msgstr "الإسم الأول"
+
+msgid "Last Name"
+msgstr "الإسم الأخير"
+
+msgid "Job Title"
+msgstr "المهنة"
+
+msgid "Mobile Number"
+msgstr "رقم الهاتف المحمول"
+
+msgid "About Me"
+msgstr "معلومات عني"
+
+msgid "About You"
+msgstr "عني"
+
+msgid "Job History"
+msgstr "التاريخ الوظيفي"
+
+msgid "Navigation"
+msgstr "ملاحة"
+
+msgid "Location"
+msgstr "الموقع"
+
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Social Networks"
+msgstr "الشبكات الاجتماعية"
+
+msgid "Google+"
+msgstr "جوجل بلس"
+
+msgid "Linkedin"
+msgstr "لينكد إن"
+
+msgid "SAVE"
+msgstr "حفظ"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "following"
+msgstr "متابعة"
+
+msgid "mutual follows"
+msgstr "متابعون مشتركون"
+
+msgid "Mutual connections "
+msgstr "الروابط مشتركون "
+
+msgid "You are following"
+msgstr "أنت تتابع"
+
+msgid "F_You are following"
+msgstr "أنتي تتابع"
+
+msgid "You and"
+msgstr "أنت و "
+
+msgid "F_You and"
+msgstr "أنتي و "
+
+msgid "are following"
+msgstr "تتابعون"
+
+msgid "FOLLOW"
+msgstr "تابع"
+
+msgid "UNFOLLOW"
+msgstr "إلغاء المتابعة"
+
+msgid "Followers"
+msgstr "المتابعين"
+
+msgid "Reviews"
+msgstr "التقييمات"
+
+msgid "Shoghlanahs"
+msgstr "شغلانات"
+
+msgid "was Assigned to"
+msgstr "تم تكليفه الى"
+
+msgid "The reset link is invalid. Please double check the link."
+msgstr "الرابط غير صالح إعادة تعيين. يرجى التحقق من رابط مزدوج."
+
+msgid "Portfolio "
+msgstr "ملف الأعمال "
+
+msgid "Prev"
+msgstr "السابق"
+
+msgid "Next"
+msgstr "التالي"
+
+msgid "Join Shoghlanah , Start changing how people work"
+msgstr "انضمام Shoghlanah، ابدأ تغيير كيفية عمل الناس"
+
+msgid "or using your email"
+msgstr "أو باستخدام البريد الإلكتروني الخاص بك"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Password"
+msgstr "كلمة السر"
+
+msgid "By signing up, I agree to"
+msgstr "من خلال التوقيع، أنا أوافق على"
+
+msgid "Shoghlanah's Terms of Service"
+msgstr "شروط الخدمة لشغلانة"
+
+msgid "Sign up"
+msgstr "التسجيل"
+
+msgid "Info saved successfully"
+msgstr "تم حفظ المعلومات بنجاح"
+
+msgid "Saving..."
+msgstr "جاري حفظ البيانات"
+
+msgid "Egypt"
+msgstr "مصر"
+
+msgid "Location and Address"
+msgstr "الموقع والعنوان"
+
+msgid "Verify"
+msgstr "إرسال طلب التحقق"
+
+msgid "VERIFY"
+msgstr "إرسال الطلب"
+
+msgid "Verification Request Sent"
+msgstr "طلب التحقق تم إرساله"
+
+msgid "Sending Verification Request"
+msgstr "جاري إرسال طلب التحقق"
+
+msgid "Required field empty or invalid"
+msgstr "حقل مطلوب فارغة أو غير صحيح"
+
+msgid "Edit"
+msgstr "تعديل"
+
+msgid "The information is edited"
+msgstr "تم حفظ التعديلات"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Share"
+msgstr "شارك"
+
+msgid "Share this post"
+msgstr "شارك"
+
+msgid "Tip: "
+msgstr "نصيحة: "
+
+msgid "Double click to bring the pin where u need"
+msgstr "انقر نقرا مزدوجا فوق لتحديد الموقع"
+
+msgid "Providing more details will help you have the appropriate applicants"
+msgstr "تقديم مزيد من التفاصيل يساعد على تقدم الشخص المناسب"
+
+msgid "Private Art teacher for kids"
+msgstr "معلم رسم خاص للأطفال"
+
+msgid "Edit Profile"
+msgstr "إعداد الملف الشخصي"
+
+msgid "Edit Profile "
+msgstr "إعداد الملف"
+
+msgid "more"
+msgstr "أكثر"
+
+msgid "less"
+msgstr "أقل"
+
+msgid "Required field"
+msgstr "تتطلب الملء"
+
+msgid "People"
+msgstr "أشخاص"
+
+msgid "Profile is"
+msgstr "ملفه الشخصي"
+
+msgid "Parent Skill:"
+msgstr "المهارة الاساسية"
+
+msgid "Subskills"
+msgstr "المهارات الفرعية"
+
+msgid "Subscribers"
+msgstr "المشتركين"
+
+msgid "Users"
+msgstr "المستخدمين"
+
+msgid "Children:"
+msgstr "الفروع"
+
+msgid "The Shoghlanah is deleted successfully"
+msgstr "لقد قمت بالغاء الشغلانة"
+
+msgid "Sorry, You cannot delete this Shoghlanah"
+msgstr "عفوا، لا يمكنك إلغاء الشغلانة"
+
+msgid "Congratulations, Your account is now activated"
+msgstr "لقد قمت بتفعيل إشتراكك بنجاح"
+
+msgid "An activation mail has been sent, please activate your account in order to login"
+msgstr "لقد تم إرسال رسالة إلى بريدك الإلكتروني من فضلك قم بتفعيل حسابك كي تستطيع الدخول"
+
+msgid "There are no followers found"
+msgstr "لا يوجد متابعين"
+
+msgid "There are no reviews found"
+msgstr "لا يوجد تقييمات"
+
+msgid "There are no shoghlanahs found"
+msgstr "لا توجد شغلانات"
+
+msgid "City"
+msgstr "مدينة"
+
+msgid "Filter"
+msgstr "تصفية"
+
+msgid "Filtering Results"
+msgstr "تصفية"
+
+msgid "Add Skills"
+msgstr "إضافة مهارات"
+
+msgid "Sync with your Social Networks"
+msgstr "الشبكات الاجتماعية"
+
+msgid "Post your first shoghlanah"
+msgstr "مهمتك الأولى"
+
+msgid "Back"
+msgstr "السابقة"
+
+msgid "Finish"
+msgstr "أنهى"
+
+msgid "No Results Found"
+msgstr "لم يتم العثور على نتائج"
+
+msgid "No Shoghlanahs Found"
+msgstr "لم يتم العثور على شغلانات"
+
+msgid "No People Found"
+msgstr "لم يتم العثور على أشخاص"
+
+
+msgid "Please Change your search constraints"
+msgstr "الرجاء تغيير قيود البحث"
+
+msgid "Filters:"
+msgstr "تصفية:"
+
+msgid " Results for "
+msgstr " نتيجه ل-"
+
+msgid " Shoghlanahs for "
+msgstr " شغلانات ل-"
+
+msgid " People for "
+msgstr " أشخاص ل-"
+
+msgid "Follows"
+msgstr "متابعات"
+
+msgid "Photos"
+msgstr "صور"
+
+msgid "Profile Edits"
+msgstr "تغييرات الملف"
+
+msgid "Created a shoghlanah successfully"
+msgstr "تم إضافة الشغلانه بنجاح"
+
+msgid "Failed to post a shoghlanah, try again"
+msgstr "لم يتم إضافة الشغلانه، أعد المحاولة"
+
+msgid "Click Here"
+msgstr "انقر هنا"
+
+msgid "to complete your profile"
+msgstr "لاستكمال ملفك الشخصي"
+
+msgid "Verified"
+msgstr "موثوق"
+
+msgid "UnVerified"
+msgstr "غير موثوق"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "go to profile"
+msgstr "اذهب إلى صفحتي الشخصيه"
+
+msgid "you can follow them here!"
+msgstr "يمكنك متابعتهم هنا"
+
+msgid "invite your friends here"
+msgstr "ادعو اصدقائك هنا"
+
+msgid "invite other friends"
+msgstr "ادعو اصدقائك هنا"
+
+msgid "you can"
+msgstr "يمكنك"
+
+msgid "on Shoghalnah"
+msgstr "في شغلانة"
+
+msgid "you know on"
+msgstr "انت تعرف في"
+
+msgid "Find your Twitter friends on Shoghlanah"
+msgstr "ابحث عن اصدقائك من تويتر في شغلانة"
+
+msgid "Find twitter friends"
+msgstr "ابحث عن اصدقائك من تويتر"
+
+msgid "Find your Facebook friends on Shoghlanah"
+msgstr "ابحث عن اصدقائك من فيسبوك في شغلانة"
+
+msgid "There are no shoghlanahs related to this Skill"
+msgstr "لا توجد شغلانات لهذه المهارة"
+
+msgid "There are no Users with this Skill"
+msgstr "لا يوجد اي مستخدم بهذه المهارة"
+
+msgid "Message the owner"
+msgstr "راسل صاحب الشغلانة"
+
+msgid "Recommendations"
+msgstr "توصيات"
+
+msgid "CHOOSE OFFER"
+msgstr "إختيار العرض"
+
+msgid "Pay"
+msgstr "إدفع"
+
+msgid "Recommend"
+msgstr "تنصح به"
+
+msgid "Unrecommend"
+msgstr "لا تنصح به"
+
+msgid "Write a review on"
+msgstr "أكتب رأيك في"
+
+msgid "You Recommended"
+msgstr "أنت أوصيت ب-"
+
+msgid "You Unrecommended"
+msgstr "أنت لم توصي ب-"
+
+msgid "Review"
+msgstr "قيم"
+
+msgid "REVIEW"
+msgstr "قيم"
+
+msgid "Change Bid"
+msgstr "تغيير المزايدة"
+
+msgid "Email already in use"
+msgstr "البريد الإلكتروني مستخدم"
+
+msgid "Phone already in use"
+msgstr "رقم الجوال مستخدم"
+
+msgid "completed"
+msgstr "مكتمل"
+
+msgid "Your Profile is"
+msgstr "الملف الشخصي الخاص بك"
+
+msgid "Enter a valid number"
+msgstr "إدخل رقم الهاتف المحمول صالح"
+
+msgid "Minimum Vote-Ups"
+msgstr "الحد الأدنى للأصوات"
+
+msgid "Find facebook friends"
+msgstr "ابحث عن اصدقائك من فيسبوك"
+
+msgid "Please Enter Your Email."
+msgstr "من فضلك ادخل بريدك الإلكتروني."
+
+msgid "Enter A Valid Email Address."
+msgstr "إدخل عنوان بريد إلكتروني صالح."
+
+msgid "Please Enter Your Email Address."
+msgstr "الرجاء إدخال البريد الإلكتروني الخاص بك."
+
+msgid "Please Enter Your Full Name."
+msgstr "الرجاء إدخال الاسم الكامل."
+
+msgid "Please Enter Your First Name."
+msgstr "الرجاء إدخال الاسم الأول."
+
+msgid "Please Enter Your Last Name."
+msgstr "الرجاء إدخال اسم العائلة."
+
+msgid "Enter A Valid Full Name."
+msgstr "أدخل اسمك بالكامل صحيح."
+
+msgid "Enter a Valid First Name,The allowed characters are -,numbers and spaces"
+msgstr "أدخل اسمك الأول صحيحاً والأحرف المسموح بها هي - والأرقام والمسافات"
+
+msgid "Enter a Valid Last Name,The allowed characters are -,numbers and spaces"
+msgstr "أدخل إسم أخير صحيح والأحرف المسموح بها هي - والأرقام والمسافات"
+
+msgid "Please Enter Your Password."
+msgstr "إدخل كلمة المرور."
+
+msgid "Sync with Twitter"
+msgstr "مزامنة مع تويتر"
+
+msgid "Sync with Facebook"
+msgstr "مزامنة مع فيسبوك"
+
+msgid "This Email Hasn't Been Activated Yet. Please Check The Activation Mail Sent To You."
+msgstr "لم يتم تفعيل هذا البريد الإلكتروني حتى الآن يرجى التحقق من البريد الإلكتروني المرسل إليك لتفعيله."
+
+msgid "This Email Hasn't Been Activated Yet."
+msgstr "لم يتم تفعيل هذا البريد الإلكتروني حتى الآن."
+
+msgid "The Email/Password is incorrect."
+msgstr "البريد الإلكتروني / كلمة المرور غير صحيحة."
+
+msgid "Payment Form"
+msgstr "ستمارة الدفع"
+
+msgid "You will be charged"
+msgstr "وسيتم محاسبتك على مبلغ"
+
+msgid "Credit card number"
+msgstr "رقم بطاقة الائتمان"
+
+msgid "Security code"
+msgstr "رمز الحماية"
+
+msgid "Expiry date"
+msgstr "تاريخ انتهاء صلاحية"
+
+msgid "CANCEL"
+msgstr "إلغاء"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Register"
+msgstr "سجل"
+
+msgid "Upload"
+msgstr "تحميل"
+
+msgid "Drop files here to upload"
+msgstr "إسقاط الملفات هنا للتحميل "
+
+msgid "Failed"
+msgstr "فشل"
+
+msgid "has invalid extension. Only"
+msgstr "امتداد الملف غير صالح. فقط"
+
+msgid "are allowed."
+msgstr "مسموح به"
+
+msgid "is too large, maximum file size is"
+msgstr "كبير جدا، الحد الأقصى لحجم الملف هو"
+
+msgid "is too small, minimum file size is"
+msgstr "صغير جدا، والحد الأدنى لحجم الملف هو"
+
+msgid "is empty, please select files again without it."
+msgstr "فارغة، الرجاء اختيار الملفات مرة أخرى بدونه."
+
+msgid "No more than"
+msgstr "لا يزيد عن"
+
+msgid "files are allowed to be uploaded."
+msgstr " الملفات التي يسمح بتحميلها ."
+
+msgid "The files are being uploaded, if you leave now the upload will be cancelled."
+msgstr "ويجري تحميل الملفات، إذا تركت الآن سيتم إلغاء تحميل."
+
+msgid "The card number is incorrect"
+msgstr "رقم البطاقة غير صحيح"
+
+msgid "The card number is not a valid credit card number"
+msgstr "رقم البطاقة ليست لبطاقة ائتمان سارية المفعول"
+
+msgid "The card expiration month is invalid"
+msgstr "شهر انتهاء الصلاحية للبطاقة غير صالحة"
+
+msgid "The card expiration year is invalid"
+msgstr "السنة للبطاقة غير صالحة انتهاء"
+
+msgid "The card security code is invalid"
+msgstr "رمز للبطاقة الأمان غير صالح"
+
+msgid "The card has expired"
+msgstr "انتهت صلاحية البطاقة"
+
+msgid "The card was declined"
+msgstr "تم رفض البطاقة"
+
+msgid "The card security code is incorrect"
+msgstr "كود البطاقة الأمنية غير صحيحة"
+
+msgid "There is no card on a customer that is being charged"
+msgstr "ليس هناك بطاقة على العميل الذي يدفع"
+
+msgid "K"
+msgstr " ألف"
+
+msgid "M"
+msgstr " مليون"
+
+msgid "An error occurred while processing the card"
+msgstr "حدث خطأ أثناء معالجة بطاقة"
+
+msgid "did not upload his portfolio yet"
+msgstr "لم يحمل ملف اعماله حتى الآن"
+
+msgid "did not upload her portfolio yet"
+msgstr "لم تحمل ملف اعماله حتى الآن"
+
+msgid "A New shoghlanah is Posted"
+msgstr "تم إضافة مهمة جديدة"
+
+msgid "Your credit card details will be sent directly to our payment processor"
+msgstr "سيتم إرسال تفاصيل بطاقة الائتمان الخاصة بك مباشرة إلى معالج الدفع لدينا"
+
+msgid "is chating with you"
+msgstr "فتح مناقشة معك"
+
+msgid "opened a discussion on your shoghlanah"
+msgstr "فتح النقاش حول مهمتك"
+
+msgid "changed his bid on"
+msgstr "قام بتغيير المزايدة على"
+
+msgid "changed her bid on"
+msgstr "قامت بتغيير المزايدة على"
+
+msgid "is now following you"
+msgstr "يتابعك الآن"
+
+msgid "is now following you "
+msgstr "تتابعك الآن"
+
+msgid "You have a new follower"
+msgstr "لديك متابع جديدة"
+
+msgid "A bid is changed"
+msgstr "مزايدة قد تغيرت"
+
+msgid "Reset Password"
+msgstr "إعادة ضبط كلمة السر "
+
+msgid "Your password has been successfully updated"
+msgstr "لقد تم تحديث كلمة السر بنجاح"
+
+msgid "Back to Login ?"
+msgstr "الرجوع لتسجيل الدخول ؟"
+
+msgid "The reset link is invalid. Please check again"
+msgstr "الرابط غير صحيح من فضلك تأكد مرة أخرى"
+
+msgid "An email has been sent to you, please check your mail and click the link"
+msgstr "لقد تم إرسال بريد على عنوانك الإلكتروني ، من فضلك تحقق من بريدك و إضغط على الرابط "
+
+msgid "discussed"
+msgstr "ناقش"
+
+msgid "is"
+msgstr " "
+
+msgid "are"
+msgstr " "
+
+msgid "The password must be at least 8 characters long"
+msgstr "كلمة السر يجب أن لا تقل عن ٨ أحرف"
+
+msgid "Only characters, numbers and symbols are allowed."
+msgstr "مسموح بالحروف و الأرقام و الرموز فقط"
+
+msgid "The password must contain at least one letter and at least one digit or punctuation character"
+msgstr "يجب أن تحتوي كلمة المرور على حرف واحد على الأقل وعلى الأقل حرف واحد أو علامة ترقيم"
+
+msgid "Enter a valid email"
+msgstr "إدخال عنوان بريد إلكتروني صالح"
+
+msgid "You will receive an email"
+msgstr "سوف تتلقى رسالة بريد إلكتروني"
+
+msgid "You will receive a phone call"
+msgstr "سوف تتلقى مكالمة هاتفية"
+
+msgid "This email address is already registered"
+msgstr "البريد الإلكتروني الذي أدخلته تم إدخاله من قبل"
+
+msgid "This email address is already in use. Please supply a different email address."
+msgstr "البريد الإلكتروني الذي أدخلته تم إدخاله من قبل, يرجي ادخال بريد مختلف"
+
+msgid "Complete Adding you information"
+msgstr "اأكمل إدخال بياناتك"
+
+msgid "My Location"
+msgstr "مكاني"
+
+msgid "An e-mail was sent to you, including a link to continue resetting your password"
+msgstr "تم ارسال رابط على بريدك الالكتروني لتكملة عملية تغيير الكلمة السرية الخاصة بك"
+
+msgid "Bids"
+msgstr "مزايداتي"
+
+msgid "There are no bids found"
+msgstr "لا توجد مزايدات"
+
+msgid "Male"
+msgstr "ذكر"
+
+msgid "Female"
+msgstr "أنثى"
+
+msgid "Title is a required field"
+msgstr "الشغلانه حقل مطلوب"
+
+msgid "Price is a required field"
+msgstr "السعر حقل مطلوب"
+
+msgid "Price entered is invalid"
+msgstr "السعر الذي تم أدخاله غير صالح"
+
+msgid "Reward chosen is invalid"
+msgstr "اختيار المكافأة غير صالح"
+
+msgid "Location is a required field"
+msgstr "الموقع حقل مطلوب"
+
+msgid "Accepted"
+msgstr "مقبول"
+
+msgid "Bidder"
+msgstr "مزايد"
+
+msgid "to"
+msgstr "الي"
+
+msgid "To"
+msgstr "الي"
+
+msgid "From"
+msgstr "من"
+
+msgid "No users found"
+msgstr "لا يوجد اشخاص"
+
+msgid "Open discussion by sending a message to the owner"
+msgstr "إرسال رسالة لبدء مناقشة"
+
+msgid "Only you and the owner can see this discussion"
+msgstr "هذه المناقشة مرئية لك ولصاحب لشغلانة فقط "
+
+msgid "Delete Task"
+msgstr "حذف الشغلانة"
+
+msgid "Are you sure you want to delete this task ?"
+msgstr "هل أنت متأكد أنك تريد حذف الشغلانة ؟"
+
+msgid "bidded on your task"
+msgstr "وضع مزايدة على"
+
+msgid " bidded on your task "
+msgstr "وضعت مزايدة على"
+
+msgid " sent a message on your task "
+msgstr "أرسلت رسالة على مهمتك"
+
+msgid "sent a message on your task"
+msgstr "أرسل رسالة على مهمتك"
+
+msgid "is chatting with you"
+msgstr "ناقش"
+
+msgid " is chatting with you "
+msgstr "ناقشت"
+
+msgid " accepted your bid "
+msgstr "قبلت المزايدة على"
+
+msgid "accepted your bid"
+msgstr "قبل المزايدة على"
+
+msgid "paid the money for"
+msgstr "دفع المال لل"
+
+msgid " paid the money for "
+msgstr "دفعت المال لل"
+
+msgid "reviewed you for"
+msgstr "قام بتقييمك على"
+
+msgid "reviewed you"
+msgstr "قام بتقييمك"
+
+msgid "Change Email"
+msgstr "تغيير البريد الإلكتروني"
+
+msgid "paid the required amount of money"
+msgstr "دفع المال"
+
+msgid "Shoghlanah&#39;s Feed"
+msgstr "أخبار شغلانة"
+
+msgid "Post on Facebook"
+msgstr "شارك على فيسبوك"
+
+msgid "Tweet about it"
+msgstr "شارك على تويتر"
+
+msgid "Share on Google+"
+msgstr "شارك على جوجل"
+
+msgid "Find and invite people you know"
+msgstr "العثور على و دعوة اشخاص تعرفهم"
+
+msgid "Invite by Mail"
+msgstr "دعوة بالاي ميل"
+
+msgid "Coming Soon"
+msgstr "قريباً"
+
+msgid "Show map"
+msgstr "اعرض الخريطة"
+
+msgid ", click edit to add some details"
+msgstr "، إضغط على تعديل لإضافة بعض التفاصيل"
+
+msgid "How will you compensate ?"
+msgstr "ماذا سوف تعطيه في المقابل ؟"
+
+msgid "Compensation"
+msgstr "المقابل"
+
+msgid "Add the needed skill(s)"
+msgstr "أضف المهارات المطلوبه"
+
+msgid "Thanks! We will notify you once the account is activated"
+msgstr "شكرا ! سنقوم بإعلامك عند تفعيل حساب"
+
+msgid "Error in request, please try again later"
+msgstr "خطأ في الطلب، يرجى المحاولة في وقت لاحق"
+
+msgid "Why"
+msgstr "لييه"
+
+msgid "should you"
+msgstr "لازم"
+
+msgid "join Now!"
+msgstr "تشترك دلوقتي !"
+
+msgid "Shoghlanah.com is a skills marketplace for the Egyptian market. Social Offline and Online Tasks Marketplace in Egypt"
+msgstr "بتدور على حد يخلص لك شغلانة هنظبطتك عندك وقت او عاوز تزود دخلك يعني بتدور على شغلانة بردو هنظبطك"
+
+msgid "You have"
+msgstr "لديك"
+
+msgid "friends from Facebook on Shoghlanah"
+msgstr "أصدقاء من الفيسبوك على شغلانة"
+
+msgid "followers from Twitter on Shoghlanah"
+msgstr "متابع من تويتر على شغلانة"
+
+msgid "You already have an account, please login"
+msgstr "لديك حساب، يرجى الدخول"
+
+msgid "You have already sent a request"
+msgstr "لقد أرسلت بالفعل طلبا"
+
+msgid "Request sent successfully"
+msgstr "أرسلت طلب بنجاح"
+
+msgid "Pin location"
+msgstr "حدد الموقع"
+
+msgid "Professionals"
+msgstr "مهنيين"
+
+
+msgid "Request invitation"
+msgstr "طلب دعوة"
+
+msgid "or"
+msgstr "أو"
+
+msgid "Talk about yourself"
+msgstr "تحدث عن نفسك"
+
+msgid "You are good at"
+msgstr "أنت جيدة في"
+
+msgid "Your Address"
+msgstr "العنوان"
+
+msgid "Cover Picture"
+msgstr "صورة الغلاف"
+
+msgid "Following"
+msgstr "متابع"
+
+msgid "I am good at"
+msgstr "أنا جيد في"
+
+msgid "This user is not following anyone yet"
+msgstr "هذا المستخدم لم يتابع احد حتى الآن"
+
+msgid "Should be good at"
+msgstr "يجب أن تكون جيد في"
+
+msgid "this is an invitation to join Shoghlanah."
+msgstr "هذه دعوة للانضمام الى شغلانة"
+
+msgid "Send Invitation"
+msgstr "دعوة"
+
+msgid "Add Email"
+msgstr "اضف بريد الكتروني"
+
+msgid "Message"
+msgstr "الرسالة"
+
+msgid "Change e-mail address"
+msgstr "تغير عنوان البريد الإلكتروني"
+
+msgid "Change Cover"
+msgstr "تغير الغلاف"
+
+msgid "Change Picture"
+msgstr "تغير الصوره"
+
+msgid "New e-mail address"
+msgstr "تغيير عنوان البريد الإلكتروني"
+
+msgid "No Notifications"
+msgstr "لا توجد إشعارات"
+
+msgid "Follow people, post tasks and come back"
+msgstr "اتبع الناس ، اضف شغلانه ، وعود مرة أخرى"
+
+msgid "Processing Request"
+msgstr "تحميل الطلبات"
+
+msgid "Change Password"
+msgstr "غيّر كلمة المرور"
+
+msgid "Providing more details will help you having"
+msgstr "تقديم مزيد من التفاصيل تساعدك"
+
+msgid "the appropriate applicants"
+msgstr "على وجود مقدمي الطلبات المناسبة"
+
+msgid "Ready for this shoghlanah ?"
+msgstr "مستعد للشغلانه ؟"
+
+msgid "Ready for any shoghlanah ?"
+msgstr "مستعد لأي شغلانه ؟"
+
+msgid "Did you join Shoghlanah.com ?"
+msgstr "اشتركت في Shoghlanah.com ؟"
+
+msgid "Loading"
+msgstr "التحميل جاري"
+
+msgid "Tip:Double click the pin to bring it where you need"
+msgstr "نصيحة: انقر نقرا مزدوجا فوق الرمز للوصول بها حيث تحتاج"
+
+msgid "Login to message the owner"
+msgstr "سجل الدخول لبدء مناقشة"
+
+msgid "Login to follow our users"
+msgstr "سجل الدخول لمتابعة مستخدمينا"
+
+msgid "Please check your internet connection"
+msgstr "يرجى التحقق من اتصالك بالإنترنت"
+
+msgid "You Have To Enter A Message."
+msgstr "يجب إدخال رسالة"
+
+msgid "We successfully changed your password."
+msgstr "قمنا بتغيير كلمة المرور الخاصة بك بنجاح."
+
+msgid "Go to the"
+msgstr "انتقل إلى"
+
+msgid "main page"
+msgstr "الصفحة الرئيسية"
+
+msgid "and check out some posts."
+msgstr "وتحقق من بعض الوظائف."
+
+msgid "We sent an e-mail including a link, please click the link to continue changing your e-mail address."
+msgstr "أرسلنا رسالة إلى البريد الإلكتروني الخاص بك، الرجاء الضغط على الرابط الخاص بك لمواصلة تغيير عنوان البريد الإلكتروني."
+
+msgid "changed her first name"
+msgstr "غيرت اسمها الأول"
+
+msgid "changed his first name"
+msgstr "غير اسمه الأول"
+
+msgid "changed her last name"
+msgstr "غيرت اسمها لأخير"
+
+msgid "changed his last name"
+msgstr "غير اسمه لأخير"
+
+msgid "changed her job title"
+msgstr "غيرت المهنة"
+
+msgid "changed his job title"
+msgstr "غير المهنة"
+
+msgid "changed her mobile number"
+msgstr "غيرت رقم الهاتف المحمول"
+
+msgid "changed his mobile number"
+msgstr "غير رقم الهاتف المحمول"
+
+msgid "changed her 'About Me' info"
+msgstr "غيرت 'معلومات عني'"
+
+msgid "changed his 'About Me' info"
+msgstr "غير 'معلومات عني'"
+
+msgid "changed her location"
+msgstr "غيرت موقعها"
+
+msgid "changed his location"
+msgstr "غيرت موقعه"
+
+msgid "linked her account to her facebook profile"
+msgstr "أضافت حساب الفيسبوك"
+
+msgid "linked his account to his facebook profile"
+msgstr "أضاف حساب الفيسبوك"
+
+msgid "linked her account to her twitter profile"
+msgstr "أضافت حساب تويتر"
+
+msgid "linked his account to his twitter profile"
+msgstr "أضاف حساب تويتر"
+
+msgid "linked her account to her google+ profile"
+msgstr "أضافت حساب جوجل بلس"
+
+msgid "linked his account to his google+ profile"
+msgstr "أضاف حساب جوجل بلس"
+
+msgid "linked her account to her linkedin profile"
+msgstr "أضافت حساب لنكد ان"
+
+msgid "linked his account to his linkedin profile"
+msgstr "أضاف حساب لنكد ان"
+
+msgid "We are sorry"
+msgstr "نأسف"
+
+msgid "the page you have requested has either expired or cannot be found"
+msgstr "الصفحة المطلوبة  إما أن تكون غير موجودة  أو لم يمكننا الحصول عليها"
+
+msgid "the server encountered an internal error or miss-configuration and was unable to complete your request"
+msgstr "هناك خطأ داخلي في النظام أو خلل في الإعدادات لم يمكننا من إتمام طلبك"
+
+msgid "While we work on resolving the problem, here are couple of things you can do"
+msgstr "نحن نعمل على اصلاح هذه المشكلة. حتى يتم الإصلاح يمكنك"
+
+msgid "and check out some of our latest posts"
+msgstr "وتصفح جديد الموقع"
+
+msgid "Get to Know us a little better - visit"
+msgstr "تعرف علينا أكثر من خلال صفحة"
+
+msgid "About us"
+msgstr "عن شغلانة"
+
+msgid "page."
+msgstr "."
+
+msgid "Visit us on"
+msgstr "قم بزيارة صفختنا على"
+
+msgid "Facebook "
+msgstr "الفيس بوك "
+
+msgid "or follow our tweets on"
+msgstr "أو اتبع تغريداتنا على"
+
+msgid "If you think we need to look into this urgently"
+msgstr "اذا كنت تحتاج لمحتوى هذه الصفحة بصورة عاجلة"
+
+msgid "contact us"
+msgstr "قم بالتواصل معنا"
+
+msgid "Do a search"
+msgstr "استخدام البحث"
+
+msgid "The search bar is on the top-right corner"
+msgstr "الموجود على أعلى اليسار"
+
+msgid "Account Settings"
+msgstr "إعدادات الحساب"
+
+msgid "What is Shoghlanah ?"
+msgstr "إيه هي شغلانة ؟"
+
+msgid "New Password"
+msgstr "كلمة السر الجديدة "
+
+msgid "Confirm New Password"
+msgstr "تأكيد كلمة السر الجديدة"
+
+msgid "To update the home page with your interests, please follow profiles that matches your requirements"
+msgstr "لتحديث الصفحة الرئيسية مع اهتماماتك، يرجى اتباع الحسابات التي تطابق الاحتياجات الخاصة بك"
+
+msgid "Connect with Facebook"
+msgstr "تواصل مع الفيسبوك"
+
+msgid "Connect with Twitter"
+msgstr "تواصل مع تويتر"
+
+msgid " Shoghlanahs Posted"
+msgstr ""
+
+msgid "Posted"
+msgstr "عرضت"
+
+msgid "Applied for "
+msgstr "قدمت لي "
+
+msgid "Applied"
+msgstr "تقدمت"
+
+msgid "You did not post any shoghlanah"
+msgstr "أنت لم تعرض أي شعلانه"
+
+msgid "You did not apply for any shoghlanah"
+msgstr "أنت لم تتقدم لي اي شغلانه"
+
+msgid "Type your link here"
+msgstr "اكتب الرابط هنا"
+
+msgid "Disconnect"
+msgstr "قطع الاتصال"
+
+msgid "Report shoghlanah"
+msgstr "بلغ عن شغلانة"
+
+msgid "Why do you want to report this shoghlanah?"
+msgstr "لماذا تريد أن تبلغ عن هذه الشغلانة"
+
+msgid "Report"
+msgstr "أبلغ"
+
+msgid "Offensive content"
+msgstr "محتوى عدواني"
+
+msgid "Advertising"
+msgstr "إعلان"
+
+msgid "Irrelevant"
+msgstr "غير ذات صلة"
+
+msgid "Post Shoghlanah"
+msgstr "اضف شغلانة"
+
+msgid "Order Information"
+msgstr "بيانات الشراء"
+
+msgid "Price"
+msgstr "السعر"
+
+msgid "Quantity"
+msgstr "كمية"
+
+msgid "Payment Choice"
+msgstr "طريقة الدفع"
+
+msgid "Cash"
+msgstr "نقد"
+
+msgid "Mobile number"
+msgstr "رقم الموبايل"
+
+msgid "Special Notes"
+msgstr "ملاحظات خاصة"
+
+msgid "I agree on the"
+msgstr "أوافق على"
+
+msgid "Terms & Conditions"
+msgstr "الشروط والأحكام"
+
+msgid "Region"
+msgstr "منطقة"
+
+msgid "Payment Method"
+msgstr "طريقة الدفع"
+
+msgid "Add Order"
+msgstr "إضافة طلب"
+
+msgid " accepted your bid on "
+msgstr "قبلت مزايدتك"
+
+msgid " Products"
+msgstr "منتجات"

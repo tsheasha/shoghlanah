@@ -1,0 +1,70 @@
+.info{
+	background-color: rgb(255, 255, 255);
+}
+.followers-div, .followers-title {
+	float: right;
+}
+
+#profile-stream{
+	float:right;
+	margin-right: 5px;
+}
+
+#profile-gallery-follow{
+	float:left;
+	border-left: 0px;
+	padding-left: 0px;
+	margin-left: 0px;
+	padding-right: 15px;
+}
+
+#sb-player{
+	position:relative !important;
+}
+
+#sb-counter{
+	direction:ltr;
+}
+
+.pictures{
+  margin: 3px;
+  margin-left:0px;
+}
+.pic2{
+  right: -139px;
+}
+.gecko #lower-container1 {
+	position: relative;
+	top: 25%;
+	left: -95.5%;
+}
+.gecko #lower-container2 {
+	position: relative;
+	top: 25%;
+	left: -95.5%;
+}
+.gecko #lower-container3 {
+	position: relative;
+	top: 25%;
+	left: -95.5%;
+}
+
+.modal-close-followers {
+  right: 570px;
+}
+
+.qq-upload-button {
+  direction: rtl !important;
+}
+
+.empty {
+	padding-left: 30px;
+	padding-right: 0px;
+}
+
+#lower-container .span7{
+  border-right: 0px;
+  border-left: 1px solid #cacaca;
+  margin-left: 0px;
+  margin-right: 5px;
+}

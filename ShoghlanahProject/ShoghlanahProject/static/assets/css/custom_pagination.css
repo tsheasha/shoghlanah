@@ -1,0 +1,50 @@
+
+.swControls{
+    position:absolute;
+    margin-top:10px;
+    margin-top: -1200px;
+}
+a.swShowPage{
+    background-color:#444444;
+    float:left;
+    height:15px;
+    margin:4px 3px;
+    text-indent:-9999px;
+    width:15px;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    border-radius:7px;
+}
+
+a.swShowPage:hover,
+a.swShowPage.active{
+    background-color:#2993dd;
+    -moz-box-shadow:0 0 7px #1e435d inset;
+    box-shadow:0 0 7px #1e435d inset;
+}
+
+#holder li.taskR{
+    list-style: none outside none;
+    margin: 10px 22px 0;
+    padding: 20px;
+    float: left;
+    width: 219px;
+    height: 257px;}
+
+#holder li.pR{
+    list-style: none outside none;
+    float: left;
+    width: 215px;
+    height: 168px;
+    padding-left: 25px;
+    line-height: 34px;
+}
+#holder,
+#holder li{
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+
+}
+.clear{
+    clear:both;
+}

@@ -1,0 +1,277 @@
+<link type="text/css" href="{{STATIC_URL}}assets/css/info.css" rel="stylesheet"/>
+<link type="text/css" href="{{STATIC_URL}}css/atag.css" rel="stylesheet"/>
+<link type="text/css" href="{{STATIC_URL}}assets/css/change_photos.css" rel="stylesheet"/>
+{% if request.session.django_language == 'ar' %}
+<link type="text/css" href="{{STATIC_URL}}assets/css-rtl/info-rtl.css" rel="stylesheet"/>
+{% endif %}
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+
+<script>
+document.ready = function() {
+	var height = $("#tags-div").height();
+	if(height > 98) {
+		while (height > 98) {
+			height = $("#tags-div").height();
+			//$("#tags-div").attr('style','margin-top: -95px;max-width: 400px;margin-left: 10px;max-height: 98px;overflow: hidden;');
+			$(".htag:last-child").remove();
+		}
+		$(".htag:last-child").after($("<a data-toggle=\"modal\" href=\"#allskills\"><div>...</div></a>").addClass("tag"));
+	}
+
+	showChangePhotoButton();
+};
+
+function changebtn() {
+	$("#followbtn").attr('class', 'btn btn-danger');
+}
+function follow2(){
+	//$("#followbtn").attr('', 'btn btn-danger');
+	// $.ajax({
+	// type: "GET",
+	// url:"/profile/{{userprofile.username}}/follow/",
+	// });
+	if ($("#followbtn").attr('value') == 'unfollow'){
+		$("#followbtn").attr('class', 'btn btn-primary profile-follow');
+		$("#followbtn").attr('value', 'follow');
+		$("#followbtn").attr('style', 'background: #f3592a;');
+		$("#followbtn").html("{% trans 'FOLLOW' %}");
+		$.ajax({
+		type: "GET",
+		url:"/profile/{{userprofile.username}}/unfollow/",
+		});
+		var followers = parseInt($("#followers-no").html())-1;
+		$("#followers-no").html(followers);
+        _kmq.push(['record', 'Unfollow User',{'Unfollower':'{{request.user.email}}','Unfollowed':'{{userprofile.email}}'}]);
+        _gaq.push(['_trackEvent', 'Profile', 'Unfollow User']);
+	}
+	else {
+		$("#followbtn").attr('class', 'btn btn-danger profile-follow');
+		$("#followbtn").attr('value', 'unfollow');
+		$("#followbtn").attr('style', 'background:#0A5981;');
+		
+		$("#followbtn").html("{% trans 'UNFOLLOW' %}");
+		$.ajax({
+		type: "GET",
+		url:"/profile/{{userprofile.username}}/follow/",
+		});
+		var followers = parseInt($("#followers-no").html())+1;
+		$("#followers-no").html(followers);
+        _kmq.push(['record', 'Follow User',{'Follower':'{{request.user.email}}','Followed':'{{userprofile.email}}'}]);
+        _gaq.push(['_trackEvent', 'Profile', 'Follow User']);
+	}
+}
+function showChangePhotoButton() {
+	$("#cover-photo").hover(function() {
+			$("#change-cover-photo").show();
+		}, function() {
+			$("#change-cover-photo").hide();
+	});
+
+	$("#profile-pic").hover(function() {
+			$("#change-profile-pic").show();
+		}, function () {
+			$("#change-profile-pic").hide();
+	});
+};
+</script>
+
+<script type="text/javascript">
+	function pushkm_pp(){
+        _kmq.push(['record', 'Changed Profile Picture',{'User':'{{request.user.email}}'}]);
+        _gaq.push(['_trackEvent','Edit Profile', 'Changed Profile Picture']);
+	}
+	function pushkm_cp(){
+        _kmq.push(['record', 'Changed Cover Photo',{'User':'{{request.user.email}}'}]);
+        _gaq.push(['_trackEvent','Edit Profile', 'Changed Cover Photo']);
+	}
+	function loads(){
+        _kmq.push(['record', 'Edited Profile',{'User':'{{request.user.email}}'}]);
+        _gaq.push(['_trackEvent', 'Edit Profile', 'Edited Profile']);
+			document.getElementById('loading-edit').innerHTML = '<div class="loadingbody"><span></span><span class="load-1"></span><span class="load-2"></span><span class="load-3"></span><span class="load-4"></span><span class="load-5"></span><span class="load-6"></span></div>';
+	}
+</script>
+
+<div id="cover-photo">
+	{% if userprofile.cover_picture %}
+	{% thumbnail userprofile.id|get_cover_pic "965x295" crop="center" as im %}
+	<img id="cover-image" src="{{ im.url }}"/>
+	{% endthumbnail %}
+	{% else %}
+	<img id="cover-image" src="{{STATIC_URL}}img/cover.png"/>
+	{% endif %}
+	<div id="cover-layer">
+		<a href="#cover-photo-modal" data-toggle="modal" role="button" id="change-cover-photo" class="btn btn-primary pull-left"><i class="icon-pencil"></i> {% trans "Change Cover" %}</a>
+	</div>
+</div>
+{% include "modals/change_cover_photo.html" %}
+<div id="pinfo" style="
+	position: absolute;
+	margin-top: -275px;
+	width: 962px;
+	text-align: center;">
+	<p style="font-size: 27pt;
+	color: #FFF;
+	font-weight: bold;">{{userprofile.first_name}} {{userprofile.last_name}}</p>
+	<div id="social-icons">
+		{% if userprofile.facebook_link %}
+		<div id="fb" style="display: inline-block;padding-right: 6px;">
+			<a href="{{userprofile.facebook_link}}" target="_blank" style="text-decoration: none;">
+				<img width="25" height="25" src="{{STATIC_URL}}assets/img/profile-info/facebook.png"/>
+			</a>
+		</div>
+		{% endif %}
+		{% if userprofile.twitter_link %}
+			<div id="tw" style="display: inline-block;padding-right: 6px;">
+				<a href="{{userprofile.twitter_link}}" target="_blank" style="text-decoration: none;">
+					<img width="25" height="25" src="{{STATIC_URL}}assets/img/profile-info/twitter.png"/>
+				</a>
+			</div>
+		{% endif %}
+		{% if userprofile.google_plus_link %}
+			<div id="lnkd-in" style="display: inline-block;padding-right: 6px;">
+				<a href="{{userprofile.google_plus_link}}" target="_blank" style="text-decoration: none;">
+					<img width="25" height="25" src="{{STATIC_URL}}assets/img/profile-info/google_plus.png"/>
+				</a>
+			</div>
+		{% endif %}
+		{% if userprofile.linkedin_link %}
+			<div id="lnkd-in" style="display: inline-block;padding-right: 6px;">
+				<a href="{{userprofile.linkedin_link}}" target="_blank" style="text-decoration: none;">
+					<img width="25" height="25" src="{{STATIC_URL}}assets/img/profile-info/linkedin.png"/>
+				</a>
+			</div>
+		{% endif %}
+	</div>
+	{% if userprofile.job_title and not userprofile.job_title == '' %}
+		<div id="profession" style="margin-top: 13px;">
+			<p style="font-size: 18pt;
+			color: #FFF;
+			font-weight: bold;">{{userprofile.job_title}}</p>
+		</div>
+	{% endif %}
+	<div id="location" style="margin-top: 13px;">
+		<p style="font-size: 11pt;
+		color: #FFF;
+		font-weight: bold;">{{userprofile.city}}</p>
+	</div>
+	{% if not userprofile.about == 'None' and not userprofile.about == '' %}
+		<div id="about-me" style="margin-top: 11px;">
+			<p style="font-size: 11pt;
+			color: #FFF;
+			font-weight: bold;">{{userprofile.about}}</p>
+		</div>
+	{% endif %}
+</div>
+{% thumbnail userprofile.id|get_profile_pic "150x150" crop="center" as im %}
+<div id="profile-pic" style="
+background-image: url({{im.url}});
+background-repeat:no-repeat;
+-webkit-border-radius: 999px;
+-moz-border-radius: 999px;
+border-radius: 999px;
+height: 150px;
+width: 150px;
+border: 9px solid rgb(183, 183, 183);
+position:absolute;
+margin-top: -100px;
+margin-left: 400px;
+z-index:3;">
+	<a href="#profile-pic-modal" data-toggle="modal" role="button" id="change-profile-pic" class="btn btn-primary"><i class="icon-pencil"></i> {% trans "Change Picture" %}</a>
+</div>
+{% endthumbnail %}
+{% include "modals/change_profile_pic.html" %}
+{% if request.user.username == userprofile.username %}
+<button id="edit-prfl" onclick="window.location = '/profile/{{request.user.username}}/edit/';" name="edit-prfl" class="btn btn-primary profile-follow" style="background: #f3592a;">
+{% trans "Edit Profile" %}
+</button>
+{% elif isFollowing %}
+<button id="followbtn" type="submit" name="follow" class="btn btn-danger profile-follow" data-loading-text="Loading..." onClick="follow2()" value="unfollow" style="background:#0A5981;">
+{% trans "UNFOLLOW" %}
+</button>
+{% else %}
+<button id="followbtn" type="submit" name="follow" class="btn btn-primary profile-follow" data-loading-text="Loading..." onClick="follow2()" value="follow" style="background: #f3592a;">
+{% trans "FOLLOW" %}
+</button>
+{% endif %}
+
+<div id="social">
+	<div id="followers" onclick="followers();">
+		<p style="color: #777777;
+		font-size: 14px;">{% trans "Followers" %}</p>
+		<p id="all-fllwrs-cnt" style="
+		font-size: 25pt;
+		color: #f3592a;
+		font-family:Helvetica;">{{all_followers.count}}</p>
+	</div>
+	<div id="following" onclick="following();">
+		<p style="color: #777777;
+		font-size: 14px;">{% trans "Following" %}</p>
+		<p id="all-fllwng-cnt" style="
+		font-size: 25pt;
+		color: #f3592a;	
+		font-family:Helvetica;">{{all_following.count}}</p>
+	</div>
+	<div id="taskses" onclick="tasks();">
+		<p style="color: #777777;
+		font-size: 14px;">{% trans "Shoghlanahs" %}</p>
+		<p id="all-tsks-cnt" style="
+		font-size: 25pt;
+		color: #f3592a;
+		font-family:Helvetica;">{{all_tasks_no}}</p>
+	</div>
+	<div id="reviews" onclick="reviews();">
+		<p style="color: #777777;
+		font-size: 14px;">{% trans "Reviews" %}</p>
+		<p id="all-rvws-cnt" style="font-size: 25pt;
+		color: #f3592a;
+		font-family:Helvetica;">{{reviews.count}}</p>
+	</div>
+</div>
+<div id="like-dislike">
+	<div id="like" style="
+	display: inline-block;
+	min-width: 70px;">
+		<img id="thumb-up" style="width:35px;"src="{{STATIC_URL}}assets/img/profile-info/like.png"/>
+		<p style="display: inline-block;vertical-align: text-top;font-size: 14pt;color: #2186BC;">{{userprofile.votes_up}}</p>
+	</div>
+	<div id="dislike" style="
+	display: inline-block;">
+		<img id="thumb-down" style="width:35px;"src="{{STATIC_URL}}assets/img/profile-info/dislike.png"/>
+		<p style="display: inline-block;vertical-align: text-top;font-size: 14pt;color: #2186BC;">{{userprofile.votes_down}}</p>
+	</div>
+</div>
+
+<div id="tags-div" style="
+margin-top: -95px;
+max-width: 400px;
+margin-left: 10px;
+/*max-height: 98px;*/
+/*max-height: 65px;*/
+overflow: auto;">
+	{% if userprofile.tags.count != 0 %}
+	<p id="good-at">{% trans "I am good at" %}</p>
+	{% else %}
+	<div style="height:1px;">
+	</div>
+	{% endif %}
+	{% for tag in userprofile.tags %}
+	<a class="htag" href="/skill/{{tag.id}}/"><div class="tag">{{tag}}</div></a>
+	{% endfor %}
+</div>
+
+<div class="modal hide fade in" id="allskills" style="display: none;" aria-hidden="false">
+	<div class="modal-header">
+		<div class="modal-close" data-dismiss="modal">
+			<label>X</label>
+		</div>
+		<label class="modal-title">{% trans "Skills" %}</label>
+	</div>
+	<div class="modal-body" style="min-height: 120px;padding-bottom: 35px;">
+		{% for tag in userprofile.tags %}
+		<a href="/skill/{{tag.id}}/"><div class="atag">{{tag}}</div></a>
+		{% endfor %}
+	</div>
+	
+</div>

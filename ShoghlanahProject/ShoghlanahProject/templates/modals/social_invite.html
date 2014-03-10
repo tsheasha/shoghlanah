@@ -1,0 +1,129 @@
+{% load i18n %}
+{% load get_user_info %}
+ 
+<div id="SocialInviteModal" class="modal hide fade">
+  <div class="modal-header">
+    <div class="modal-close" data-dismiss="modal">
+      <label>X</label>
+    </div>
+    <label class="modal-title">{% trans "Social invite people you know" %}</label>
+  </div>
+  <div class="modal-body" style="padding-bottom: inherit;">
+    <ul class="nav nav-tabs" id="smyTab">
+      <li>
+        <a onclick="stab('sfacebook');" href="#sfacebook" data-toggle="tab" id="facebook-tab">
+          <img src="{{STATIC_URL}}img/00fb.png" height="36px;" width="33px;">
+          {% trans "Facebook" %}
+        </a>
+      </li>
+      <li>
+        <a onclick="stab('stwitter');" href="#stwitter" data-toggle="tab" id="twitter-tab">
+          <img src="{{STATIC_URL}}img/00tw.png" height="36px;" width="36px;">
+          {% trans "Twitter" %}
+        </a>
+      </li>
+    </ul>
+
+    <div class='tab-content'>
+      
+      <div class='tab-pane' id="sfacebook" align="center">
+        <input style="width: 260px;color: black;" class="search-query input-xlarge" id="q" name="q" type="text" size="20" onkeyup="auto_search($(this).val());" placeholder="{% trans 'Search'%}" />
+        <div id="people-facebook">
+          <div class="loadingbody"><span class="load-1"></span><span class="load-2"></span><span class="load-3"></span><span>{% trans "Processing Request" %}</span><span class="load-4"></span><span class="load-5"></span><span class="load-6"></span></div>
+        </div>
+      </div>
+      
+      <div class='tab-pane' id="stwitter">
+        <div class="loadingbody"><span class="load-1"></span><span class="load-2"></span><span class="load-3"></span><span>{% trans "Processing Request" %}</span><span class="load-4"></span><span class="load-5"></span><span class="load-6"></span></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+                <script>
+
+                    $(document).ready(function() {
+                      {% if request.session.Social %}
+                          $('#SyncInvitekModal').modal('show');
+                          tab("{{ request.session.Social }}");
+                          {{ request|sessionDeleteSocial }}
+                      {% endif %}
+                      $("#to-emails").tagit({
+                        availableTags: [],
+                        allowSpaces: true,
+                        placeholderText: '{% trans "Add Email" %}',
+                      });
+                    });
+
+                    function auto_search(query) {
+                      // alert(query);
+                      // alert(users_names);
+                    }
+
+                    function checkMsg() {
+                      var hasError = false;
+                      var msg = $("#email-msg").val();
+                      _kmq.push(['record', 'Sent Invitation to join ',{'Sender':'{{request.user.email}}', 'Receiver':emailaddressVal}]);
+                      if(msg == '') {
+                        $('#msg-error').html('{% trans "You Have To Enter A Message." %}');
+                        hasError = true;
+                      }
+                      return hasError;
+                    }
+
+                    function stab(tab_id) {
+                      if (tab_id == 'sfacebook') {
+                        $('#smyTab li:eq(0) a').tab('show');
+                        {% if request.user.id|checkUserFacebook %}
+                          $.ajax({
+                            url:"{% url invite_facebook %}",
+                            success:function(data) {
+                              $('#people-facebook').html(data);
+                            },
+                            error: function() {
+                              $.ajax({
+                                url: '{% url facebook_login %}',
+                                success: tab(tab_id),
+                                error: $('#facebook').html("{% trans 'Please check your internet connection' %}")
+                              })
+                            }
+                          });
+                        {% else %}
+                          window.location.href="{% url invite_facebook %}";
+                        {% endif %}
+                      } else {
+                        if (tab_id == 'stwitter') {
+                          $('#smyTab li:eq(1) a').tab('show');
+                          {% if request.user.id|checkUserTwitter %}
+                            $.ajax({
+                              url:'{% url invite_twitter %}',
+                              success:function(data) {
+                                $('#stwitter').html(data);
+                              },
+                              error: function() {
+                                window.location.href="{% url invite_twitter %}";
+                              }
+                            });
+                          {% else %}
+                            window.location.href="{% url sync_twitter %}";
+                          {% endif %}
+                        }
+                      }
+                    }
+
+                    function check_chars () {
+                      var c = 200 - $("#msg").val().length;
+                      $("#char-count").html(c);
+                      if (c < 0) {
+                        $("#char-count").attr('class', 'text-error');
+                        return false;
+                      }else {
+                        $("#char-count").attr('class', 'muted');
+                        return true;
+                      }
+
+                    }
+                </script>

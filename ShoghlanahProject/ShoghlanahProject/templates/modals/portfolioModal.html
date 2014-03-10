@@ -1,0 +1,20 @@
+{% load thumbnail %}
+{% load i18n %}
+<div class="modal hide fade" id="portfolioModal" style="overflow: hidden;">
+	<div class="modal-header">
+		<div class="modal-close" data-dismiss="modal">
+			<label>X</label>
+		</div>
+		<label class="modal-title">
+			<a href="{% url userprofiles_profile viewed_user.username %}">{{viewed_user.first_name}} {{viewed_user.last_name}}</a> {% trans "Portfolio " %}</label>
+	</div>
+	<div class="modal-body">
+		{% for pic in Photos %}
+			{% thumbnail pic.image "205x205" crop="center" as im %}
+			<a href="{{MEDIA_URL}}{{pic.image}}" rel="shadowbox[{{viewed_user}}-PortfolioModal]" data-dismiss="modal">
+				<img class="pictures picModal" src="{{im.url}}">
+			</a>
+			{% endthumbnail %}
+		{% endfor %}	
+	</div>
+</div>

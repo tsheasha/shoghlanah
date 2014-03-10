@@ -1,0 +1,48 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+
+<form method="POST" 
+    {% if invite_social == "facebook"  %}
+        action='{% url facebook_invite %}'
+    {% elif invite_social == "twitter" %}
+        action='{% url twitter_invite %}'
+    {% endif %}
+>
+    {% csrf_token %}
+    <div align="center">
+        <input type="text" id="social-search" placeholder="search">
+        <input class="btn" type="submit" value="Invite">
+    </div>
+    <br/>
+    {% for user, user_id in users %}
+        <div class='pcard' style="width: 115px;">
+            {% if invite_social == "facebook"  %}
+                <input type="checkbox" name="facebook-{{user.username}}">
+                <a href="https://facebook.com/{{ user.username }}/">
+                    <img class="propic" src="{{ user.picture.data.url }}">
+                </a>
+            {% elif invite_social == "twitter" %}
+                <input type="checkbox" name="twitter-{{user_id}}">
+                <a href='https://twitter.com/{{ user.screen_name }}/'>
+                    <img class="propic" src="{{ user.profile_image_url }}">
+                </a>
+            {% endif %}
+            
+            {% if invite_social == "facebook"  %}
+                <a href="https://facebook.com/{{ user.username }}/">
+                    <h4>{{ user.name|truncate:10 }}</h4>
+                </a>
+            {% elif invite_social == "twitter" %}
+                <a href='https://twitter.com/{{ user.screen_name }}/'>
+                    <h4>{{ user.name|truncate:10 }}</h4>
+                </a>
+            {% endif %}
+        </div>
+    {% endfor %}
+</form>
+
+<script>
+    var users_names = {{ users_names|safe }};
+    $("#social-search").autocomplete({ source:users_names });
+</script>

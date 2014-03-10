@@ -1,0 +1,105 @@
+.modal-close{
+	right: 700px;
+}
+
+#postTask .modal-close{
+	right: 770px;
+}
+
+.div1a{
+    float: right;
+}
+
+.regular-radio + label {
+	margin-left: 8px;
+	margin-right: 0px;
+}
+
+.regular-radio:checked + label:after {
+	left: 0px;
+	right: 3px;
+}
+
+#radioPaid, #radioReward{
+	margin-right: 5px;
+	margin-left: 28px;
+}
+
+#sliderInput{
+	float: left;
+	margin-left: -22px;
+	margin-right: 0px;
+}
+
+
+#slideInput{
+	float: left;
+	margin-left: -22px;
+	margin-right: 0px;
+}
+
+.div1b{
+    float:left;
+}
+
+#create_task{
+	margin-left: 0px;
+	margin-right: 12px;
+}
+.arrow-botOut {
+	left: 0px;
+	right: 28px;
+}
+
+.arrow-botIn {
+	left: 0px;
+	right: 27px;
+}
+
+#slidertip{
+	margin-right: -2.8em;
+	margin-left: 0em;
+}
+
+#slidetip{
+	margin-right: -2.8em;
+	margin-left: 0em;
+}
+
+.sharePost{
+	margin-right: 0px;
+	margin-left: 7px;
+}
+ 
+.regular-checkbox + label {
+    margin-right: -1px;
+	margin-left: 14px;
+}
+ 
+.regular-checkbox:checked + label:after {
+    right: 2px;
+    left: 0px;
+}
+
+#sharediv{
+	float: left;
+}
+
+ul.tagit li {
+	float: right;
+}
+
+#map_canvas, #gmap{
+	margin-right: 6px;
+}
+.taskcreate{
+	float: left;
+}
+
+.rightlabel{
+	left: 4px;
+}
+
+.leftlabel{
+	right: 0px;
+}

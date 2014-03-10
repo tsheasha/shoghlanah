@@ -1,0 +1,252 @@
+#edit {
+	border-collapse: collapse;
+	margin-left:11px;
+	width:941px;
+	background-color:white;
+}
+.base-edit{
+	margin-top:20px;
+	margin-bottom:70px;
+	text-align: center;
+}
+.the-even-row{
+	border-top:1px solid #DCDCDC;
+	padding: 20px 30px 50px 30px;
+}
+.the-even-row .labelhint{
+	text-align:left;
+}
+
+.the-odd-row{
+	border-top:1px solid #DCDCDC;
+	padding: 20px 30px 50px 30px;
+	background-color: #f2f2f2;
+}
+
+.edit-head{
+	float:left;
+	font-size: 24px;
+	font-weight: bold;
+}
+.edit-body{
+	float:left;
+	margin-left:210px;
+	position: absolute;
+}
+
+.edit-body #gmaps-in{margin-left: -5px;}
+
+#edit-snl-middle{
+	text-align: left;
+	float:left;margin-left:20px;
+	font-weight: bold;
+}
+#edit-snl-middle img{
+	margin-right:5px;
+}
+
+.edit-last input{
+	margin: 0px 20px 15px;
+}
+
+.social-input{
+	float:left;
+}
+
+.social-input-link{
+	float: left;
+	text-align: left;
+	margin: 6px 20px 9px;
+	font-size: 16px;
+	height: 33px;
+}
+
+.g-social-input-link{
+	float: left;
+	text-align: left;
+	margin: 20px 20px 5px;
+	font-size: 16px;
+	height: 20px;
+}
+.t-social-link{
+	margin: 17px 20px 10px;
+}
+
+#edit-save{
+	float:right;
+}
+.edit-pi-correction{
+	margin: 0px 50px 10px 0px;
+	float: left;
+}
+#edit-pi-verify-no{
+	float: left;
+	padding: 21px 0 0 0;
+	margin-top: 9px;
+}
+#edit-pi-no{
+	float: left;
+	margin-bottom: 10px;
+}
+#edit-pi-email{
+	float: left;
+}
+#edit-pi-verify-email{
+	float: left;
+}
+.tip {
+	float: left;
+}
+#the-edit-bar {
+    float:left;
+}
+
+.gallery img {
+	background: #fff;
+	border: 4px solid #bbbaba;
+	padding: 2px;
+}
+.tag-height ul{
+    height: 105px;
+}
+ul.tagit input[type="text"] {
+	font-size: 13px;
+	font-family: 'Raleway', 'GESSMedium', sans-serif;
+}
+
+#task_tags ul.tagit{
+	border: 1px solid #cccccc;
+}
+
+.note{
+	margin:0 10px 0 0;
+}
+
+#get_loca{
+	font-size: 25px;
+	text-decoration: none;
+	padding-right: 5px;
+}
+
+.gender{
+	float:left;
+}
+
+.radiogender{
+	display: inline-block; 
+	line-height: 41px;
+	margin-right: 50px;
+	margin-left: 4px;
+}
+#save_button{
+	width: 106px;
+	border-radius: 0px;
+	background: #f3592a;
+	font-family: 'Raleway', 'GESSMedium', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	margin-left: 12px;
+}
+.verify{
+	width: 106px;
+	height: 30px;
+	border-radius: 0px;
+	background: #f3592a;
+	font-family: 'Raleway', 'GESSMedium', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	padding-top: 8px;
+	margin-left: 12px;
+}
+#edit-pi-verify-no button {
+	width: 85px;
+	border-radius: 0px;
+	background: #f3592a;
+	font-family: 'Raleway', 'GESSMedium', sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 12px;
+	margin-top: -4px;
+}
+.pers-info-input {
+	width : 186px;
+}
+.edit-label {
+	margin-bottom: 7px;
+	float:left;
+	font-weight: bold;
+}
+.label {
+	padding: 8px;
+}
+#loading-edit {
+	padding: 0 0 0 90px;
+}
+#changeemail {
+	width: 245px;
+	height: 30px;
+	border-radius: 0px;
+	background: #f3592a;
+}
+#changepass {
+	width: 220px;
+	height: 30px;
+	border-radius: 0px;
+	background: #f3592a;
+}
+
+span.ValidationErrors {
+	padding-left: 0px;
+}
+
+#id_coverimage{
+	border-radius: 0px;
+	font-family: 'Raleway', 'GESSMedium', sans-serif;
+	font-size:14px;
+}
+
+#id_image{
+	border-radius: 0px;
+	font-family: 'Raleway', 'GESSMedium', sans-serif;
+	font-size:14px;
+}
+
+.connect {
+	margin-left: 20px;
+	float: left;
+}
+
+#edit_tabs{
+	border-radius: 0 0 0 0;
+    font-family: 'Raleway','GESSMedium',sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    height: 35px;
+    margin: 0;
+    padding: 12px 0;
+    text-align: center;
+    border-bottom: 0px;
+    margin: 23px 20px 0;
+    padding-left: 66px;
+}
+
+#edit_tabs > li.active{
+	background-color: #fff;
+}
+
+#account-settings-tab > .base-edit, #profile-tab > .base-edit{
+	margin-top:0px;
+}
+
+#edit_tabs .tab{
+	border-radius: 0 0 0 0;
+    font-family: 'Raleway','GESSMedium',sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    height: 21px;
+    margin: 0;
+    padding: 12px 0;
+    text-align: center;
+    width: 186px;
+    background: transparent;
+}

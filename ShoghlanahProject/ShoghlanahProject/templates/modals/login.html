@@ -1,0 +1,110 @@
+{% load i18n %}
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/login.css"/>
+{% if request.session.django_language == 'ar' %}
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/login-rtl.css"/>
+{%endif%}
+<!-- <script type="text/javascript" src="{{STATIC_URL}}assets/js/login.js"></script> -->
+<script type="text/javascript">
+    $(document).ready(function() { 
+ 
+    $('#login-btn').click(function() {  
+ 
+        $(".error").hide();
+        var hasError = false;
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+ 
+        var emailaddressVal = $("#username").val();
+        if(emailaddressVal == '') {
+            $("#username").before('<span class="error"><font color="red">{% trans "Please Enter Your Email." %}</font></span>');
+            hasError = true;
+        }
+ 
+        else if(!emailReg.test(emailaddressVal)) {
+            $("#username").before('<span class="error"><font color="red">{% trans "Enter A Valid Email Address." %}</font></span>');
+            hasError = true;
+        }
+
+        var password = $("#password").val();
+        if(password == '') {
+            $("#password").before('<span class="error"><font color="red">{% trans "Please Enter Your Password." %}</font></span>');
+            hasError = true;
+        }
+ 
+        if(hasError == true) { return false; }
+ 
+    });
+
+
+
+});
+</script>
+
+
+<div class="modal hide fade" id="login">
+        <a class="close" data-dismiss="modal"></a>
+
+        <div class="modal-body">
+
+            {% if error_message == "The Email/Password is incorrect." %}
+                <div class="alert alert-error">{% trans 'The Email/Password is incorrect.' %}</div>
+            {% else %}
+                {% if error_message == "This Email Hasn't Been Activated Yet. Please Check The Activation Mail Sent To You." %}
+                    <div class="alert alert-error">{% trans "This Email Hasn't Been Activated Yet. Please Check The Activation Mail Sent To You." %}</div>
+                {% endif %}
+            {% endif %}
+            <form action="/log_in/" method="post" id="login-form">
+                {% csrf_token %}
+                <div class="form-inline">
+                    <div class="left">
+                        <legend>
+                            <label><h3>{% trans "Log In" %}</h3></label>
+                        </legend>
+
+                        <fieldset>
+                            <!-- the id="username" cannot be changed because it is linked to thr backend code -->
+                            <input id="username" type="text" name="username" maxlength="75" placeholder='{% trans "Email" %}'>
+                        </fieldset>
+
+                        <fieldset>
+                            <!-- the id="password" cannot be changed because it is linked to thr backend code -->
+                            <input id="password" type="password" name="password" maxlength="75" placeholder='{% trans "Password" %}'>
+                        </fieldset>
+
+                        <div id="rem-log" class="form-inline">
+                            <label class="checkbox">
+                            <!-- the name="remember_me" cannot be changed because it is linked to thr backend code -->
+                                <input type="checkbox" name="remember_me">{% trans "Remember me" %}
+                            </label>
+
+                            <button type="submit" class="btn btn-info" id="login-btn">
+                                {% trans "Log In" %}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <legend>
+                            <label id="not-mem"><strong>{% trans "Not a member yet?" %}</strong></label>
+                            <label id="not-mem"><strong>{% trans "Sign up with" %}</strong></label>
+                        </legend>
+
+                        {% if not request.user.is_authenticated %}
+                            <a href="{% url facebook_login %}"><img src="{{STATIC_URL}}assets/img/facebook-connect.png"/></a>
+                            <br/><br/>
+                            <a href="{% url twitter_login %}"><img src="{{STATIC_URL}}assets/img/twitter-sign-in.png"/></a>
+                        {% endif %}
+                        <label id="email-link">{% trans "or with" %}
+                            <a href="{% url userprofiles_registration %}">{% trans "your email" %}</a>
+                        </label>
+                    </div>
+
+                </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <a href="{% url auth_password_reset %}">{% trans "Forgot your password?" %}</a>
+        </div>
+        <input type="hidden" name="next" value="{{next}}" />
+    </form>
+</div>

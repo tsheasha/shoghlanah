@@ -1,0 +1,72 @@
+#cover-photo {
+    padding-left: 3px;
+}
+#cover-layer {
+    /*padding-left: 3px;*/
+}
+#profile-pic {
+    margin-right: 400px;
+}
+#edit-prfl {
+    margin-right: 433px;
+    font-size: 10.25pt;
+}
+#followbtn {
+    margin-right: 433px;
+}
+#unfollowbtn {
+    margin-right: 433px;
+}
+#social {
+    float: left;
+    margin-left: 30px;
+    margin-top: -105px;
+    height: 46px;
+}
+#like-dislike {
+    position:absolute;
+    margin-top: -34px;
+    margin-right: 736px;
+    text-align: left;
+    min-width: 200px;
+}
+#tags-div {
+    margin-right: 10px;
+}
+#like {
+    text-align: right;
+}
+#reviews {
+    display: inline-block;
+    width: 80px;
+    text-align: left;
+    cursor: pointer;
+}
+#taskses {
+    display: inline-block;
+    width: 75px;
+    text-align: left;
+    cursor: pointer;
+}
+#following {
+    display: inline-block;
+    width: 85px;
+    text-align: left;
+    cursor: pointer;
+}
+#followers {
+    display: inline-block;
+    width: 80px;
+    text-align: left;
+    cursor: pointer;
+}
+#good-at {
+    margin-right: 5px;
+    color: #828282;
+}
+.modal {
+    width: 600px;
+}
+.modal-close {
+    right: 550px;
+}

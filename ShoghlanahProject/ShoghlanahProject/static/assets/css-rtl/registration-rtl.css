@@ -1,0 +1,89 @@
+.lang-en {
+	margin-right:794px;margin-left:0;
+}
+
+.lang-ar {
+	margin-right:812px;margin-left:0;
+}
+
+.logo {
+	float:right;margin-right:105px;margin-left:0;
+}
+.logo-img {
+	float: right; margin-right: 49px;margin-left: 0px;
+}
+
+.logo-com {
+	float:right; margin-right:197px; margin-left:0px;
+}
+
+#search {
+	margin-right:670px;margin-left:0;
+}
+
+.why-div {
+	float:right;margin-right:105px;margin-left:0;
+}
+
+.why-span {
+	float:right;margin-right:50px;margin-left:0;
+}
+
+.should-span, .join-span {
+	 float:left;margin-left:0;margin-right:165px;
+}
+
+.about-span {
+	float:left;margin-left:30px;margin-right:0;
+}
+
+#login-form {
+	margin-right:455px;margin-left:0;
+}
+
+#username, #password, #email {
+	margin-right: 5px;
+	margin-left:0px;
+	background-position: 3px 6px;
+	padding-left: 24px;
+	padding-right: 6px;
+}
+
+.regular-checkbox + label {
+	background-color: rgb(255, 255, 255);
+	border: 1px solid #cacece;
+	padding: 0 9px;
+	border-radius: 0;
+	display: inline;
+	position: relative;
+	margin-right: 6px;
+	margin-left: 8px;
+}
+
+.forget-pass {
+	margin-left:0;margin-right:6px;float:right;
+}
+
+.btn-signin {
+	margin-left:6px;float:left;margin-right:0;
+}
+
+.signup-info {
+	float:left;
+}
+
+.invitation {
+	margin-right:100px;margin-left:0;
+}
+
+.invitation-label {
+	margin-top: 10px;margin-right:39px;margin-left:25px;
+}
+
+.modal-close{
+	right: 588px;
+}
+
+.div-or {
+	background-image: url('../img/or-ar.png');
+}

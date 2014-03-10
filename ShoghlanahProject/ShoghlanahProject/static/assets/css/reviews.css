@@ -1,0 +1,20 @@
+.main-div {
+    width: 861px;
+    margin-left: 20px;
+    min-height: 130px;
+}
+.review-block {
+	background: transparent;
+	border: 1px solid #cacaca;
+	display: inline-table;
+	width: 175px;
+	max-width: 175px;
+	border-radius: 0px;
+	margin: 26px 14px;
+}
+.rvws-arrw1 {
+	left: 77px;
+}
+.rvws-arrw2 {
+	left: 79px;
+}

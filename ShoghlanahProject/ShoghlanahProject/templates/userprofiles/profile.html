@@ -1,0 +1,67 @@
+{% extends "master.html" %}
+{% load i18n %}
+
+{% block dashboard %}
+<link type="text/css" href="{{STATIC_URL}}assets/css/profile.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/portfolio.css"/>
+{% if request.session.django_language == 'ar' %}
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/profile-rtl.css"/>
+{% endif %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        _kmq.push(['record', 'Visited Profile Page',{'Profile Owner':'{{userprofile.email}}', 'Profile Viewer':'{{request.user.email}}'}]);
+    });
+</script>
+<div id="info" style="min-height: 430px;">
+	{% include "userprofiles/info.html" %}
+</div>
+
+<div id="lower-container">
+{% if userprofile.has_shop %}
+	<div class="product_container">
+		{% for product in products %}
+			{% include "shop/product/block.html" %}
+		{% endfor %}
+	</div>
+{% else %}
+	<div id="profile-gallery-follow">
+		<div id="following-div">
+			{% include "userprofiles/followers.html" %}
+		</div>
+		<div id="portfolio">
+			{% include "userprofiles/portfolio.html" %}
+		</div>
+	</div>
+
+	<div class="span7" id="profile-stream" style="display:block;">
+		{% include "liveStream.html" %}
+	</div>
+{% endif %}
+	<div class="{% if not userprofile.has_shop %} span7 {% endif %}" id="lower-container1" style="display:none;min-height: 170px;">
+		<div>
+			{% include "userprofiles/all_followers.html" %}
+		</div>
+	</div>
+
+	<div class="{% if not userprofile.has_shop %} span7 {% endif %}" id="lower-container2" style="display:none;text-align: center;min-height: 170px;">
+		<div>
+			{% include "userprofiles/reviews.html" %}
+		</div>
+	</div>
+
+	<div class="{% if not userprofile.has_shop %} span7 {% endif %}" id="lower-container3" style="display:none;min-height: 170px; left:-15.5px">
+		<div>
+			{% include "userprofiles/all_tasks.html" %}
+		</div>
+	</div>
+
+	<div class="{% if not userprofile.has_shop %} span7 {% endif %}" id="lower-container4" style="display:none;min-height: 170px;">
+		<div>
+			{% include "userprofiles/all_following.html" %}
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript" src="{{STATIC_URL}}js/shadowbox/shadowbox.js"></script>
+<script src="{{STATIC_URL}}assets/js/profile.js"></script>
+{% endblock dashboard %}

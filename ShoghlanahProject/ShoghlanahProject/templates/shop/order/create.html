@@ -1,0 +1,138 @@
+{% extends 'master.html' %}
+{% load get_user_info %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block dashboard %}
+
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/order.css"/>
+{% if request.session.django_language == 'ar' %}
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/order-rtl.css"/>
+{% endif %}
+<div id="order">
+	<div class="product-info">
+		<a href="{% url userprofiles_profile product.user.username %}">
+			{% thumbnail product.user.id|get_profile_pic "65x65" crop="center" as im %} <!-- To be changed -->
+				<img class="propic" src="{{ im.url }}" />            	
+            {% endthumbnail %}
+        </a>
+        <div>
+        	<a href="{% url userprofiles_profile product.user.username %}">
+        		<h4>{{product.user.first_name}} {{product.user.last_name}}</h4>
+            	<label class="smallLight">{{product.user.location}}</label>
+            </a>
+            <h5>{{all_followers.count}} {% trans "Followers" %}</h5>
+        </div>
+		<a href="#">
+			<h3>{{product.title}}</h3>
+			{% thumbnail product.get_main_image.image "285x160" crop="center" as im %}
+				<img src="{{im.url}}">
+			{% endthumbnail %}
+		</a>
+		<div>
+			<h5>{% trans "Description" %}</h5>
+			<p id="product-desc" class="smallLight">
+			    {{product.description}}
+			</p>
+		</div>
+	</div>
+	<div class="order-form">
+		<h3>{% trans "Order Information" %}:</h3>
+			<form method="POST" action="{% url create_order product.id%}">
+				{% csrf_token %}
+				<div class="the-form">
+
+					<!-- <div class = "form-errors">
+						{% for field in order_form%}
+							{%if field.errors%}
+								{% for error in field.errors %}
+									{{field.label}}: {{error}}
+								{% endfor %}
+								<br/> <br/>
+							{% endif %}
+						{% endfor %}
+					</div> -->
+					
+					<div class="form-labels">
+						<p> {% trans "Price" %} </p>
+						{{ order_form.quantity.label_tag }}
+						{{ order_form.payment_choice.label_tag }}
+						{{ order_form.city.label_tag }}
+						{{ order_form.region.label_tag }}
+						{{ order_form.address.label_tag }}
+						{{ order_form.mobile_number.label_tag }}
+						{{ order_form.special_notes.label_tag }}
+						
+					</div>
+					<div class="form-input">
+						<b id = "order_price"> {{product.price}} {% trans "EGP" %}</b>
+						<b class="error_style {% if order_form.quantity.errors %}error_empty{% endif %}">{{order_form.quantity.errors.as_text }}</b>
+						<div id="incdec">
+						{% if request.session.django_language == 'ar' %}
+							<b id="down" class="icon-chevron-right"></b> {{ order_form.quantity }} <b id="up" class="icon-chevron-left"></b>
+						{% else %}
+							<b id="down" class="icon-chevron-left"></b> {{ order_form.quantity }} <b id="up" class="icon-chevron-right"></b>
+						{% endif %}
+						</div>
+						<div class="payment_radio"> <b class="error_style {% if order_form.payment_choice.errors %}error_empty{% endif %}">{{order_form.payment_choice.errors.as_text }}</b>
+							{% for radio in order_form.payment_choice %}
+							<label>
+								{{ radio.tag }}<label></label>
+								{% trans radio.choice_label %}
+							</label>
+							{% endfor %}
+						</div>
+						<b class="error_style {% if order_form.city.errors %}error_empty{% endif %}">{{order_form.city.errors.as_text }}</b>{{ order_form.city }} 
+						<b class="error_style {% if order_form.region.errors %}error_empty{% endif %}">{{order_form.region.errors.as_text }}</b>{{ order_form.region }} 
+						<b class="error_style {% if order_form.address.errors %}error_empty{% endif %}">{{order_form.address.errors.as_text }}</b>{{ order_form.address }} 
+						<b class="error_style {% if order_form.mobile_number.errors %}error_empty{% endif %}">{{order_form.mobile_number.errors.as_text }}</b>{{ order_form.mobile_number }} 
+						<b class="error_style {% if order_form.special_notes.errors %}error_empty{% endif %}">{{order_form.special_notes.errors.as_text }}</b>{{ order_form.special_notes }}
+						<b class="error_style {% if order_form.agree_to_terms.errors %}error_empty{% endif %}">{{order_form.agree_to_terms.errors.as_text }}</b> 
+						<div class="terms"> 
+							{{ order_form.agree_to_terms }}<label for="order_agree_to_terms"></label> <label for="order_agree_to_terms">{% trans "I agree on the" %}<a href="#"> {% trans "Terms & Conditions"%}.</a></label>
+						</div> 
+						
+					</div>	
+				</div>
+				<div class="form-submit">
+					<input class="btn btn-primary" type="submit" value="{% trans 'Add Order' %}">
+				</div>
+				
+			</form>
+		<script type="text/javascript" src="{{STATIC_URL}}assets/js/filter_location.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready($(function() {
+				
+				$('#order_quantity').change(function() {
+					var currentVal = parseInt("{{product.price}}");
+					var quantity = parseInt($("#incdec input").val())
+					var final_val = currentVal * quantity
+				 	$("#order_price").html( final_val +' {% trans "EGP" %}' );
+				});
+
+				$('#product-desc').jTruncate({  
+				    length: 180,  
+				    minTrail: 0,  
+				    moreText: "{% trans 'more'%}",  
+				    lessText: "{% trans 'less'%}", 
+				    moreAni: "slow",  
+				    lessAni: "slow"  
+				});
+				$('#order_city').click(function(){
+					json_to_select('city-to-region/' + $(this).val(), 'select[id=order_region]');
+				});  
+				$("#order_region").change(function(){ // On change of the region dropdown list after populating by JSON, it's disabled if it has no regions.
+				    if($("#order_region option").size() == 0){
+						$("#order_region").prop("disabled", true);
+						//$("label[for=order_region]").text("{% trans 'Enter full address details in the 'Address' field' %}");
+				    } else{
+				    	$("#order_region").prop("disabled", false);
+						$("label[for=order_region]").text("{% trans 'Region' %}");
+				    }
+				});
+			}));
+		</script>
+	</div>
+</div>
+{% endblock dashboard %}

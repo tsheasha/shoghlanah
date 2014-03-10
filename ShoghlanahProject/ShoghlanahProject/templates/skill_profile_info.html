@@ -1,0 +1,59 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+<div id="cover-photo" style="
+    {% if skill.skill_picture %}
+	background-image: url({{skill.skill_picture.url}});
+    {% else %}
+    background-size: cover;
+	background-image: url({{STATIC_URL}}img/cover.png);
+    {% endif %}">
+	<div id="cover-layer" >
+	</div>
+</div>
+<div id="pinfo" >
+	<p id="skill_name" >{{skill}}</p>
+		{% ifnotequal skill.parent None %}
+		<p id="skill_name">
+    {% trans "Parent Skill:" %} <a href ="/skill/{{skill.parent.id}}/">&nbsp; {{skill.parent.name}} </a>
+    </p>
+		{% endifnotequal %}
+</div>
+{% if request.user.is_active %}
+{% if isFollowing %}
+    <button id="followbtnskill" type="submit" name="follow" class="followbtn-{{ skill.id }} btn btn-danger skill-follow" data-loading-text="Loading..." onClick="followskill('{{ skill.id }}')" value="unfollow" style="background:#0A5981;">
+{% trans "UNFOLLOW" %}
+</button>
+{% else %}
+    <button id="followbtnskill" type="submit" name="follow" class="followbtn-{{ skill.id }} btn btn-primary skill-follow" data-loading-text="Loading..." onClick="followskill('{{ skill.id }}')" value="follow" style="background: #f3592a;">
+{% trans "FOLLOW" %}
+</button>
+{% endif %}
+{% endif %}
+
+<div id="social">
+	<div id="followers" onclick="professionals();">
+		<p id="title" >{% trans "Professionals" %}</p>
+		<p id="number" >{{users|length}}</p>
+	</div>
+	<div id="taskses" onclick="shoghlanahs();" >
+		<p id="title" >{% trans "Shoghlanahs" %}</p>
+		<p id="number" >{{tasks|length}}</p>
+	</div>
+</div>
+
+{% if request.user.is_active %}
+<div class="tags-div" >
+	<p id="subskills" >{% trans "Subskills" %} ({{subskills|length}})</p>
+	{% for tag in subskills %}
+	<div class="tag"><a href="/skill/{{tag.id}}/">{{tag}}</a></div>
+	{% endfor %}
+</div>
+{% else %}
+<div class="tags-div-pub" >
+	<p id="subskills" >{% trans "Subskills" %} ({{subskills|length}})</p>
+	{% for tag in subskills %}
+	<div class="tag"><a href="/skill/{{tag.id}}/">{{tag}}</a></div>
+	{% endfor %}
+</div>
+{% endif %}

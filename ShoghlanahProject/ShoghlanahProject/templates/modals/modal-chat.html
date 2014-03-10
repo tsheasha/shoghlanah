@@ -1,0 +1,10 @@
+<div class="modal hide fade" id="chat-modal">
+    <div class="modal-body chatModalOut">
+    	<a class="close chatCloseModal" data-dismiss="modal"></a>
+        <div id="chatContainer" style="width: 100%; border-radius: 0px; overflow:hidden;">
+        	{% if item.action_object %}
+			{% include "chats/chat.html" %}
+			{% endif %}
+		</div>
+    </div>
+</div>

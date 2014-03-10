@@ -1,0 +1,105 @@
+#taskcontainer {
+	min-width: 625px;
+}
+.resulttask{
+	background: transparent;
+	border: 1px solid #cacaca;
+	display: inline-table;
+	width: 253px;
+	max-width: 253px;
+	border-radius: 0px;
+	margin: 20px 25px;
+}
+.t_owner{
+	border-bottom: 2px solid #cacaca;
+}
+.t_owner .chatpic{
+	margin-bottom: 5px;
+}
+.small-arrow-bottom {
+	width: 1px;
+	height: 1px;
+}
+.small-arrow-bottomOut {
+	position: relative;
+	left: 120px;
+	top: -15px;
+	height: 0px;
+	width: 2px;
+	z-index: 0;
+	border-right: 8px solid transparent;
+	border-left: 8px solid transparent;
+	border-top: 10px solid #f2f2f2;
+}
+.small-arrow-bottomIn {
+	position: relative;
+	left: 118px;
+	top: -2px;
+	height: 0px;
+	width: 0px;
+	z-index: 0;
+	border-right: 11px solid transparent;
+	border-left: 11px solid transparent;
+	border-top: 12px solid #cacaca;
+}
+
+.t_title{
+	padding: 15px 0px;
+	border-bottom: 1px solid #cacaca;
+	background: white;
+}
+.t_price {
+	width: 132px;
+	float: left;
+	border-right: 1px solid #cacaca;
+	padding: 6px 0px 2px 3px;
+	text-align: left;
+	background: white;
+}
+.smallLeft{
+	font-size:13px;
+	color: #828282;
+}
+.Rewardlight{
+	font-size: 21px;
+	color: #f3592a;
+	margin: 0px;
+	line-height: 30px;
+}
+.t_location{
+	word-wrap: break-word;
+	width: 108px;
+	float: right;
+	padding: 20px 4px 0px;
+	background: #fafafa;
+	font-size: 16px;
+	color: #828282;
+	min-height: 43px;
+}
+.t_location i{
+	margin-left:3px;
+}
+.search_results {
+	min-height: 415px;
+}
+#word_filter{
+    margin: 6px;
+}
+#loca_filter{
+	width: 155px;
+	margin: 0px;
+}
+#the-bar .tagit-close{
+	padding: 0px;
+	color: white;
+}
+#the-bar .tagit-close:hover{
+	padding: 0px;
+	background: transparent;
+}
+#the-bar .tagit-new{
+	width: 100px;
+}
+#taskcontainer{
+	text-align: center;
+}

@@ -1,0 +1,68 @@
+#profile-pic-modal, #cover-photo-modal{
+	top: 42%;
+	border-radius: 0px;		
+}
+
+.modal-header{
+	border-bottom: 2px solid #e3e3e3;
+	padding: 10px 20px;
+	height: 34px;
+}
+
+.modal-title{
+	padding-top: 10px;
+	padding-bottom: 5px;
+	font-family: 'Raleway', 'GESSLight', sans-serif;
+	font-weight: 300;
+	font-size: 22px;
+}
+
+.modal-close{
+	color: #268dc2;;
+	width: 34px;
+	height: 34px;
+	border: 2px solid #268dc2;;
+	-webkit-border-radius: 999px;
+	-moz-border-radius: 999px;
+	border-radius: 999px;
+	position: absolute;
+	top: 8px;
+	right: 20px;
+}
+
+.modal-close label{
+	padding: 7px 9px;
+	font-size: 23px;
+	font-family: 'Raleway', 'GESSLight', sans-serif;
+	font-weight: 300;
+	cursor: pointer;
+}
+
+#edit-pp-img{
+	margin-right:10px;
+}
+
+#delete-pp-link{
+	margin-left:22%;
+}
+
+#delete-cp-link{
+	margin-left:36%;
+}
+
+#edit-pp-preview{
+	float:left;
+	width:170px;
+}
+.edit-choose{
+	text-align: left;
+	float:right;
+}
+
+#edit-cp{
+	padding-bottom: 128px;
+}
+#edit-cp-preview{
+	float:left;
+	width:170px;
+}

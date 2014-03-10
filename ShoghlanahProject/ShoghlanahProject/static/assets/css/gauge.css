@@ -1,0 +1,11 @@
+/*Centering the gauge*/
+#canvas {
+	display: block;
+	width: 100px;
+	margin: 33px auto;
+}
+/*Custom font for numbers*/
+@font-face {
+	font-family: "bebas";
+	src: url("http://thecodeplayer.com/uploads/fonts/BebasNeue.otf");
+}

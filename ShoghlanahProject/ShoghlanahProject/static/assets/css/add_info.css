@@ -1,0 +1,7 @@
+.errorlist{
+	width: 15%;
+	margin: auto;
+}
+.errorlist li{
+	list-style-type: none;
+}

@@ -1,0 +1,21 @@
+{% extends 'master.html' %}
+{% block dashboard %}
+{% load i18n %}
+<div id="E404">
+	<div class="Econtainer">
+		<label class="Eheader">
+			{% trans "We are sorry" %}, {% trans "the page you have requested has either expired or cannot be found" %}.
+		</label>
+		<label style="font-weight: 600;">
+			{% trans "While we work on resolving the problem, here are couple of things you can do" %} :
+		</label>
+		<ul class="Elist">
+			<li>{% trans "Go to the" %} <a href="/">{% trans "main page" %}</a>, {%trans "and check out some of our latest posts"%}.</li>
+			<li><b>{% trans "Do a search" %}.</b> {% trans "The search bar is on the top-right corner" %}.</li>
+			<!-- <li>{% trans "Get to Know us a little better - visit" %} <a>{% trans "About us" %}</a> {% trans "page." %}</li> -->
+			<li>{% trans "Visit us on" %} <a href="http://www.facebook.com/shoghlanah/">{% trans "Facebook " %}</a>{% trans "or follow our tweets on" %} <a href="https://twitter.com/shoghlanah">{% trans "Twitter" %}</a></li>
+			<li>{% trans "If you think we need to look into this urgently" %}, <a href="mailto:info@shoghlanah.com?Subject=Page%20not%20found">{% trans "contact us" %}</a></li>
+		<ul>
+	</div>
+</div>
+{% endblock dashboard %}

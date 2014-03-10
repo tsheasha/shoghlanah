@@ -1,0 +1,23 @@
+.base-notifications{
+	margin-top:40px;
+	margin-bottom:70px;
+	text-align: center;
+	background-color:white;
+	border-radius:10px;
+	box-shadow:rgba(0,0,0, 0.4) 0px 0px 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.hover {
+	background-color: #FFFFFF;
+}
+.see-all-not {
+	margin-top: 10px;
+	border-collapse: collapse;
+	font-size:18px; 
+}
+td.see-all-single{
+	color: #828282;
+	padding:20px 20px 20px 20px;
+	cursor: pointer;
+}

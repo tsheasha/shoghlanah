@@ -1,0 +1,33 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+
+{% if all_followers %}
+	<h3>{% trans "Followers" %}</h3>
+	<div id="peocontainer">
+	{% for result in all_followers %}
+	    <div class='pcard'>
+	        <a href="/accounts/profile/{{ result.follower.username }}/">
+	            {% thumbnail result.follower.id|get_profile_pic "65x65" crop="center" as pic %}
+	                <img class="propic" src="{{ pic.url }}">
+	            {% endthumbnail %}
+	        </a>
+	        <div class='pinfo'>
+	            <a href="/accounts/profile/{{ result.follower.username }}/">
+	                <h4>{{ result.follower|truncate:15}}</h4>
+	            </a>
+	            {% if not request.user.id == result.follower.id %}
+	                {% if not request.user.id|isFollowing:result.follower.id %} 
+	                    <span class="user-follow followbtn-{{result.follower.id}}" onClick="follow('{{ result.follower.username }}','{{result.follower.id}}');" value="follow">{% trans "FOLLOW" %}</span>
+	                {% else %}
+	                    <span class="user-unfollow followbtn-{{result.follower.id}}" onClick="follow('{{ result.follower.username }}','{{result.follower.id}}');" value="unfollow">{% trans "UNFOLLOW" %}</span>
+	                {% endif %}
+	            {% endif %}
+	        </div>
+	    </div>
+	{% endfor %}
+	</div>
+{% else %}
+	<br>
+	<h4 style="text-align: center;">{% trans "There are no following found" %}<h4>
+{% endif %}

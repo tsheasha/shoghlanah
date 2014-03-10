@@ -1,0 +1,162 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+{% if request.session.django_language == 'ar' %}
+<link type="text/css" href="{{STATIC_URL}}assets/css-rtl/reviews-rtl.css" rel="stylesheet"/>
+{% else %}
+<link type="text/css" href="{{STATIC_URL}}assets/css/reviews.css" rel="stylesheet"/>
+{% endif %}
+<script type="text/javascript" src="{{STATIC_URL}}js/jTruncate.js"></script>
+
+<div id="rvws-main" style="width:630px;">
+	{% if reviews %}
+	<h3 style="text-align: center;">{% trans "Reviews" %}<h3>
+			{% for review in reviews %}
+			{% thumbnail review.reviewer.id|get_profile_pic "50x50" crop="center" as im %}
+			<div class="review-block">
+				<div id="upper-blck" style="border-bottom: 2px solid #cacaca;">
+					<a href="/accounts/profile/{{review.reviewer.username}}/" style="text-decoration:none;">
+						<div style="
+							background-image: url( {{im.url}} );
+							background-repeat:no-repeat;
+							-webkit-border-radius: 999px;
+							-moz-border-radius: 999px;
+							border-radius: 999px;
+							height: 50px;
+							width: 50px;
+							border: 4px solid rgb(183, 183, 183);
+							margin-left: auto;
+							margin-right: auto;
+							margin-top: 10px;">
+						</div>
+						<div style="margin-left: auto;
+							margin-right: auto;">
+							<p style="margin-top: 5px;
+							font-size: 10pt;
+							max-width: 175px;
+							line-height: 120%;
+							text-overflow: ellipsis;
+							overflow: hidden;">{{ review.reviewer.first_name }} {{ review.reviewer.last_name }}</p>
+						</div>
+					</a>
+					{% if review.isRecommended %}
+					<div style="
+						background-image: url('{{STATIC_URL}}assets/img/profile-info/like-1.png');
+						background-repeat:no-repeat;
+						-webkit-border-radius: 999px;
+						-moz-border-radius: 999px;
+						border-radius: 999px;
+						height: 35px;
+						width: 35px; 
+						margin-left: auto;
+						margin-right: auto;
+						margin-top: 10px;
+						margin-bottom: 10px;">
+					</div>
+					{% elif review.isUnrecommended %}
+					<div style="
+						background-image: url('{{STATIC_URL}}assets/img/profile-info/dislike-1.png');
+						background-repeat:no-repeat;
+						-webkit-border-radius: 999px;
+						-moz-border-radius: 999px;
+						border-radius: 999px;
+						height: 35px;
+						width: 35px; 
+						margin-left: auto;
+						margin-right: auto;
+						margin-top: 10px;
+						margin-bottom: 10px;">
+					</div>
+					{% endif %}
+				</div>
+				<div style="width: 1px;height: 1px;"> <!-- Arrows -->
+					<div class="rvws-arrw1" style="position: relative;
+					top: -2px;
+					height: 0px;
+					width: 0px;
+					z-index: 0;
+					border-right: 11px solid transparent;
+					border-left: 11px solid transparent;
+					border-top: 12px solid #cacaca;">
+					</div>
+					<div class="rvws-arrw2" style="position: relative;
+					top: -15px;
+					height: 0px;
+					width: 2px;
+					z-index: 0;
+					border-right: 8px solid transparent;
+					border-left: 8px solid transparent;
+					border-top: 10px solid #f2f2f2;">
+					</div>
+				</div>
+				<div id="lower" style="min-height: 129px;display: table;background-color: white;max-width: 175px;overflow:hidden;">
+					{% if review.text %}
+					<p class="rvw-txt" style="font-size: 10pt;
+					display: table-cell;
+					vertical-align: middle;
+					text-align: center;
+					padding: 5px;
+					line-height: 150%;
+					color: #828282;
+					width: 165px;
+					max-width: 165px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					padding-top: 10px;">
+					{{review.text}}
+					</p>
+					{% else %}
+					<div style="font-size: 10pt;
+					line-height: 150%;
+					padding: 15px 4px 10px;
+					color:#C4C4C4;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					padding-top: 10px;">
+					{% if review.isUnrecommended %}
+						{% if request.session.django_language == 'ar' %}
+							{{ review.reviewer.first_name }} {{ review.reviewer.last_name }}
+								{% if userprofile.gender == "F" %}
+								لم يعجبها أداء
+								{% else %}
+								لم يعجبه أداء
+								{% endif %}
+								{{userprofile.first_name}} {{userprofile.last_name}}
+						{% else %}
+							{{ review.reviewer.first_name }} {{review.reviewer.last_name}} {% trans "Didn't like" %} {{userprofile.first_name}} {{userprofile.last_name}} 's work
+						{% endif %}
+					{% elif review.isRecommended %}
+						{% if request.session.django_language == 'ar' %}
+							{{ review.reviewer.first_name }} {{review.reviewer.last_name}}
+								{% if userprofile.gender == "F" %}
+								أعجبها أداء
+								{% else %}
+								أعجبه أداء
+								{% endif %}
+								{{userprofile.first_name}} {{userprofile.last_name}}
+							{% else %}
+							{{ review.reviewer.first_name }} {{review.reviewer.last_name}} {% trans "Liked" %} {{userprofile.first_name}} {{userprofile.last_name}} 's work
+						{% endif %}
+					{% endif %}
+					</div>
+					{% endif %}
+				</div>
+			</div>
+				<!-- <img src="{{im.url}}"/> -->
+			{% endthumbnail %}
+			{% endfor %}
+	{% else %}
+		<br>
+		<h4 style="text-align: center;">{% trans "There are no reviews found" %}<h4>
+	{% endif %}
+</div>
+<script type="text/javascript">
+	$('.rvw-txt').jTruncate({  
+		length: 100,  
+		minTrail: 0,  
+		moreText: "{% trans 'more'%}",  
+		lessText: "{% trans 'less'%}", 
+		moreAni: "slow",  
+		lessAni: "slow"  
+	});
+</script>

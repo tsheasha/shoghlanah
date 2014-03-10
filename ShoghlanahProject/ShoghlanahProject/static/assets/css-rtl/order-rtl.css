@@ -1,0 +1,26 @@
+.product-info{
+	float:right;
+}
+.order-form{
+	float: left;
+	padding-left:0px;
+	padding-right:35px;
+	margin: 35px 0px 0px 30px;
+}
+.product-info > div{
+	float: right;
+	margin-right: 10px;
+	margin-left: 0px;
+}
+.product-info > a{
+	float: right;
+}
+.form-input, .form-labels{
+	float: right;
+	margin-left: 26px;
+	margin-right: 0px;
+	text-align: left;
+}
+.form-input{
+	text-align: right;
+}

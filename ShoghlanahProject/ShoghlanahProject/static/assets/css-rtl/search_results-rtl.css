@@ -1,0 +1,31 @@
+.tabbable #search-nav-tabs{
+    padding-left:455px;
+    padding-right:66px;
+}
+
+#search_filters > li{
+    margin-right: 30px;
+    margin-left: 0px;
+}
+
+
+
+#filterlabel{
+    float: right;
+}
+
+.pcard{
+    margin-left: 10px;
+    margin-right: 34px;
+}
+.ppic{
+    float: right;
+
+}
+.pinfo{
+    float: left;
+}
+
+.tag-height ul li{
+    float:right;
+}

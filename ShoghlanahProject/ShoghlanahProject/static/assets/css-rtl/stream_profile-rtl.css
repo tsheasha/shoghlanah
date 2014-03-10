@@ -1,0 +1,336 @@
+div .circular-image-stream {
+	width: 72px;
+	height: 72px;
+	border: 4px solid #bbbaba;
+	-webkit-border-radius: 999px;
+	-moz-border-radius: 999px;
+	border-radius: 999px;
+	overflow: hidden;
+	display: inline-block;
+	position: absolute;
+}
+
+div .circular-image-stream-follow {
+	width: 35px;
+	height: 35px;
+	border: 3px solid #bbbaba;
+	-webkit-border-radius: 999px;
+	-moz-border-radius: 999px;
+	border-radius: 999px;
+	overflow: hidden;
+	display: inline-block;
+	position: absolute;
+	margin-top: -12px;
+}
+
+
+#singleton {
+	width: 600px;
+	margin-bottom: 50px;
+    margin-right: -91px;
+}
+
+#dot {
+	width: 25px;
+	height: 25px;
+	margin-right: 103px;
+	margin-top: 20px;
+	background-size: cover;
+	display: inline-block;
+    border-width: 0px;
+    background: url(/static/img/changed_profile.png); 
+	background-color: #a7a7a7;
+    background-repeat: no-repeat;
+    background-position: 7px 6px;
+}
+
+#task {
+	width: 25px;
+	height: 25px;
+	margin-right: 103px;
+	margin-top: 20px;
+	background-size: cover;
+	display: inline-block;
+	background-color: #a7a7a7;
+    border-width: 0px;
+    background: url(/static/img/shoghlanahlogo.png); 
+    background-repeat: no-repeat;
+    background-size: cover; 
+    display: inline-block; 
+    background-color: #a7a7a7;
+    background-position: 1.35px 1px;
+}
+
+#followStream {
+    width: 25px;
+    height: 25px;
+    margin-right: 103px;
+    margin-top: 20px;
+    background: url(/static/img/follow_stream.png);
+    background-size: initial;
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-color: #a7a7a7;
+    border-width: 0px;
+    background-position: 5px 4px;
+
+}
+
+#photo {
+	width: 25px;
+	height: 25px;
+	margin-right: 103px;
+	margin-top: 20px;
+	background: url(/static/img/camera.png); 
+	background-repeat: no-repeat; 
+	display: inline-block;
+	background-color: #a7a7a7;
+	border-width: 0px;
+    background-position: 3px 4px;
+}
+
+#posts #task-info-price{
+    float: left;
+	display: block;
+	position:absolute;
+    margin-top: 0px;
+    width: 144px; 
+    margin-right: 383px;
+    padding-right: 10px;
+    height: 100%;
+	background-color: #fafafa;
+	border-right: solid 1px #d4d3d4;
+}
+
+#posts #task-info-reward{
+    float: left;
+	margin-top: -35px;
+	display: block;
+	position:absolute;
+    margin-top: 0px;
+    width: 144px; 
+    margin-right: 383px;
+    height: 100%;
+	background-color: #fafafa;
+	border-right: solid 1px #d4d3d4;
+    padding-right:10px;  
+}
+
+#posts {
+	clear: both;
+	margin-right: 140px;
+	margin-left: -100px;
+	padding-right: 20px;
+	background-color: #ffffff;
+	border: solid 1px #d4d3d4;
+	word-wrap: break-word;
+	list-style-type: none;
+	display: list-item;
+	text-align: -webkit-match-parent;
+	min-height: 93px;
+	position: relative;
+}
+
+.rewardposts {
+	min-height: 115px;
+}
+
+#posts .info {
+    margin-top: 20px;
+	font-weight: bold;
+    font-family: 'Raleway', 'GESSLight', sans-serif;
+    font-size:18px; 
+    line-height:20px; 
+    color:#828282;
+	text-align: right;
+}
+
+#posts .info-task{
+    margin-top: 20px;
+	font-weight: bold;
+    font-family: 'Raleway', 'GESSLight', sans-serif;
+    font-size:18px; 
+    line-height:20px; 
+    color:#828282;
+	text-align: right;
+    width: 380px;
+}
+
+
+#posts .info #task-details{
+    font-size: 14px;
+	text-align: right;
+	margin: 0 0 8px 0;
+}
+
+#posts .info #task-details-reward{
+    text-align: left;
+    margin: -23px 35px 0;
+}
+
+#posts .info #task-details-price{
+    font-family: 'Arial';
+    font-weight: normal;
+    font-size: 18px;
+	text-align: right;
+	margin: 0 0 0 0;
+}
+
+#posts .info #task-details-city{
+    font-color: #999999;
+	text-align: center;
+    margin-left:15px;
+}
+
+.icon-map-marker {
+    margin-top: 8px;
+    margin-right: -5px;
+}
+
+#posts .info #task-details-city-content{
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 127px;
+    height: 30px;
+    margin: -20px 17px 0px;
+    font-color: #999999;
+    text-align:right;
+}
+
+#locationPin{
+    margin-top: 6px;
+    position: absolute;
+}
+
+*,:active,:focus {
+	outline-color: initial;
+	outline-style: none;
+	outline-width: 0;
+	-moz-outline-width: 0;
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+#posts .arrow1 { 
+	position: absolute;
+	right: -10px;
+	top: 20px;
+	height: 0px;
+	z-index: 0;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 11.5px 0 11.5px 10px;
+    border-color: transparent transparent transparent #d4d3d4;
+	
+}
+
+#posts .arrow2 { 
+	position: absolute;
+	top: -10px;
+	right: 1.75px;
+	height: 0px;
+	z-index: 1;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 10px 0 10px 9px;
+    border-color: transparent transparent transparent #ffffff;
+	
+}
+
+.timestamp {
+    font-family: 'Arial';
+    font-weight: normal;
+    font-size:11px; 
+    line-height:20px; 
+    color:#939393;
+    position: absolute;
+    bottom: 3px;
+    text-align: right;
+    width: 100%;
+}
+
+#stream {
+	float: left;
+	width: 100%;
+	height: 100%;
+	outline-color: initial;
+	outline-style: none;
+	outline-width: 0;
+	display: inline-block;
+	margin-top:70px;
+}
+
+#v-gradient {
+	background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cacaca),
+		color-stop(50%, #cacaca), color-stop(100%, #cacaca) );
+	background-image: -webkit-linear-gradient(#cacaca, #cacaca, #cacaca);
+	background-image: -moz-linear-gradient(#cacaca, #cacaca, #cacaca);
+	background-image: -o-linear-gradient(#cacaca, #cacaca, #cacaca);
+	background-image: linear-gradient(#cacaca, #cacaca, #cacaca);
+	width: 1px;
+	float: right;
+	margin: 0px 25px 0 0;
+	position: absolute;
+}
+
+#posts #displayPhoto{
+	border: solid 2px #d4d3d4;
+    width: 191px;
+    height: 111px;
+    margin-top: 5px;
+}
+
+#stream_type {
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 1.3;
+	font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, Arial,
+		sans-serif;
+	color: whiteSmoke;
+	text-align: center;
+}
+
+#stream_type_skills {
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 1.3;
+	font-family: 'Helvetica Neue', HelveticaNeue, Helvetica, Arial,
+		sans-serif;
+	color: #5BC236;
+	text-align: center;
+
+}
+
+#filter{
+    z-index: 1;
+	display: block; 
+	margin-right: 9px;
+	margin-top: 12px; 
+	position: absolute;
+}
+
+hr {
+    width: 106%;
+    margin-right: -10px;
+    margin-bottom: 4px;
+    margin-top: -6px;
+	border: solid 1px #d4d3d4;
+}
+
+#more {
+    margin-right: 310px;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+}
+
+#profile-stream{
+    width: 633px;
+    border-left: 1px solid #cacaca;
+}

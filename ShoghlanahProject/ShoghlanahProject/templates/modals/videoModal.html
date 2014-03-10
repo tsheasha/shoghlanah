@@ -1,0 +1,26 @@
+{% load i18n %}
+<div class="modal hide fade" id="videoModal" style="overflow: hidden;">
+	<div class="modal-header">
+		<div class="modal-close" data-dismiss="modal">
+			<label>X</label>
+		</div>
+		<label class="modal-title">{% trans "What is Shoghlanah ?" %}</label>
+	</div>
+	<div class="modal-body">
+		{% if request.session.django_language == 'ar' %}
+			<object width="640" height="360">
+				<param name="movie" value="http://www.youtube-nocookie.com/v/nO_j5M4uA9s?version=3&amp;hl=en_US"></param>
+				<param name="allowFullScreen" value="true"></param>
+				<param name="allowscriptaccess" value="always"></param>
+				<embed src="http://www.youtube-nocookie.com/v/nO_j5M4uA9s?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="640" height="360" allowscriptaccess="always" allowfullscreen="true"></embed>
+			</object>
+		{% else %}
+			<object width="640" height="360">
+				<param name="movie" value="http://www.youtube-nocookie.com/v/jDGzIWIAWts?version=3&amp;hl=en_US"></param>
+				<param name="allowFullScreen" value="true"></param>
+				<param name="allowscriptaccess" value="always"></param>
+				<embed src="http://www.youtube-nocookie.com/v/jDGzIWIAWts?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="640" height="360" allowscriptaccess="always" allowfullscreen="true"></embed>
+			</object>
+		{% endif %}
+	</div>
+</div>

@@ -1,0 +1,86 @@
+{% load i18n %}
+{% load get_chat %}
+{% load thumbnail %}
+{% load get_user_info %}
+<script type="text/javascript">
+$(function(){
+    $('#saveB').click(function(){
+        var text = $('textarea#reviewText').val();
+        var recom = $(".recommend").attr("id");
+        $('#chatContainer').html('<div class="chatloading"><div class="loadingbody"><span class="load-1"></span><span class="load-2"></span><span class="load-3"></span><span class="load-4"></span><span class="load-5"></span><span class="load-6"></span></div><span>{% trans "Loading" %}</span></div>');
+        console.log('review' + recom);
+        $.ajax({
+            url: '/review/{{bid.id}}/{{user.id}}/',
+            type: "POST",
+            data: { text: text, recommend: recom },
+            success: function(data){
+                if(data == 'Success'){
+                    getdiscussion('/message/{{user.id}}/{{bid.task.id}}/{{bid.id}}/');
+                }
+            },
+        });
+    _kmq.push(['record', 'Review',{'Reviewer':'{{request.user.email}}' ,'Reviewee':'{{user.email}}'}]);
+    _gaq.push(['_trackEvent', 'Review']);    
+    });
+
+    // $('textarea#reviewText').keyup(function(){
+    //     var x = $(".recommend").attr("title");
+    //     // $('#saveB').removeAttr('disabled');
+    //     // $value = $("textarea#reviewText").val();
+    //     // if($value == "" && !x){
+    //     //     $('#saveB').attr('disabled', 'true');
+    //     // }
+    // });
+
+    $('#recommendBtn').click(function(){
+        $(".recommend").attr('id','1');
+        $('#recommendBtn').css('opacity','1');
+        $('#unrecommendBtn').css('opacity','0.5');
+        $('#recommendBtn').css('color','#42b147');
+        $('#unrecommendBtn').css('color','#1785be');
+        $('#saveB').removeAttr('disabled'); 
+        $('#recomment_img').attr('src', "{{STATIC_URL}}assets/img/like-2.png");
+        $('#unrecomment_img').attr('src', "{{STATIC_URL}}assets/img/thumb_down.png");
+    _kmq.push(['record', 'Recommend',{'Recomender':'{{request.user.email}}' ,'Recomended':'{{user.email}}'}]);   
+    _gaq.push(['_trackEvent', 'Review', 'Recommend']);    
+    });
+
+    $('#unrecommendBtn').click(function(){
+        $(".recommend").attr('id','0');
+        $('#recommendBtn').css('opacity','0.5');
+        $('#unrecommendBtn').css('opacity','1');
+        $('#unrecommendBtn').css('color','#c52a1e');
+        $('#recommendBtn').css('color','#1785be');
+        $('#saveB').removeAttr('disabled');
+        $('#unrecomment_img').attr('src', "{{STATIC_URL}}assets/img/dislike-2.png");
+        $('#recomment_img').attr('src', "{{STATIC_URL}}assets/img/thumb_up.png");
+    _kmq.push(['record', 'Unrecommend',{'Unrecomender':'{{request.user.email}}' ,'Unrecomended':'{{user.email}}'}]);   
+    _gaq.push(['_trackEvent', 'Review', 'Unrecommend']);        
+    });
+});
+</script>
+<div id="review_div">
+    <div class="formHeader">
+        {% trans 'Review' %}
+    </div>
+    <a href="{% url userprofiles_profile user.username %}" style="text-decoration:none">
+        {% thumbnail user.id|get_profile_pic "65x65" crop="center" as im %}
+        <img class="propic" src="{{ im.url }}" />
+        {% endthumbnail %}
+        <h4>{{user}}</h4>
+    </a>
+    <div class="recommend">
+        <a href="#" id="recommendBtn" title="Recommend" class="circleBlue">
+            <img id="recomment_img" src="{{STATIC_URL}}assets/img/thumb_up.png" alt="recommend"/>
+        </a>
+        <a href="#" id="unrecommendBtn" title="UnRecommend" class="circleBlue">
+            <img id="unrecomment_img" src="{{STATIC_URL}}assets/img/thumb_down.png" alt="unrecommend"/>
+        </a>
+    </div>
+    <div id="reviewTextdiv">
+        <label>{% trans "Write a review on" %} {{user.first_name}}</label>
+        <textarea id="reviewText" name="reviewText" maxlength="20480"></textarea>
+    </div>
+    <button class="btn saveBtn" id="saveB" disabled="true" name= "saveBtn">{% trans "SAVE" %}</button>
+    <button class="btn cancelBtn" onClick="javascript:getdiscussion('/message/{{user.id}}/{{bid.task.id}}/{{bid.id}}/')" method="POST">{% trans "CANCEL" %}</button>
+</div>

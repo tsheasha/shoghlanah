@@ -1,0 +1,34 @@
+{% load get_json %}
+{% load get_user_info %}
+{% load get_notifications %}
+{% load thumbnail %}
+{% load i18n %} 
+
+<div style="width:275px;">
+    <div id="not_header">{% trans "Notifications" %} :</div>
+    {% ifnotequal request.user.id|get_user_new_notifications_count 0 %}
+    <div id="not_body" style="overflow: -moz-scrollbars-vertical; overflow-y: auto;max-height:374px;">
+        {% for the_notification in request.user.id|get_user_new_notifications %}
+            <li class="not">
+                {% if request.session.django_language == 'ar' %}
+                    {% thumbnail the_notification.sender.id|get_profile_pic "30x30" crop="center" as im %}
+                        <a class="notification" href="/notifications/{{the_notification.id}}/"> {{the_notification.message_arabic|truncate:30}}</a>
+                    {% endthumbnail %}
+                {% else %}
+                    {% thumbnail the_notification.sender.id|get_profile_pic "30x30" crop="center" as im %}
+                        <a class="notification" href="/notifications/{{the_notification.id}}/">  {{the_notification.message|truncate:30}}</a>
+                    {% endthumbnail %}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </div>
+{% else %}
+    <li class="divider"></li>
+    <div id="no_not"><li>&nbsp&nbsp&nbsp&nbsp{% trans "No New notifications" %}</li></div>
+{% endifnotequal %}
+
+<li>
+    <div style="background-color:#f3592a;"><a class="seeall" href="/notifications/mark_all_seen/">{% trans "See all" %}</a></div>
+
+</li>
+</div>

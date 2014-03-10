@@ -1,0 +1,137 @@
+{% load thumbnail %}
+{% load i18n %}
+{% load get_user_info %}
+{% ifequal user viewed_user %} 
+<script src="{{ STATIC_URL }}js/fileuploader.js" ></script>
+<script>
+    
+    function pushkm(){
+        _kmq.push(['record', 'Uploaded to Portfolio',{'User':'{{request.user.email}}'}]);
+        _gaq.push(['_trackEvent', 'Profile', 'Uploaded Photo to Portfolio']);
+    };
+
+    $(function(){
+    	var uploader = new qq.FileUploader({
+	        action: "{% url ajax_upload %}",
+	        element: $('#file-uploader')[0],
+	        multiple: true,
+	        filesLimit: 5,
+	        sizeLimit: 104857600, //INCREASED FOR TESTING PURPOSES
+	        allowedExtensions:['gif', 'png', 'jpg', 'jpeg', 'tiff', 'bmp'],
+	        onComplete: function(id, fileName, responseJSON) {
+	            if(responseJSON.success) {
+	                 alert("success!");
+	            } else {
+	                 alert("upload failed!");
+	            }
+	        },
+	        onAllComplete: function(uploads) {
+	            // uploads is an array of maps
+	     //        var x = uploads.length
+	     //        if(x>0){
+	     //        	var u = '/addaction/'+ x +'/'
+		    //         $.ajax({
+		    //         	type: "POST",
+						// url: u,
+	     //        	});
+	     //        }
+	            // the maps look like this: {file: FileObject, response: JSONServerResponse}
+	            $.ajax({
+					url: '{% url userprofiles_gallery request.user.username %}',
+					success: function(data) {
+						$('#Gallerycontent').html(data);
+						Shadowbox.setup();
+					}
+	            });
+	            // alert("All complete!");
+				$('.qq-upload-list').delay(1500).empty();
+	        },
+	        onCancel : function(id, fileName){	 
+	        	return false;
+	        },
+	        messages: {
+	            typeError: "{file} {% trans 'has invalid extension. Only' %} {extensions} {%trans 'are allowed.'%}",
+	            sizeError: "{file} {% trans 'is too large, maximum file size is' %} {sizeLimit}.",
+	            minSizeError: "{file} {% trans 'is too small, minimum file size is' %} {minSizeLimit}.",
+	            emptyError: "{file} {% trans 'is empty, please select files again without it.' %}",
+	            filesLimitError: "{%trans 'No more than' %} {filesLimit} {% trans 'files are allowed to be uploaded.'%}",
+	            onLeave: "{% trans 'The files are being uploaded, if you leave now the upload will be cancelled.' %}"            
+	        },
+	        params: {
+	            'csrf_token': '{{ csrf_token }}',
+	            'csrf_name': 'csrfmiddlewaretoken',
+	            'csrf_xname': 'X-CSRFToken',
+	        },
+    	});
+		$('.qq-upload-button').children('b').html('{%trans "Upload" %}')
+		$('.qq-upload-drop-area').children('span').html('{%trans "Drop files here to upload"%}')
+		$('.qq-upload-cancel').html('{% trans "Cancel"%}')
+		$('.qq-upload-failed-text').html('{% trans "Failed"%}')
+    });
+</script>
+{% endifequal %}
+<link href="{{ STATIC_URL }}css/fileuploader.css" media="screen" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/shadowbox/shadowbox.css">
+<div id="Gallerycontent">
+	<h4 style="color: #828282;">{% trans "Portfolio " %}<a id="picCount" data-toggle="modal" href="#portfolioModal">&#40;{{Photos.count}}&#41;</a></h4>
+	<div id="gallerydiv"  style="{% if Photos.count == 4 %}height: 350px;{% endif %}">
+		{% if Photos.count > 0 %}
+			{% include "modals/portfolioModal.html" %}
+			{% thumbnail Photos.0.image "270x168" crop="center" as im %}
+			<a  href="{{MEDIA_URL}}{{Photos.0.image}}" rel="shadowbox[{{viewed_user}}-Portfolio]">
+				<img class="pictures picBig" src="{{im.url}}">
+			</a>
+			{% endthumbnail %}
+		{%endif%}
+		
+		{% if Photos.count > 1 %}
+			{% thumbnail Photos.1.image "132x80" crop="center" as im %}
+			<a href="{{MEDIA_URL}}{{Photos.1.image}}" rel="shadowbox[{{viewed_user}}-Portfolio]">
+				<img class="pictures picSmall" src="{{im.url}}">
+			</a>
+			{% endthumbnail %}
+		{%endif%}
+
+		{% if Photos.count > 4 %}
+			{% thumbnail Photos.3.image "132x80" crop="center" as im %}
+			<a href="{{MEDIA_URL}}{{Photos.3.image}}" rel="shadowbox[{{viewed_user}}-Portfolio]">
+				<img class="pictures picSmall" src="{{im.url}}">
+			</a>
+			{% endthumbnail %}
+			{% thumbnail Photos.4.image "132x80" crop="center" as im %}
+			<a href="{{MEDIA_URL}}{{Photos.4.image}}" rel="shadowbox[{{viewed_user}}-Portfolio]">
+				<img class="pictures picSmall" src="{{im.url}}">
+			</a>
+			{% endthumbnail %}
+		{% elif Photos.count > 3 %}
+			{% thumbnail Photos.3.image "130x165" crop="center" as im %}
+			<a href="{{MEDIA_URL}}{{Photos.3.image}}" rel="shadowbox[{{viewed_user}}-Portfolio]">
+				<img class="pictures picMedium" src="{{im.url}}">
+			</a>
+			{% endthumbnail %}
+		{%endif%}
+
+		{% if Photos.count > 2 %}
+			{% thumbnail Photos.2.image "132x80" crop="center" as im %}
+			<a href="{{MEDIA_URL}}{{Photos.2.image}}" rel="shadowbox[{{viewed_user}}-Portfolio]">
+				<img class="pictures picSmall {% if Photos.count == 4 %} pic2 {% endif %}" src="{{im.url}}">
+			</a>
+			{% endthumbnail %}
+		{%endif%}
+	</div>
+</div>
+{% ifequal user viewed_user %}
+	<div id="file-uploader">       
+	    <noscript>          
+	        <p>Please enable JavaScript to use file uploader.</p>
+	    </noscript>         
+	</div>
+{% else %}
+	{% if Photos.count <= 0 %}
+		{% ifequal viewed_user.gender "F" %}
+			<label class="empty">{{viewed_user}} {% trans "did not upload her portfolio yet" %} </label>
+		{% else %}
+			<label class="empty">{{viewed_user}} {% trans "did not upload his portfolio yet" %} </label>
+		{% endifequal %}
+	{% endif %}
+{% endifequal %}

@@ -1,0 +1,41 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+{% load get_all_users %}
+
+{% for result in presults %}
+    {% if result.object.first_name %}
+    <div class='pcard'>
+        <a href="/accounts/profile/{{ result.object.username }}/">
+            {% thumbnail result.object.id|get_profile_pic "65x65" crop="center" as pic %}
+                <img class="propic" src="{{ pic.url }}">
+            {% endthumbnail %}
+        </a>
+        <div class='pinfo'>
+            <a href="/accounts/profile/{{ result.object.username }}/">
+                <h4>{{ result.object|truncate:15}}</h4>
+            </a>
+            {% if not request.user.id == result.object.id %}
+                {% if not request.user.id|isFollowing:result.object.id %}
+                    {% if not request.user.is_anonymous %}
+                        <span class="user-follow followbtn-{{result.object.id}}" onClick="follow('{{ result.object.username }}','{{result.object.id}}');" value="follow">{% trans "FOLLOW" %}</span>
+                    {% else %}
+                        <a class="user-follow followbtn-{{result.object.id}}" href="/accounts/profile/{{ result.object.username }}/" value="follow">{% trans "FOLLOW" %}</a>
+                    {% endif %}
+                {% else %}
+                    {% if not request.user.is_anonymous %}
+                        <span class="user-unfollow followbtn-{{result.object.id}}" onClick="follow('{{ result.object.username }}','{{result.object.id}}');" value="unfollow">{% trans "UNFOLLOW" %}</span>
+                    {% else %}
+                        <a class="user-unfollow followbtn-{{result.object.id}}" href="/accounts/profile/{{ result.object.username }}/" value="unfollow">{% trans "UNFOLLOW" %}</a>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    {% empty %}
+        <div class="alert alert-error" style=" margin: 20px; text-align: center;">
+            <h4>{% trans "No People Found" %}</h4>
+                {% trans "Please Change your search constraints" %}.
+        </div>
+{% endfor %}

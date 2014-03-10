@@ -1,0 +1,48 @@
+@font-face {
+	font-family: 'GothamBold';
+	src: url('/static/fonts/Gotham-Bold.eot') format('embedded-opentype');
+	src: local('gothambold'), url('/static/fonts/Gotham-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'GothamBook';
+	src: url('/static/fonts/Gotham-Book.eot') format('embedded-opentype');
+	src: local('gothambook'), url('/static/fonts/Gotham-Book.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'GothamLight';
+	src: url('/static/fonts/Gotham-Light.eot') format('embedded-opentype');
+	src: local('gothamlight'), url('/static/fonts/Gotham-Light.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'GothamMedium';
+	src: url('/static/fonts/Gotham-Medium.eot') format('embedded-opentype');
+	src: local('gothammedium'), url('/static/fonts/Gotham-Medium.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'GothamXLight';
+	src: url('/static/fonts/Gotham-XLight.eot') format('embedded-opentype');
+	src: local('gothamxlight'), url('/static/fonts/Gotham-XLight.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'GESSBold';
+	src: url('/static/fonts/GESS_Bold.eot') format('embedded-opentype');
+	src: local('GESSBold'), url('/static/fonts/GESS_Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'GESSLight';
+	src: url('/static/fonts/GESS_Light.eot') format('embedded-opentype');
+	src: local('GESSLight'), url('/static/fonts/GESS_Light.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'GESSMedium';
+	src: url('/static/fonts/GESS_Medium.eot') format('embedded-opentype');
+	src: local('GESSMedium'), url('/static/fonts/GESS_Medium.ttf') format('truetype');
+}
+

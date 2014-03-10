@@ -1,0 +1,248 @@
+html, body, #container { height: 100%; }
+
+body > #container { height: auto; min-height: 100%; }
+
+.text {
+	margin-left: 20px;
+}
+
+.text a{
+	color: #FFFFFF;
+}
+
+.footer {
+	background-color: #000000;
+	clear: both;
+	position: relative;
+	z-index: 10;
+	height: 3em;
+	margin-top: -3em;
+	opacity:0.27;
+}
+
+.footer-body {
+	/*background-color: red;*/
+	clear: both;
+	position: relative;
+	z-index: 10;
+	margin-top: -3em;
+	width:50%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 2px;
+	opacity:1;
+}
+
+body {
+	background-size:100%;background-repeat: no-repeat;background-attachment:fixed;
+}
+
+.title {
+	background-color:rgba(25,170,208,0.82);height:112px;overflow: auto;
+}
+
+.lang-en {
+	position:fixed;margin:0;margin-left:812px;background-color:rgba(11,89,129,1);color:white;padding-left:12px;padding-right:12px;color:white;padding-bottom:3px;
+}
+.lang-en:hover {
+	color:white;
+}
+
+.lang-ar {
+	position:fixed;margin:0;margin-left:812px;background-color:rgba(11,89,129,1);padding-left:12px;padding-right:12px;color:white;padding-bottom:3px;
+}
+
+.lang-ar:hover {
+	color:white;
+}
+
+.logo {
+	float:left;position:fixed;margin-left:105px;width:350px;height:112px;
+            background-color:rgba(11,89,129,1);overflow: auto;
+}
+
+.logo-img {
+	width: 64px;float: left;margin-left: 49px;margin-top: 20px;padding: 0;
+}
+
+.logo-img img{
+	max-width:230px; height:67px;
+}
+
+.logo-name {
+	font-size:32px;font-family:'Raleway', 'GESSLight', sans-serif;color:white;margin-left: 40px;margin-top: -18px;float: left;padding: 0;
+}
+
+.logo-com {
+	float:left;margin-left:197px;font-family:'Raleway', 'GESSLight', sans-serif;margin-top:-13px;font-size:16px;color:rgb(0,156,196);
+}
+
+#search {
+	margin-left:670px;position:fixed;margin-top:45px;
+}
+
+#search input[type="text"] {
+	border-radius:0;margin-top:0;
+}
+
+.why-div {
+	float:left;position:fixed;font-size:25px;margin-left:105px;width: 350px;background-color: rgba(49,157,185,0.9);height: 313px;font-family:'Raleway', 'GESSLight', sans-serif;color:rgb(124,216,240);font-weight: 300;
+}
+
+.why-span {
+float:left;font-size:65px;margin-left:42px;position:fixed;margin-top:50px; color:white;
+}
+
+.should-span {
+	 float:right;margin-left: 190px;margin-top: 37px;position: fixed;
+}
+
+.join-span {
+	float:right;margin-left: 190px;margin-top:65px;position: fixed;
+}
+
+.about-span {
+	float:right; margin-top:98px; margin-right:34px; 
+}
+
+#login-form {
+	padding-left: 30px;
+	padding-right: 30px;
+	border-radius:0;width:350px;height:460px;margin-left:455px;position:fixed;font-family:'Raleway', 'GESSLight', sans-serif;
+}
+
+.label-login {
+	color:rgb(0,156,196);font-size: 22px;margin-bottom: 15px;
+}
+
+.divider-grey {
+	border-color:#eaeaea;margin-top:8px;
+}
+
+.form-login {
+	font-size:15px;
+}
+
+#username, #password, #email {
+	width: 308px; padding-right: 24px;
+	margin-left: 5px;border-radius: 0;
+	background-repeat:no-repeat;
+	background-position: 310px 6px;
+}
+
+#password {
+	margin-top: 5px;
+	margin-bottom:22px;
+}
+
+.regular-checkbox + label {
+	background-color: rgb(255, 255, 255);
+	border: 1px solid #cacece;
+	padding: 0 9px;
+	border-radius: 0;
+	display: inline;
+	position: relative;
+	margin-right: 8px;
+	margin-left: 5px;
+	font-size:15px;
+}
+
+.regular-checkbox:checked + label {
+    background-color: #fff;
+    border: 1px solid #adb8c0;
+    color: #1785be;
+}
+ 
+.regular-checkbox:checked + label:after {
+    content: '\2714';
+    font-size: 18px;
+    position: absolute;
+    top:0;
+    left: 2px;
+    color: #1785be;
+}
+
+.forget-pass {
+	margin-left: 5px;float:left;margin-top:12px;
+}
+
+.btn-signin {
+	border-radius: 0;background-color:rgb(0,156,196);margin-right: 20px;color: white;padding: 7px 20px;margin-top: 4px;float: right;border: 0;
+	font-family: 'Raleway', 'GESSLight', sans-serif;font-size: 18px;font-weight: 400;
+}
+
+.div-or {
+	text-align: center; width: 341px; height: 25px;
+	background-image: url('../img/or.png');
+}
+
+.or-divider {
+	margin-left:auto;margin-top:12px;margin-right:auto;width:40%;border-color:rgb(0,156,196);
+}
+
+.signup-info {
+	float:right;
+	width: 250px;
+	color: rgba(242,81,31,1);
+	margin-top:3px;
+	font-size: 14px;
+	font-family: 'Raleway', 'GESSLight', sans-serif;
+}
+
+.invitation {
+	border-radius: 0;background-color: rgba(242,81,31,1);margin-left:50px;padding: 3px;color: white;padding-right: 40px;padding-left: 40px;margin-top: 5px;padding-top: 10px;padding-bottom:10px;border: 0;font-family:'Raleway', 'GESSLight', sans-serif;font-size:18px;font-weight: 400;
+}
+
+.invitation-label {
+	margin: 12px;
+	text-align: center;
+	font-size: 13px;
+}
+
+.modal-header{
+	border-bottom: 2px solid #e3e3e3;
+	padding: 10px 20px;
+	height: 34px;
+}
+
+.modal-title{
+	padding-top: 10px;
+	padding-bottom: 5px;
+	font-family: 'Raleway', 'GESSLight', sans-serif;
+	font-weight: 300;
+	font-size: 22px;
+}
+
+#videoModal{
+	width: 640px;
+	height: 416px;
+	left: 49%;
+	border-radius: 0px;
+}
+
+.modal-close{
+	color: #268dc2;;
+	width: 34px;
+	height: 34px;
+	border: 2px solid #268dc2;;
+	-webkit-border-radius: 999px;
+	-moz-border-radius: 999px;
+	border-radius: 999px;
+	position: absolute;
+	top: 8px;
+	right: 20px;
+}
+
+.modal-close label{
+	padding: 7px 9px;
+	font-size: 23px;
+	font-family: 'Raleway', 'GESSLight', sans-serif;
+	font-weight: 300;
+	cursor: pointer;
+}
+
+.modal-body{
+	padding: 0px;
+	background-color: #f2f2f2;
+	padding-bottom: 0px;
+}

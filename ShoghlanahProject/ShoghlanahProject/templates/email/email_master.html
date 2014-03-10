@@ -1,0 +1,87 @@
+{% load thumbnail %}
+{% load get_user_info %}
+<div style="height:537px;width:604px;background-repeat:no-repeat;background-image: url('http://s23.postimage.org/if42il00r/mail_template.png');" align='center'>
+	
+	<!-- margin-left:247px; -->
+	<div class="hi" style="font-size: 23px;font-family: arial;font-weight: bold;padding-top: 118px;width:100px;" align='center'>
+		Hello !
+	</div>
+
+	{% if dict.order %}
+		<a href="{{DEPLOYED_ADDRESS}}accounts/profile/{{ dict.order.buyer.username }}/">
+			{% thumbnail dict.order.buyer.id|get_profile_pic "65x65" crop="center" as pic %}
+				<img style="border-style:solid;border-color:rgb(155, 155, 155);border-width:4px;border-radius:999px;" src="{{ pic.url }}">
+			{% endthumbnail %}
+		</a>
+	{% endif %}
+
+	{% if dict.bid %}
+		<a href="{{DEPLOYED_ADDRESS}}accounts/profile/{{ dict.bid.task.user.username }}/">
+			{% thumbnail dict.bid.task.user.id|get_profile_pic "65x65" crop="center" as pic %}
+				<img style="border-style:solid;border-color:rgb(155, 155, 155);border-width:4px;border-radius:999px;" src="{{ pic.url }}">
+			{% endthumbnail %}
+		</a>
+	{% endif %}
+
+	{% if dict.sender %}
+	<!-- margin-left:70px; -->
+		<span style="font-size:16px;font-family:arial;">
+			<a class="user-name" style="text-decoration: none;" href="{{DEPLOYED_ADDRESS}}accounts/profile/{{ dict.sender.username }}/">
+				{% thumbnail dict.sender.id|get_profile_pic "65x65" crop="center" as pic %}
+					<img style="border-style:solid;border-color:rgb(155, 155, 155);border-width:4px;border-radius:999px;" src="{{ pic.url }}">
+				{% endthumbnail %}
+				<br/>
+				<span style="color:#268dc2;">{{ dict.sender }}</span>
+			</a>
+			 sent you an invitation to join Shoghlanah
+		</span>
+		<br/>
+	{% endif %}
+		
+<!-- margin-left:100px; -->
+	<div style="padding-top:40px;font-size:16px;font-family:arial;color:#1786bd;text-align:center">
+		{% if dict.sender %}
+			<span style="font-style: italic;">{{ msg }}</span>
+		{% elif dict.bid %}
+			{{ dict.bid.task.user }} {{ msg }} <a href="/task/dict.bid.task.id/">{{ dict.bid.task.title }}</a>
+		{% elif dict.order %}
+			{{ dict.order.buyer }} {{ msg }} <a href="{{DEPLOYED_ADDRESS}}order/{{dict.order.id}}/view"> View the order details on Shoghlanah.com</a>
+		{% elif dict.task %}
+			<a href="/task/dict.task.id/">{{ dict.task.title }}</a> <br/> {{ msg }}
+		{% else %}
+			{{ msg }}
+		{% endif %}
+		<br/>
+		{% if dict.email %}
+			<br/>
+			<div style="color:#989898; margin-top:30px;">
+				<b style="color:#5b5b5b;">Email:</b> {{ dict.email }}
+			</div>
+		{% endif %}
+		{% if dict.password %}
+			<div style="color:#989898; margin-bottom:30px;">
+				<b style="color:#5b5b5b;">Password:</b> {{ dict.password }}
+			</div>
+			<br/>
+		{% endif %}
+		{% if dict.note %}
+			<div style="color:#f3592a; margin-bottom: -20px;">
+				{{ dict.note }}
+			</div>
+			<br/>
+		{% endif %}
+	</div>
+
+	{% if dict.sender %}
+	<!-- margin-left:200px; -->
+		<div style="margin-bottom: 20px;margin-top: 20px;">
+			<a style="text-decoration: none;border-radius: 0;background-color:#f2511f;padding: 3px;color: white;padding-right: 40px;padding-left: 40px;margin-top:30px;padding-top: 10px;padding-bottom:10px;border: 0;font-size:18px;" href="{{ DEPLOYED_ADDRESS }}accounts/profile/{{dict.sender.username}}/">Visit {{ dict.sender.first_name|truncate:15 }}'s profile</a>
+		</div>
+	{% endif %}
+	<div style="margin-top:20px;margin-bottom:15px;">
+			<span style="color:#a2a2a2;font-size:12px;font-family:arial;">Stay up to date on what&#39;s happening.</span>
+	</div>
+	<div>
+		<a href="{{ DEPLOYED_ADDRESS }}" style="text-decoration: none;border-radius: 0;background-color:#009cc4;color: white;padding: 8px 30px;margin-top:30px;border: 0;font-size:20px;font-family:arial;">Visit Shoghlanah</a>
+	</div>
+

@@ -1,0 +1,137 @@
+#info{
+	background-color: #FFFFFF;
+}
+#following-div{
+	margin-bottom:25px;
+}
+.followers-container {
+	background-color: rgb(228, 229, 230);
+	background-color: rgba(228, 229, 230, 0.3);
+	overflow: auto;
+}
+
+.followers-title {
+	float: left;
+}
+
+.followers-header {
+	overflow-x: auto;
+}
+
+.see_all {
+	float: right;
+}
+
+.followers-div {
+	float: left;
+	margin-bottom: 4%;
+	cursor:pointer;
+}
+
+.followers-pic {
+    width: 60px;
+    height: 60px;
+    margin-top: 10px;
+    border: 3px solid rgb(183,183,183);
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    overflow: hidden;
+    background-size: cover;
+    display: inline-block;
+}
+
+.modal-followers {
+	overflow: auto;
+  padding: 20px 10px 0px;
+	max-height: 400px;
+}
+
+h5{
+	padding-left: 5px;
+}
+
+#profile-stream{
+	float:left;
+	margin-left: 5px;
+}
+
+#profile-gallery-follow{
+	float:right;
+	padding-left: 20px;
+    width: 302px;
+}
+
+.empty{
+  padding-top: 20px;
+  padding-bottom: 50px;
+  font-style: italic;
+  font-weight: bolder;
+  font-size: 14px;
+  color: #EA7C00;
+}
+
+.imgtitle{
+  background-color:#CCC;
+  text-align:center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#file-uploader{
+  margin: 10px 5px;
+  width: 90%;
+}
+
+.qq-upload-drop-area{margin: -12px 0px}
+
+.pictures{
+  border: 4px solid #bbbabb;
+  margin: 3px;
+  margin-right:0px;
+}
+.picBig{
+  width: 262px;
+  height: 160px;
+}
+.picMedium{
+  width: 122px;
+  height: 157px;
+  position: absolute;
+}
+.picSmall{
+  width: 124px;
+  height: 72px;
+}
+.pic2{
+  position: relative;
+  right: 139px;
+  top: 86px;
+}
+
+#modal-see_all {
+  width: 620px;
+}
+#lower-container .span7{
+  border-right: 1px solid #cacaca;
+  width: 635px;
+  margin-left: 5px;
+}
+
+
+/*.gecko #lower-container1 {
+	position: relative;
+	top: 25%;
+	left: -95.5%;
+}
+.gecko #lower-container2 {
+	position: relative;
+	top: 25%;
+	left: -95.5%;
+}
+.gecko #lower-container3 {
+	position: relative;
+	top: 25%;
+	left: -95.5%;
+}*/

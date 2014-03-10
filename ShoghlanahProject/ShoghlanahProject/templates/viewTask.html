@@ -1,0 +1,230 @@
+{% extends 'master.html' %}
+
+{% load get_chat %}
+{% load get_user_info %}
+{% load get_skills %}
+{% load i18n %}
+{% load thumbnail %}
+
+{% block metatags %}
+{% ifequal DEPLOYED_ADDRESS "http://www.shoghlanah.com/"  %}
+	<meta property="og:type"   content="shoghlanah:shoghlanah" />    <!-- ALPHA APP_ID -->
+{% else %}
+  	<meta property="og:type"   content="shoghlanah-test:shoghlanah" />    <!-- TESTING APP_ID -->	
+{% endifequal %}
+	<meta property="og:url"    content="{{ DEPLOYED_ADDRESS }}task/{{ task.id }}" />
+	<meta property="og:title"  content="{{ task.title }}" />
+{% endblock metatags %}
+
+{% block dashboard %}
+
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/viewTask.css"/>
+{% if request.session.django_language == 'ar' %}
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/viewTask-rtl.css"/>
+{% endif %}
+{%include 'modals/DeleteTaskModal.html' %}
+{% comment %}
+{%include 'modals/ReportTaskModal.html' %}
+{% endcomment %}
+<style>
+.cost{
+	background-image: url("{{STATIC_URL}}assets/img/money.jpg");
+    background-attachment: fixed;
+}
+</style>
+
+<script>
+
+$(document).ready(function() {
+	$("#taskdesc").html($("#taskdesc").html().replace(/&nbsp;/gi,' '));
+	$("#location").html($("#location").html().replace(/&nbsp;/gi,' '));
+	$("#modalloca").html($("#modalloca").html().replace(/&nbsp;/gi,' '));
+	$("#title").html($("#title").html().replace(/&nbsp;/gi,' '));
+	$('#taskdesc').jTruncate({  
+        length: 100,  
+        minTrail: 0,  
+        moreText: "{% trans 'more'%}",  
+        lessText: "{% trans 'less'%}", 
+        moreAni: "slow",  
+        lessAni: "slow"  
+    });
+
+	var description =  "{{task.description|trim}}";
+	var task_tags = "{{task.tags}}"
+	var lat = "{{task.latitude}}"; 
+	var lng = "{{task.longitude}}";
+
+	if( lat.indexOf(",") !== -1 ){
+		lat=lat.replace(",",".");
+		lng=lng.replace(",",".");
+	}
+
+	json_map=map_initialize(lat,lng,false,'map');
+	$('#mapModal').on('shown', function () {
+		google.maps.event.trigger(json_map.map, 'resize'); 
+		var latlng = new google.maps.LatLng(lat, lng);
+		var m = json_map.map;
+		m.setCenter(latlng);
+	});
+	
+	$("#edit_link").click(function(){
+		editTask(json_map.marker,json_map.map);
+	});
+    _kmq.push(['record', 'Visited A Task',{'Task':'{{task.title}}' ,'User':'{{request.user.email}}'}]);
+    _gaq.push(['_trackEvent', 'Viewed a Task', '{{task.title}}']);
+});
+</script>
+
+{% include "edittask.html" %}
+
+<div id="task" style="overflow: visible;">
+<div id="task-container">
+	<div id="taskheader">
+		{% if  task.status != "New" and not request.user.is_anonymous%}
+			<!-- <div class="taskstatus">Assigned</div>-->
+			{% if request.session.django_language == 'ar' %}
+				<img id="taskstatus" src="{{STATIC_URL}}assets/img/closed-ar.png"/>
+			{% else %}
+				<img id="taskstatus" src="{{STATIC_URL}}assets/img/closed.png"/>
+			{% endif %}
+		{% endif %}
+		<h4 id="taskowner">
+			<a href="{% url userprofiles_profile task.user.username %}" style="text-decoration:none">
+				{% thumbnail task.user.id|get_profile_pic "65x65" crop="center" as im %}
+					{% if task.status != 'New' and not request.user.is_anonymous %}
+						<img class="propic shiftimg" src="{{ im.url }}" />
+					{%else%}
+						<img class="propic" src="{{ im.url }}" />
+					{%endif%}
+	            	
+	            {% endthumbnail %}
+	            <br/>
+	            {{task.user.first_name}} {{task.user.last_name}}
+	        </a>
+	        <label class="biglight">
+	        {% ifequal task.user.gender "F" %}
+	        	{% if request.session.django_language == 'ar' %}
+	        		تريد
+	        	{% else %}
+	        		needs
+	        	{% endif %}
+	        {% else %}
+	        	{% trans "needs" %}
+	        {% endifequal %}
+	    </label>
+	    </h4>
+	    <br/>
+	    <div id="taskcontrol">
+		    {% if task.user.id == request.user.id and task.status == "New" %}
+		    	<span id='edit_icon' class='control_icon'>
+			    	<a id='edit_link'>
+				    	<i class="icon-pencil"></i>
+				    	<label style="display:inline;">{% trans "Edit" %} </label>
+				    </a>
+				</span>
+				<span id='delete_icon' class='control_icon'>
+					<a href="#DeleteTaskModal" data-toggle="modal">
+						<i class="icon-trash"></i>
+						<label style="display:inline;">{% trans "Delete" %} </label>
+					</a>
+				</span>
+			{% endif %}
+			<!-- {# {% if task.user.id != request.user.id  %}
+				<a href="#ReportTaskModal" data-toggle="modal">
+					<label style="display:inline;">{% trans "Report" %} </label>
+				</a>
+			{% endif %} #} -->
+				<span id='share_icon' style="position:relative;">
+			    	<a onclick="shareTask()">
+				    	<i class="icon-share"></i>
+				    	<label style="display:inline;">{% trans "Share" %} </label>
+				    </a>
+				    <div id='sharetoggle'>
+					    <div class="arrow-up" style:"position:absolute;">
+	    					<div class="arrow-upOut"></div><div class="arrow-upIn"></div>
+	    				</div>
+					    <div id="sharebuttons">	
+					    	<div>
+					    		<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="vertical" data-hashtags="Shoghlanah" data-text="{{task.title|truncate:75}} -">Tweet</a>
+					    	</div>
+					    	<br/>
+					    	<div>
+					    		<div class="g-plusone" data-action="share" data-size="tall" data-annotation="bubble" data-href="{{ DEPLOYED_ADDRESS }}/task/{{ task.id }}"></div>
+					    	</div>
+					    	<br/>
+					    	<div>
+					    		<div class="fb-like" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
+					    	</div>
+					    </div>
+					</div>
+				</span>
+			<!-- 
+			<a href="https://www.facebook.com/dialog/feed?app_id=130615207082415&link={{ request.session.DEPLOYED_ADDRESS }}/task/{{ task.id }}&name=Deafcab-test&caption={{ task.title }}&description={{ task.description }}&
+			redirect_uri={{ request.session.DEPLOYED_ADDRESS }}/task/{{ task.id }}" class="btn">
+				Share on facebook
+			</a>
+			-->
+		</div>
+	    <div class="arrow-bottom">
+	    	<div class="arrow-bottomOut"></div><div class="arrow-bottomIn"></div>
+	    </div>
+	</div>
+	<div id="taskinfo" class="taskdiv">
+	    <h4 id="title" title="{{task.title}}">
+	    	{{task.title|truncate:55}}
+		</h4>
+		<p id="taskdesc" class="smallLight">
+		    {% if task.description != "" %}
+		    	{{task.description|trim}}
+		    {% else %}
+				{% trans "No details are given" %}
+				{% if request.user.id != task.user.id %}
+					{% trans ", for more information" %} {% trans "open a discussion" %}
+				{% else %}
+					{% trans ", click edit to add some details" %}
+				{% endif %} 
+		    {% endif %}
+		</p>	
+	    {% if task.tags%}
+	     <label id="skillsLabel">
+	    	{% trans "Should be good at" %}
+	    </label>
+	    {% endif %}
+	    <div id="task_tags">
+	    {% for tag in task.tags %}
+			<div class="tag"><a href="/skill/{{tag.id}}/">{{tag}}</a></div>
+		{% endfor %}
+    	</div>
+	</div>
+	<div class="taskdiv">
+		{% if rewardPic != None %}
+			<label>{% trans "Reward" %}</label>
+			<img id="rewardpic" src="{{MEDIA_URL}}{{rewardPic.img}}">
+			<label id="rewardname" class="smallLight">
+				{% if request.session.django_language == 'ar' %}{{rewardPic.ar_name}}{% else %}{{rewardPic.name}}{%endif%}
+			</label>
+		{% else %}
+			<label>{% trans "Willing to pay" %}</label>
+			<label class="money" id="money">{{task.price}}</label>
+			<label class="smallLight">{%trans "EGP" %}</label>
+		{% endif %}
+	</div>
+	<div class="taskdiv finaldiv">
+		<label>{%trans "Location" %}</label>
+		<label id="location" class="taskloca smallLight">{{task.address|truncate:60}}</label>
+		<a id='show_map' data-toggle="modal" href="#mapModal">
+	    	<i class="icon-map-marker"></i>
+	    	<label style="display:inline;">{% trans "Show map" %} </label>
+	    </a>
+	</div>
+</div>
+</div>
+<div id="chatContainer">
+	{% if not request.user.is_anonymous %}
+		{% include "chats/chat.html" %}
+	{% else %}
+		<label id="msghint"><h4 style="margin-bottom:8px;">{%trans "Ready for this shoghlanah ?"%}</h4><p class="smallLight">{% trans "Login to message the owner" %}.</p> </label>
+	{% endif %}
+</div>
+{% include "modals/mapModal.html" %}
+{% endblock dashboard %}

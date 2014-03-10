@@ -1,0 +1,21 @@
+.to-follow-div {
+	float: right;
+	margin-right: 0;
+	margin-left: 2%;
+}
+
+.pic {
+	float: right;
+}
+
+.float {
+	float: left;
+}
+
+.l {
+	margin-right: 2%;
+}
+
+#search-tab {
+	padding-right: 12px;
+}

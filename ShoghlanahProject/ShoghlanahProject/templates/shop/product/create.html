@@ -1,0 +1,20 @@
+{% extends 'master.html' %}
+{% load i18n %}
+{% block dashboard %}
+
+	{% if product %}
+		<form method="POST" action="{% url update_product product.id %}">
+			{% csrf_token %}
+			{{ form }}
+			<br/>
+			<input class="btn" type="submit" value="Update Product">
+		</form>
+	{% else %}
+		<form method="POST" action="{% url create_product %}">
+			{% csrf_token %}
+			{{ form }}
+			<br/>
+			<input class="btn" type="submit" value="Add Product">
+		</form>
+	{% endif %}
+{% endblock dashboard%}

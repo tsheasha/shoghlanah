@@ -1,0 +1,1157 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-24 16:02+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: settings.py:55
+msgid "Arabic"
+msgstr ""
+
+#: settings.py:55
+msgid "English"
+msgstr ""
+
+#: templates/add_info.html:7
+msgid "Complete Adding you information"
+msgstr ""
+
+#: templates/add_info.html:20
+#: templates/modals/login.html:65 templates/userprofiles/edit_profile.html:372
+#: templates/userprofiles/edit_profile.html:383
+#: templates/userprofiles/registration.html:162
+msgid "Email"
+msgstr ""
+
+#: templates/add_info.html:32 templates/modals/login.html:70
+#: templates/userprofiles/registration.html:173
+msgid "Password"
+msgstr ""
+
+#: templates/add_info.html:35
+msgid "Submit"
+msgstr ""
+
+#: templates/bids.html:9 templates/master.html:96
+msgid "Bids"
+msgstr ""
+
+#: templates/bids.html:12
+msgid "There are no bids found"
+msgstr ""
+
+#: templates/discover.html:48 templates/liveStream.html:116
+#: templates/search/results.html:154 templates/search/results.html.py:232
+msgid "Filter"
+msgstr ""
+
+#: templates/discover.html:53
+msgid "Tasks"
+msgstr ""
+
+#: templates/discover.html:57 templates/liveStream.html:125
+msgid "Follows"
+msgstr ""
+
+#: templates/discover.html:61 templates/liveStream.html:129
+msgid "Photos"
+msgstr ""
+
+#: templates/discover.html:112 templates/discover.html.py:116
+#: templates/discover.html:132 templates/discover.html.py:136
+#: templates/discover.html:187 templates/discover.html.py:191
+#: templates/discover.html:207 templates/discover.html.py:211
+#: templates/filter.html:94 templates/filter.html.py:98
+#: templates/filter.html:114 templates/filter.html.py:118
+#: templates/filter.html:169 templates/filter.html.py:173
+#: templates/filter.html:189 templates/filter.html.py:193
+#: templates/latest.html:91 templates/latest.html.py:95
+#: templates/latest.html:111 templates/latest.html.py:115
+#: templates/latest.html:166 templates/latest.html.py:170
+#: templates/latest.html:186 templates/latest.html.py:190
+#: templates/liveStream.html:228 templates/liveStream.html.py:232
+#: templates/liveStream.html:248 templates/liveStream.html.py:252
+#: templates/liveStream.html:300 templates/liveStream.html.py:304
+#: templates/liveStream.html:320 templates/liveStream.html.py:324
+#: templates/more.html:93 templates/more.html.py:97 templates/more.html:113
+#: templates/more.html.py:117 templates/more.html:168
+#: templates/more.html.py:172 templates/more.html:188
+#: templates/more.html.py:192 templates/skill_profile.html:189
+#: templates/skill_profile.html.py:193 templates/skill_profile.html:209
+#: templates/skill_profile.html.py:213
+msgid "Egypt"
+msgstr ""
+
+#: templates/discover.html:120 templates/filter.html:102
+#: templates/latest.html:99 templates/liveStream.html:236
+#: templates/more.html:101 templates/skill_profile.html:197
+#: templates/viewTask.html:197
+msgid "Willing to pay"
+msgstr ""
+
+#: templates/discover.html:121 templates/discover.html.py:196
+#: templates/edittask.html:54 templates/filter.html:103
+#: templates/filter.html.py:178 templates/latest.html:100
+#: templates/latest.html.py:175 templates/liveStream.html:237
+#: templates/liveStream.html.py:309 templates/more.html:102
+#: templates/more.html.py:177 templates/skill_profile.html:198
+#: templates/stripe_pay.html:12 templates/viewTask.html:199
+#: templates/chats/discussion-js.html:96 templates/chats/discussion.html:96
+#: templates/modals/postTask.html:156 templates/modals/postTask.html.py:160
+#: templates/modals/postTask.html:168 templates/modals/postTask.html.py:169
+#: templates/modals/postTask.html:172 templates/modals/postTask.html.py:173
+msgid "EGP"
+msgstr ""
+
+#: templates/discover.html:143 templates/filter.html:125
+#: templates/latest.html:122 templates/listing_tasks.html:31
+#: templates/liveStream.html:259 templates/more.html:124
+#: templates/skill_profile.html:220 templates/viewTask.html:191
+#: templates/modals/postTask.html:53 templates/search/results_tasks.html:36
+msgid "Reward"
+msgstr ""
+
+#: templates/discover.html:156 templates/filter.html:138
+#: templates/latest.html:135 templates/liveStream.html:272
+#: templates/more.html:137 templates/skill_profile.html:234
+msgid "needs a"
+msgstr ""
+
+#: templates/discover.html:195 templates/filter.html:177
+#: templates/latest.html:174 templates/liveStream.html:308
+#: templates/modals/postTask.html:49
+msgid "Paid"
+msgstr ""
+
+#: templates/discover.html:218 templates/filter.html:200
+#: templates/latest.html:197 templates/liveStream.html:331
+#: templates/more.html:199
+msgid "Rewarded"
+msgstr ""
+
+#: templates/discover.html:236 templates/filter.html:218
+#: templates/latest.html:215 templates/liveStream.html:349
+#: templates/more.html:217
+msgid "Open Discussion"
+msgstr ""
+
+#: templates/discover.html:253 templates/filter.html:235
+#: templates/latest.html:232 templates/liveStream.html:366
+#: templates/more.html:234
+msgid "was Assigned to "
+msgstr ""
+
+#: templates/discover.html:257 templates/filter.html:239
+#: templates/latest.html:236 templates/liveStream.html:370
+#: templates/more.html:238
+msgid "'s shoghlanah"
+msgstr ""
+
+#: templates/discover.html:280 templates/filter.html:262
+#: templates/filter.html.py:298 templates/latest.html:259
+#: templates/latest.html.py:295 templates/liveStream.html:393
+#: templates/liveStream.html.py:429 templates/more.html:261
+#: templates/more.html.py:297
+msgid "is now Following"
+msgstr ""
+
+#: templates/discover.html:303 templates/filter.html:321
+#: templates/latest.html:318 templates/liveStream.html:452
+#: templates/more.html:320
+msgid "joined Shoghlanah"
+msgstr ""
+
+#: templates/edittask.html:48
+msgid "what do you need"
+msgstr ""
+
+#: templates/modals/postTask.html:37
+msgid "Describe in details"
+msgstr ""
+
+#: templates/modals/postTask.html:72
+msgid "Where"
+msgstr ""
+
+#: templates/edittask.html:116 templates/userprofiles/edit_profile.html:513
+msgid "Save"
+msgstr ""
+
+#: templates/edittask.html:117
+msgid "Pin location"
+msgstr ""
+
+#: templates/edittask.html:138
+msgid "The information is edited"
+msgstr ""
+
+#: templates/edittask.html:160 templates/viewTask.html:56
+msgid "more"
+msgstr ""
+
+#: templates/edittask.html:161 templates/viewTask.html:57
+msgid "less"
+msgstr ""
+
+#: templates/edittask.html:168 templates/viewTask.html:170
+msgid "No details are given"
+msgstr ""
+
+#: templates/edittask.html:168 templates/viewTask.html:174
+msgid ", click edit to add some details"
+msgstr ""
+
+#: templates/edittask.html:189 templates/viewTask.html:117
+msgid "Edit"
+msgstr ""
+
+#: templates/edittask.html:190 templates/viewTask.html:207
+msgid "Show map"
+msgstr ""
+
+#: templates/edittask.html:197
+msgid "Required field empty or invalid"
+msgstr ""
+
+#: templates/filter.html:41 templates/latest.html:38
+#: templates/liveStream.html:175 templates/more.html:40
+msgid "uploaded a photo."
+msgstr ""
+
+#: templates/filter.html:66 templates/latest.html:63
+#: templates/liveStream.html:200 templates/more.html:65
+msgid "changed their profile picture."
+msgstr ""
+
+#: templates/filtered_people.html:36 templates/search/results.html:64
+#: templates/search/results.html.py:92 templates/search/results_people.html:10
+#: templates/search/results_people.html:50
+msgid "No Results Found"
+msgstr ""
+
+#: templates/filtered_people.html:37 templates/search/results.html:64
+#: templates/search/results.html.py:92 templates/search/results_people.html:10
+#: templates/search/results_people.html:51
+#: templates/search/results_tasks.html:51
+msgid "Please Change your search constraints"
+msgstr ""
+
+#: templates/listing_tasks.html:16 templates/viewTask.html:107
+#: templates/Notifications/jquery-gritter-js.html:108
+#: templates/search/results_tasks.html:21
+msgid "needs"
+msgstr ""
+
+#: templates/listing_tasks.html:27 templates/search/results_tasks.html:32
+msgid "Willing to Pay"
+msgstr ""
+
+#: templates/listing_tasks.html:29 templates/chats/chat.html:43
+#: templates/search/results_tasks.html:34
+msgid "L.E."
+msgstr ""
+
+#: templates/liveStream.html:121 templates/skill_profile.html:130
+#: templates/search/results.html:122 templates/userprofiles/all_tasks.html:11
+#: templates/userprofiles/info.html:192
+msgid "Shoghlanahs"
+msgstr ""
+
+#: templates/liveStream.html:133
+msgid "Profile Edits"
+msgstr ""
+
+#: templates/master.html:83
+msgid "Discover"
+msgstr ""
+
+#: templates/master.html:91
+msgid "Post Shoghlanah"
+msgstr ""
+
+#: templates/master.html:133
+#: templates/Notifications/refreshed_notofocations.html:29
+msgid "No New notifications"
+msgstr ""
+
+#: templates/master.html:137
+#: templates/Notifications/refreshed_notofocations.html:33
+msgid "See all"
+msgstr ""
+
+#: templates/master.html:157
+msgid "My Profile"
+msgstr ""
+
+#: templates/master.html:160
+#: templates/userprofiles/info.html:139
+msgid "Edit Profile"
+msgstr ""
+
+#: templates/master.html:163
+msgid "Find and invite friends"
+msgstr ""
+
+#: templates/master.html:166 templates/master.html.py:167
+#: templates/modals/change_email.html:15 templates/modals/change_email.html:22
+msgid "Change Email"
+msgstr ""
+
+#: templates/master.html:170
+msgid "Sign Out"
+msgstr ""
+
+#: templates/master.html:177 templates/modals/login.html:60
+#: templates/modals/login.html.py:80
+msgid "Log In"
+msgstr ""
+
+#: templates/master.html:185
+msgid "Sign Up"
+msgstr ""
+
+#: templates/master.html:202
+msgid "Search"
+msgstr ""
+
+#: templates/pay_js.html:32
+msgid "The card number is incorrect"
+msgstr ""
+
+#: templates/pay_js.html:36
+msgid "The card number is not a valid credit card number"
+msgstr ""
+
+#: templates/pay_js.html:40
+msgid "The card expiration month is invalid"
+msgstr ""
+
+#: templates/pay_js.html:44
+msgid "The card expiration year is invalid"
+msgstr ""
+
+#: templates/pay_js.html:48
+msgid "The card security code is invalid"
+msgstr ""
+
+#: templates/pay_js.html:52
+msgid "The card has expired"
+msgstr ""
+
+#: templates/pay_js.html:56
+msgid "The card security code is incorrect"
+msgstr ""
+
+#: templates/pay_js.html:60
+msgid "The card was declined"
+msgstr ""
+
+#: templates/pay_js.html:64
+msgid "There is no card on a customer that is being charged"
+msgstr ""
+
+#: templates/pay_js.html:68
+msgid "An error occurred while processing the card"
+msgstr ""
+
+#: templates/reviewform.html:53 templates/chats/discussion.html:43
+msgid "Review"
+msgstr ""
+
+#: templates/reviewform.html:70
+msgid "Write a review on"
+msgstr ""
+
+#: templates/reviewform.html:73
+msgid "SAVE"
+msgstr ""
+
+#: templates/reviewform.html:74 templates/stripe_pay.html:62
+msgid "CANCEL"
+msgstr ""
+
+#: templates/skill_profile.html:42 templates/skill_profile.html.py:89
+#: templates/userprofiles/info.html:23 templates/userprofiles/info.html:163
+msgid "FOLLOW"
+msgstr ""
+
+#: templates/skill_profile.html:51 templates/skill_profile.html.py:87
+#: templates/userprofiles/info.html:36 templates/userprofiles/info.html:152
+msgid "UNFOLLOW"
+msgstr ""
+
+#: templates/skill_profile.html:76
+msgid "Parent Skill:"
+msgstr ""
+
+#: templates/skill_profile.html:106
+msgid "Subskills"
+msgstr ""
+
+#: templates/skill_profile.html:118
+msgid "Users"
+msgstr ""
+
+#: templates/skill_profile.html:137
+msgid "Children:"
+msgstr ""
+
+#: templates/skill_profile.html:249
+msgid "There are no shoghlanahs related to this Skill"
+msgstr ""
+
+#: templates/skill_profile.html:260
+msgid "Professionals"
+msgstr ""
+
+#: templates/stripe_pay.html:7
+msgid "Pay"
+msgstr ""
+
+#: templates/stripe_pay.html:12
+msgid "You will be charged"
+msgstr ""
+
+#: templates/stripe_pay.html:12 templates/search/results.html:178
+msgid "to"
+msgstr ""
+
+#: templates/stripe_pay.html:20
+msgid "This form requires Javascript to use"
+msgstr ""
+
+#: templates/stripe_pay.html:29
+msgid "Credit Card Number"
+msgstr ""
+
+#: templates/stripe_pay.html:35
+msgid "Security Code"
+msgstr ""
+
+#: templates/stripe_pay.html:41
+msgid "Expiry date"
+msgstr ""
+
+#: templates/stripe_pay.html:57
+msgid "Your credit card details will be sent directly to our payment processor"
+msgstr ""
+
+#: templates/stripe_pay.html:61
+msgid "CONFIRM"
+msgstr ""
+
+#: templates/viewTask.html:123 templates/modals/DeleteTaskModal.html:13
+#: templates/userprofiles/edit_profile.html:325
+#: templates/userprofiles/edit_profile.html:500
+msgid "Delete"
+msgstr ""
+
+#: templates/viewTask.html:130
+msgid "Share"
+msgstr ""
+
+#: templates/viewTask.html:172
+msgid ", for more information"
+msgstr ""
+
+#: templates/viewTask.html:172
+msgid "open a discussion"
+msgstr ""
+
+#: templates/viewTask.html:180
+msgid "Should be good at"
+msgstr ""
+
+#: templates/viewTask.html:203
+#: templates/userprofiles/edit_profile.html:445
+#: templates/userprofiles/edit_profile.html:448
+#: templates/userprofiles/edit_profile.html:450
+msgid "Location"
+msgstr ""
+
+#: templates/Notifications/jquery-gritter-js.html:111
+msgid "opened a discussion on your shoghlanah"
+msgstr ""
+
+#: templates/Notifications/jquery-gritter-js.html:114
+msgid "changed his bid on"
+msgstr ""
+
+#: templates/Notifications/jquery-gritter-js.html:117
+msgid "is now following you"
+msgstr ""
+
+#: templates/Notifications/jquery-gritter-js.html:123
+msgid "A New shoghlanah is Posted"
+msgstr ""
+
+#: templates/Notifications/jquery-gritter-js.html:126
+msgid "is chatting with you"
+msgstr ""
+
+#: templates/Notifications/jquery-gritter-js.html:129
+msgid "A bid is changed"
+msgstr ""
+
+#: templates/Notifications/jquery-gritter-js.html:132
+msgid "You have a new follower"
+msgstr ""
+
+#: templates/chats/chat.html:25
+msgid "Opened Discussions"
+msgstr ""
+
+#: templates/chats/chat.html:38
+msgid "Accepted"
+msgstr ""
+
+#: templates/chats/chat.html:40
+msgid "Bidder"
+msgstr ""
+
+#: templates/chats/chat.html:46
+msgid "Last message:"
+msgstr ""
+
+#: templates/chats/chat.html:53
+msgid "No Discussions"
+msgstr ""
+
+#: templates/chats/discussion-js.html:54
+msgid "Save Bid"
+msgstr ""
+
+#: templates/chats/discussion-js.html:98 templates/chats/discussion.html:99
+msgid "Change Bid"
+msgstr ""
+
+#: templates/chats/discussion.html:23
+msgid "Recommendations"
+msgstr ""
+
+#: templates/chats/discussion.html:28
+msgid "CHOOSE OFFER"
+msgstr ""
+
+#: templates/chats/discussion.html:32
+msgid "REVIEW"
+msgstr ""
+
+#: templates/chats/discussion.html:35
+msgid "PAY"
+msgstr ""
+
+#: templates/chats/discussion.html:86
+msgid "Open discussion by sending a message to the owner"
+msgstr ""
+
+#: templates/chats/discussion.html:104
+msgid "SEND"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:45
+#: templates/userprofiles/edit_profile.html:152
+#: templates/userprofiles/edit_profile.html:153
+#: templates/userprofiles/edit_profile.html:166
+#: templates/userprofiles/edit_profile.html:208
+#: templates/userprofiles/edit_profile.html:209
+#: templates/userprofiles/edit_profile.html:353
+#: templates/userprofiles/edit_profile.html:364
+#: templates/userprofiles/edit_profile.html:377
+#: templates/userprofiles/edit_profile.html:388
+msgid "Verification Request Sent"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:47
+#: templates/userprofiles/edit_profile.html:52
+#: templates/userprofiles/edit_profile.html:56
+#: templates/userprofiles/edit_profile.html:63
+#: templates/userprofiles/edit_profile.html:67
+#: templates/userprofiles/edit_profile.html:133
+#: templates/userprofiles/edit_profile.html:168
+#: templates/userprofiles/edit_profile.html:173
+#: templates/userprofiles/edit_profile.html:186
+#: templates/userprofiles/edit_profile.html:355
+#: templates/userprofiles/edit_profile.html:366
+#: templates/userprofiles/edit_profile.html:379
+msgid "Verify"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:55
+#: templates/userprofiles/edit_profile.html:62
+#: templates/userprofiles/edit_profile.html:73
+msgid "Enter a valid number"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:87
+msgid "Phone already in use"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:117
+msgid "Email already in use"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:141
+#: templates/userprofiles/edit_profile.html:143
+#: templates/userprofiles/edit_profile.html:197
+#: templates/userprofiles/edit_profile.html:199
+msgid "Sending Verification Request"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:176
+#: templates/userprofiles/edit_profile.html:182
+#: templates/userprofiles/edit_profile.html:192
+#: templates/userprofiles/edit_profile.html:390
+msgid "Enter a valid email"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:313
+msgid "Your Profile is"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:313
+msgid "completed"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:337
+msgid "Personal Info"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:339
+#: templates/userprofiles/registration.html:147
+msgid "First Name"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:340
+#: templates/userprofiles/registration.html:150
+msgid "Last Name"
+msgstr ""
+
+#: templates/search/results_people.html:37
+#: templates/userprofiles/edit_profile.html:343
+#: templates/userprofiles/edit_profile.html:345
+msgid "Job Title"
+msgstr ""
+
+#: templates/search/results_people.html:41
+#: templates/userprofiles/edit_profile.html:348
+#: templates/userprofiles/edit_profile.html:359
+msgid "Mobile Number"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:348
+#: templates/userprofiles/edit_profile.html:359
+msgid "You will receive a phone call"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:372
+#: templates/userprofiles/edit_profile.html:383
+msgid "You will receive an email"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:400
+msgid "Male"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:405
+msgid "Female"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:415
+msgid "About Me"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:418
+#: templates/userprofiles/edit_profile.html:420
+msgid "About You"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:444
+msgid "Location and Address"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:452
+msgid "My Location"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:466
+msgid "Social Networks Linking"
+msgstr ""
+
+#: templates/sync_social/sync_facebook.html:19
+#: templates/userprofiles/edit_profile.html:474
+#: templates/userprofiles/edit_profile.html:476
+msgid "Facebook"
+msgstr ""
+
+#: templates/sync_social/sync_twitter.html:19
+#: templates/userprofiles/edit_profile.html:480
+#: templates/userprofiles/edit_profile.html:482
+msgid "Twitter"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:486
+#: templates/userprofiles/edit_profile.html:488
+msgid "Google+"
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:122
+#: templates/userprofiles/portfolio.html:126
+msgid "Next"
+msgstr ""
+
+#: templates/modals/postTask.html:29
+msgid "Tell us what you need"
+msgstr ""
+
+#: templates/modals/DeleteTaskModal.html:5
+msgid "Delete Task"
+msgstr ""
+
+#: templates/modals/DeleteTaskModal.html:8
+msgid "Are you sure you want to delete this task ?"
+msgstr ""
+
+#: templates/modals/DeleteTaskModal.html:11
+#: templates/userprofiles/portfolio.html:66
+msgid "Cancel"
+msgstr ""
+
+#: templates/modals/change_email.html:6
+msgid "Change e-mail address"
+msgstr ""
+
+#: templates/modals/direct_message.html:33
+msgid "Send message"
+msgstr ""
+
+#: templates/modals/login.html:18
+msgid "Please Enter Your Email."
+msgstr ""
+
+#: templates/modals/login.html:23
+msgid "Enter A Valid Email Address."
+msgstr ""
+
+#: templates/modals/login.html:29
+msgid "Please Enter Your Password."
+msgstr ""
+
+#: templates/modals/login.html:49
+msgid "The Email/Password is incorrect."
+msgstr ""
+
+#: templates/modals/login.html:52
+msgid ""
+"This Email Hasn't Been Activated Yet. Please Check The Activation Mail Sent "
+"To You."
+msgstr ""
+
+#: templates/modals/login.html:76
+msgid "Remember me"
+msgstr ""
+
+#: templates/modals/login.html:87
+msgid "Not a member yet?"
+msgstr ""
+
+#: templates/modals/login.html:88 templates/userprofiles/registration.html:123
+msgid "Sign up with"
+msgstr ""
+
+#: templates/modals/login.html:96
+msgid "or with"
+msgstr ""
+
+#: templates/modals/login.html:97
+msgid "your email"
+msgstr ""
+
+#: templates/modals/login.html:106
+msgid "Forgot your password?"
+msgstr ""
+
+#: templates/modals/postTask.html:33 templates/modals/postTask.html.py:40
+#: templates/modals/postTask.html:80
+msgid "Tip: "
+msgstr ""
+
+#: templates/modals/postTask.html:33
+msgid "Private Art teacher for kids"
+msgstr ""
+
+#: templates/modals/postTask.html:40
+msgid "Providing more details will help you have the appropriate applicants"
+msgstr ""
+
+#: templates/modals/postTask.html:45
+msgid "How will you compensate"
+msgstr ""
+
+#: templates/modals/postTask.html:80
+msgid "Double click to bring the pin where u need"
+msgstr ""
+
+#: templates/modals/postTask.html:84
+msgid "Add the needed skill(s)"
+msgstr ""
+
+#: templates/modals/postTask.html:111
+msgid "POST"
+msgstr ""
+
+#: templates/search/results.html:123
+msgid "People"
+msgstr ""
+
+#: templates/search/results.html:130 templates/search/results.html.py:204
+msgid "Search Filters"
+msgstr ""
+
+#: templates/search/results.html:138
+msgid "City"
+msgstr ""
+
+#: templates/search/results.html:165
+msgid "0 - 500 L.E"
+msgstr ""
+
+#: templates/search/results.html:168
+msgid "500 - 1000 L.E"
+msgstr ""
+
+#: templates/search/results.html:171
+msgid "1000 - 5000 L.E"
+msgstr ""
+
+#: templates/search/results.html:174
+msgid "5000 - 10000 L.E"
+msgstr ""
+
+#: templates/search/results.html:177
+msgid "From"
+msgstr ""
+
+#: templates/search/results.html:179
+msgid "To"
+msgstr ""
+
+#: templates/search/results.html:180
+msgid ">"
+msgstr ""
+
+#: templates/search/results.html:186
+msgid "Search..."
+msgstr ""
+
+#: templates/search/results.html:212
+msgid "Minimum Vote-Ups"
+msgstr ""
+
+#: templates/search/results_people.html:34
+msgid "Name"
+msgstr ""
+
+#: templates/search/results_tasks.html:50
+msgid "No Shoghlanahs Found"
+msgstr ""
+
+#: templates/sync_social/sync_facebook.html:10
+msgid "invite other friends"
+msgstr ""
+
+#: templates/sync_social/sync_facebook.html:12
+msgid "Find your Facebook friends on Shoghlanah"
+msgstr ""
+
+#: templates/sync_social/sync_facebook.html:16
+#: templates/sync_social/sync_twitter.html:16
+#, python-format
+msgid ""
+"\n"
+"\t\t\t%(to_follow|pluralize:person,people)s\n"
+"\t\t\t"
+msgstr ""
+
+#: templates/sync_social/sync_facebook.html:19
+#: templates/sync_social/sync_twitter.html:19
+msgid "you know on"
+msgstr ""
+
+#: templates/sync_social/sync_facebook.html:20
+#: templates/sync_social/sync_twitter.html:20
+#, python-format
+msgid ""
+"\n"
+"\t\t\t %(to_follow|pluralize:is,are)s \n"
+"\t\t\t "
+msgstr ""
+
+#: templates/sync_social/sync_facebook.html:23
+#: templates/sync_social/sync_twitter.html:23
+msgid "on Shoghalnah"
+msgstr ""
+
+#: templates/sync_social/sync_facebook.html:26
+#: templates/sync_social/sync_twitter.html:26
+msgid "No users found"
+msgstr ""
+
+#: templates/sync_social/sync_facebook.html:27
+#: templates/sync_social/sync_twitter.html:27
+msgid "you can"
+msgstr ""
+
+#: templates/sync_social/sync_facebook.html:27
+msgid "invite your friends here"
+msgstr ""
+
+#: templates/sync_social/sync_facebook.html:29
+#: templates/sync_social/sync_twitter.html:29
+msgid "you can follow them here!"
+msgstr ""
+
+#: templates/sync_social/sync_friends.html:31
+#: templates/sync_social/sync_friends.html:51
+msgid "follow"
+msgstr ""
+
+#: templates/sync_social/sync_friends.html:33
+#: templates/sync_social/sync_friends.html:60
+msgid "unfollow"
+msgstr ""
+
+#: templates/sync_social/sync_friends.html:41
+msgid "go to profile"
+msgstr ""
+
+#: templates/sync_social/sync_twitter.html:12
+msgid "Find your Twitter friends on Shoghlanah"
+msgstr ""
+
+#: templates/sync_social/sync_twitter.html:27
+msgid " and let your followers know about Shoghlanah"
+msgstr ""
+
+#: templates/userprofiles/all_followers.html:10
+#: templates/userprofiles/info.html:172
+msgid "Followers"
+msgstr ""
+
+#: templates/userprofiles/all_followers.html:29
+msgid "There are no followers found"
+msgstr ""
+
+#: templates/userprofiles/all_tasks.html:14
+msgid "There are no shoghlanahs found"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:323
+msgid "Profile Picture"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:329
+#: templates/userprofiles/edit_profile.html:504
+msgid "Choose the photo"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:431
+msgid "Skills"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:498
+msgid "Cover Picture"
+msgstr ""
+
+#: templates/userprofiles/edit_profile.html:513
+msgid "Saving"
+msgstr ""
+
+#: templates/userprofiles/followers.html:10
+msgid "following"
+msgstr ""
+
+#: templates/userprofiles/followers.html:12
+msgid "mutual follows"
+msgstr ""
+
+#: templates/userprofiles/followers.html:16
+msgid "see all"
+msgstr ""
+
+#: templates/userprofiles/followers.html:38
+msgid "you are following"
+msgstr ""
+
+#: templates/userprofiles/followers.html:40
+msgid "you and"
+msgstr ""
+
+#: templates/userprofiles/followers.html:40
+msgid "are following"
+msgstr ""
+
+#: templates/userprofiles/info.html:182
+msgid "Following"
+msgstr ""
+
+#: templates/userprofiles/info.html:202 templates/userprofiles/reviews.html:12
+msgid "Reviews"
+msgstr ""
+
+#: templates/userprofiles/password_reset.html:12
+#: templates/userprofiles/password_reset.html:30
+#: templates/userprofiles/password_reset_complete.html:7
+#: templates/userprofiles/password_reset_confirm.html:18
+#: templates/userprofiles/password_reset_confirm.html:45
+msgid "Reset Password"
+msgstr ""
+
+#: templates/userprofiles/password_reset_complete.html:10
+msgid "Your password has benn updated successfully"
+msgstr ""
+
+#: templates/userprofiles/password_reset_complete.html:12
+msgid "Back to Login ?"
+msgstr ""
+
+#: templates/userprofiles/password_reset_confirm.html:10
+#: templates/userprofiles/registration.html:108
+msgid "The password must be at least 8 characters long"
+msgstr ""
+
+#: templates/userprofiles/password_reset_confirm.html:52
+msgid "The reset link is invalid. Please check again"
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:51
+msgid "has invalid extension. Only"
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:51
+msgid "are allowed."
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:52
+msgid "is too large, maximum file size is"
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:53
+msgid "is too small, minimum file size is"
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:54
+msgid "is empty, please select files again without it."
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:55
+msgid "No more than"
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:55
+msgid "files are allowed to be uploaded."
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:56
+msgid ""
+"The files are being uploaded, if you leave now the upload will be cancelled."
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:64
+msgid "Upload"
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:65
+msgid "Drop files here to upload"
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:67
+msgid "Failed"
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:76
+msgid "Portfolio"
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:86
+msgid "did not upload her portfolio yet"
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:88
+msgid "did not upload his portfolio yet"
+msgstr ""
+
+#: templates/userprofiles/portfolio.html:113
+#: templates/userprofiles/portfolio.html:135
+msgid "Prev"
+msgstr ""
+
+#: templates/userprofiles/registration.html:64
+msgid "Please Enter Your Email Address."
+msgstr ""
+
+#: templates/userprofiles/registration.html:69
+msgid "Enter a Valid Email Address."
+msgstr ""
+
+#: templates/userprofiles/registration.html:77
+msgid "Please Enter Your Full Name."
+msgstr ""
+
+#: templates/userprofiles/registration.html:82
+msgid "Please Enter Your First Name."
+msgstr ""
+
+#: templates/userprofiles/registration.html:87
+msgid "Please Enter Your Last Name."
+msgstr ""
+
+#: templates/userprofiles/registration.html:92
+msgid "Enter a Valid Full Name."
+msgstr ""
+
+#: templates/userprofiles/registration.html:97
+msgid ""
+"Enter a Valid First Name,The allowed characters are -,numbers and spaces"
+msgstr ""
+
+#: templates/userprofiles/registration.html:102
+msgid "Enter a Valid Last Name,The allowed characters are -,numbers and spaces"
+msgstr ""
+
+#: templates/userprofiles/registration.html:120
+msgid "Join Shoghlanah , Start changing how people work"
+msgstr ""
+
+#: templates/userprofiles/registration.html:135
+msgid "or using your email"
+msgstr ""
+
+#: templates/userprofiles/registration.html:178
+msgid "By signing up, I agree to"
+msgstr ""
+
+#: templates/userprofiles/registration.html:178
+msgid "Shoghlanah's Terms of Service"
+msgstr ""
+
+#: templates/userprofiles/registration.html:182
+msgid "Sign up"
+msgstr ""
+
+#: templates/userprofiles/reviews.html:44
+msgid "There are no reviews found"
+msgstr ""

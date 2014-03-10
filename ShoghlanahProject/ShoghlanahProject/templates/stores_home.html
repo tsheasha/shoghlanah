@@ -1,0 +1,62 @@
+{% extends 'master.html' %}
+
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+
+{% block header %}
+<div class="store_header">
+<div id="one">	
+	{% for store in stores %}	
+		<div>
+			{% thumbnail store.image "790x281" crop="center" as img %}
+				<img src="{{img.url}}" class="img_one"/>
+			{% endthumbnail %}
+			<div class="label1" >
+				<p class="up1" class="label1">{{store.title}}</p>
+				<p class="down1" class="label1">{{store.name}}</p>
+			</div>
+		</div>
+	{% endfor %}
+	
+</div>
+<div id="two">
+	{% for store in stores|reorderList:2 %}
+	<div>
+	 		{% thumbnail store.image "790x281" crop="center" as img %}
+				<img src="{{img.url}}" class="img_two"/>
+			{% endthumbnail %}
+	 <div class="label2" >
+			<p class="up2">{{store.title}}</p>
+			<p class="down2">{{store.name}}</p>
+		</div>
+	 </div>
+	 {% endfor %}
+	 
+</div>
+<div id="three">
+	{% for store in stores|reorderList:1 %}
+	 <div>
+	 	{% thumbnail store.image "790x281" crop="center" as img %}
+			<img src="{{img.url}}" class="img_three"/>
+		{% endthumbnail %}
+	 <div class="label2" >
+			<p class="up2">{{store.title}}</p>
+			<p class="down2">{{store.name}}</p>
+		</div>
+	 </div>
+	 {% endfor %}
+	  
+</div>
+</div>
+{% endblock header %}
+
+
+{% block dashboard %}
+	
+<div class="product_container">
+		{% for product in products %}
+			{% include "shop/product/block.html" %}
+		{% endfor %}
+	</div>
+{% endblock dashboard %}

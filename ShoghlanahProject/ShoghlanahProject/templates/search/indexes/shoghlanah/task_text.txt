@@ -1,0 +1,6 @@
+{{ object.title }}
+{{ object.city }}
+{{ object.user }}
+{{ object.price }}
+{{ object.reward }}
+{{ object.tag }}

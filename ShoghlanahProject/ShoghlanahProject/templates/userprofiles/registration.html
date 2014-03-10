@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+{% if request.session.django_language == 'ar' %}
+    <html dir="rtl">
+{% else %}
+    <html dir="ltr">
+{% endif %}
+    <head>
+        {% load i18n %}
+        <title>  Shoghlanah </title>
+        <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" />
+        <link rel="stylesheet" href="{{STATIC_URL}}css/jquery-ui-1.8.20.custom.css">
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.validate.css" />
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery-ui/jquery-ui-1.8.16.custom.css"/>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,200,600' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/fonts.css"/>
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap-edits.css"/>
+        {% if request.session.django_language == 'ar' %}
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap-edits-rtl.css"/>
+        {% endif %}
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/master.css"/>
+        {% if request.session.django_language == 'ar' %}
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/master-rtl.css"/>
+        {% endif %}
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/registration.css"/>
+        {% if request.session.django_language == 'ar' %}
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/registration-rtl.css"/>
+        {% endif %}
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/shadowbox/shadowbox.css">
+        <script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.8.0.min.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-1.8.23.custom.min.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/jquery.placeholder.min.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/noty/jquery.noty.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/noty/layouts/top.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/noty/themes/default.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/shadowbox/shadowbox.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            Shadowbox.init();
+            $(document).ready(function() {
+
+                    {% if pass_reset %}
+                    var n = noty({
+                        layout: 'top',
+                        text: "{% trans 'Your password has been successfully updated' %}",
+                        type: 'success',
+                        timeout: '3500'
+                    });
+                     {% endif %}
+                    {% if email_sent %}
+                        var n = noty({
+                            layout: 'top',
+                            text: '{% trans "An e-mail was sent to you, including a link to continue resetting your password" %}',
+                            type: 'success',
+                            timeout: '4000'
+                        });
+                     {% endif %}
+                $('input, textarea').placeholder();
+
+                $('#login-btn').click(function() {
+                    var hasError = false;
+                    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                    var emailaddressVal = $("#username").val();
+                    if(emailaddressVal == '') {
+                        $('#login-info').html('{% trans "Please Enter Your Email." %}');
+                        hasError = true;
+                    }
+             
+                    else if(!emailReg.test(emailaddressVal)) {
+                        $('#login-info').html('{% trans "Enter A Valid Email Address." %}');
+                        hasError = true;
+                    }
+
+                    var password = $("#password").val();
+                    if(password == '') {
+                        $('#login-info').html('{% trans "Please Enter Your Password." %}');
+                        hasError = true;
+                    }
+             
+                    if(hasError == true) {
+                     return false; 
+                    }
+                    
+                });
+                
+                $("#q").focus(function(){
+                    $("#q").attr("placeholder","");
+                });
+
+                $("#q").blur(function(){
+                    $(this).attr("placeholder","Search");
+                });
+             
+            });
+
+
+        </script>
+    </head>
+
+    <body style="background-image: url('{{ STATIC_URL }}img/login/login{% if pic_num %}{{pic_num}}.png');{% else %}1.png');{% endif %}">
+        <div id="container">
+        <div class="title">
+            {% if request.session.django_language == 'ar' %}
+                    <a class="lang-en" href="/switch/en/?next={{request.get_full_path}}">English</a>
+                    <div class="logo">
+                        <a class="logo-img" href="/">
+                            <img src="{{STATIC_URL}}assets/img/Shoghlanah_logo2_ar.png" alt="Shoghlanah">
+                            <label class="logo-com">.com</label>
+                        </a>
+                    </div>
+            {% else %} 
+                    <a class="lang-ar" href="/switch/ar/?next={{request.get_full_path}}">عربي</a>
+                    <div class="logo">
+                        <a class="logo-img" href="/">
+                            <img src="{{STATIC_URL}}assets/img/Shoghlanah_logo2.png" alt="Shoghlanah">
+                            <label class="logo-com">.com</label>
+                        </a>
+                    </div>
+            {% endif%}
+            
+            <form method="post" onsubmit="return trimSearch();" action="/search/" id="search">
+                {% csrf_token %}
+                <input class="search-query" id="q" name="q" type="text" size="40" placeholder="{% trans 'Search' %}" />
+                <input type="submit" id="searchbutton" value="">
+            </form>
+        </div>
+        <div class="why-div">
+            <span class="why-span">
+                {% trans "Why" %}
+            </span>
+            <span class="should-span">
+                {% trans "should you" %}
+            </span>
+            <span class="join-span">
+                {% trans "join Now!" %}
+            </span>
+            <span class="about-span">
+                 <!--<a href="http://www.youtube.com/watch?v=bEQ4OlikKuY" rel="shadowbox;width=405;height=340;player=swf" title='{% trans "What is Shoghlanah ?" %}' > -->
+                <a data-toggle="modal" href="#videoModal">
+                    {% if request.session.django_language == 'ar' %}
+                        <img src="{{STATIC_URL}}assets/img/video-ar.png"/>
+                    {% else %}
+                        <img src="{{STATIC_URL}}assets/img/video.png"/>
+                    {% endif %}
+                </a>
+            </span>
+        </div>
+        <div class="form well" id="login-form">
+            <label class="signup-info" id="login-info" style="width:197px;">
+                {{ error_message }}
+            </label>
+            <label class="label-login">{% trans "Login" %}</label>
+            <hr class="divider-grey"/>
+            <form action="/log_in/" method="post" class="form-login">
+                {% csrf_token %}
+                <input id="username" class="username" type="text" name="username" maxlength="75" placeholder='{% trans "Email" %}' style="background-image: url({{STATIC_URL}}assets/img/01.png)"/>
+                <input id="password" type="password" name="password" maxlength="75" placeholder='{% trans "Password" %}' style="background-image: url({{STATIC_URL}}assets/img/02.png);">
+                <input class="regular-checkbox hidden" id="remember_me" type="checkbox" name="remember_me">
+                <label for="remember_me"></label>
+                <label style="display: inline;" for="remember_me">{% trans "Remember password" %}</label>
+                <input class="btn-signin" id="login-btn" type="submit" value="{% trans 'Sign in' %}">
+                <a class="forget-pass" href="{% url auth_password_reset %}">{% trans "Forgot your password?" %}</a>
+                <input type="hidden" name="next" value="{{next}}" />
+            </form>
+            <br/>
+            <div class="div-or">
+            </div>
+            <br/>
+            <label class = "signup-info" id="social-media">
+                <a href="{% url facebook_login %}">{% trans "Facebook" %} {% trans "Login" %}</a>
+                -
+                <a href="{% url twitter_login %}">{% trans "Twitter" %} {% trans "Login" %}</a>
+                -
+                <a href="{% url linkedin_login %}">{% trans "LinkedIn" %} {% trans "Login" %}</a>
+            </label>
+            <form action="{% url userprofiles_registration %}" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input class="btn-signin" type="submit" value="Register" />
+            </form>
+        </div>
+        </div>
+        <div class="footer">
+            
+        </div>
+        <div class="footer-body">
+                <a href="/">
+                    <img src="{{STATIC_URL}}img/footer/footer_logo.png">
+                </a>
+                <span class="text">
+                    <a href="/">About Us</a>
+                </span>
+                <span class="text">
+                    <a href="/">Careers</a>
+                </span>
+                <span class="text">
+                    <a href="/">Contact Us</a>
+                </span>
+                <a style="margin-left: 20px;" href="http://facebook.com/Shoghlanah" target="_blank">
+                    <img src="{{STATIC_URL}}img/footer/footer_fb.png">
+                </a>
+                <a style="right:2px;" href="http://twitter.com/Shoghlanah" target="_blank">
+                    <img src="{{STATIC_URL}}img/footer/footer_tw.png">
+                </a>
+            </div>
+        {% include "modals/videoModal.html" %}
+    </body>
+</html>
+

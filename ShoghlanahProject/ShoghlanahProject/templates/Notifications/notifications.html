@@ -1,0 +1,58 @@
+{% extends "master.html" %}
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+{% block dashboard %}
+
+	<link type="text/css" href="{{STATIC_URL}}assets/css/notifications.css" rel="stylesheet"/>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		    $('table tr').click(function(){
+		        window.location = $(this).attr('href');
+		        return false;
+		    });
+		});
+	</script>
+
+	<!-- <div class="base-notifications"> -->
+	{% ifnotequal notifications_count 0 %}
+		<table class="see-all-not table table-bordered table-hover listTable" style="background-color:#FFFFFF;">
+			<tbody>
+				{% for notification in notifications %}
+					<tr class="hover" href="/notifications/{{notification.id}}/" onclick="">
+						<td class="see-all-single">
+								{% if request.session.django_language == 'ar' %}
+									{% thumbnail notification.sender.id|get_profile_pic "30x30" crop="center" as im %}
+									<div style="float:right;">
+										<img class="profilepic" src="{{ im.url }}" />{{ notification.message_arabic }} {{notification.timestamp}}
+									</div>
+									{% endthumbnail %}
+								{% else %}
+									{% thumbnail notification.sender.id|get_profile_pic "30x30" crop="center" as im %}
+									<div>
+										<img class="profilepic" src="{{ im.url }}" />{{ notification.message }} {{notification.timestamp}}
+									</div>
+									{% endthumbnail %}
+								{% endif %}
+							
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<div class="alert alert-info" style=" margin: 20px; text-align: center;">
+            <h4>{% trans "No Notifications" %}</h4>
+                {% trans "Follow people, post tasks and come back" %}.
+        </div>
+	{% endifnotequal %}		
+		<!-- {% ifnotequal notifications_count 0 %}
+			{% for notification in notifications %}
+				<a href="/notifications/{{notification.id}}/"> {{ notification.message }}</a>
+				</br>
+			{% endfor %}
+		{% else %}
+			No Notifications !
+		{% endifnotequal %} -->
+	<!-- </div> -->
+{% endblock dashboard %}

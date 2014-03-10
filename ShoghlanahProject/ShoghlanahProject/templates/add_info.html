@@ -1,0 +1,39 @@
+{% extends "master.html" %}
+{% load i18n %}
+{% block dashboard %}
+<link type="text/css" href="{{STATIC_URL}}assets/css/add_info.css" rel="stylesheet" />
+
+<div id="container" style="text-align: center;">
+	<h2>{% trans "Complete Adding you information" %}</h2>
+	<form id="mg" name="editForm" method="post" action="/twitter/login/check/" enctype="multipart/form-data">
+		{% csrf_token %}
+		{% if not has_email %}
+		<fieldset>
+			{% if form.email.errors %}
+			{% if request.session.django_language == 'ar' %}
+				<font color="red">{{form.email.errors}}</font>
+			{% else %}
+				<font color="red">{{form.email.errors}}</font>			
+			{% endif %}
+			{% endif %}
+				<!-- the id_email cannot be changed because it is linked to thr backend code -->
+			<input id="id_email" type="text" name="email" maxlength="75" placeholder="{% trans 'Email' %}">
+		</fieldset>
+		{% endif %}
+		{% if not has_password %}
+		<fieldset>
+			{% if request.session.django_language == 'ar' %}
+			<font color="red">{{ form.password.errors }}</font>
+			{% else %}
+			<font color="red">{{ form.password.errors }}</font>
+			{% endif %}
+			
+			<!-- the id_password cannot be changed because it is linked to thr backend code -->
+			<input id="id_password" type="password" name="password" maxlength="75" placeholder="{% trans 'Password' %}">
+		</fieldset>
+		{% endif %}
+		<button id="Submit" class="btn btn-info" href="#">{% trans "Submit" %}</button> 
+	</form>
+</div>
+
+{% endblock dashboard %}

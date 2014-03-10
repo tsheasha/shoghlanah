@@ -1,0 +1,39 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+
+<div class="resulttask">
+	<div class="t_owner">
+		<h4 style="margin: 8px 0px;">
+		<a href="/accounts/profile/{{result.user.username}}/" style="text-decoration:none;">
+		{% thumbnail result.user.id|get_profile_pic "65x65" crop="center" as im %}
+			<img class="chatpic" src="{{ im.url }}" />
+		{% endthumbnail %}
+		<br/>
+			{{ result.user|truncate:15}}
+		<br/>
+		</a> 
+		<label class="biglight">{% trans "needs" %}</label>
+		</h4>
+	</div>
+	<div class="small-arrow-bottom">
+		<div class="small-arrow-bottomIn"></div><div class="small-arrow-bottomOut"></div>
+	</div>
+	<div class="t_title">
+		<h4><a href="/task/{{result.id}}" > {{ result.title|truncate:22 }} </a></h4>
+	</div>
+	<div class="t_price">
+		{%if result.price >= 0 %}
+			<label class="smallLeft">{% trans "Willing to Pay" %}</label>
+			<label class="money" style="display:inline; word-wrap: break-word;">{{ result.price|truncate:6}}</label>
+			<label class="smallLight" style="display:inline;">{%trans "EGP" %}</label>
+		{% else %}
+			<label class="smallLeft"> {% trans "Reward" %} </label>
+			<b class="Rewardlight">{% if request.session.django_language == 'ar' %}{{ result.reward.ar_name|truncate:13 }}{% else %}{{ result.reward.name|truncate:13 }}{%endif%}</b>
+		{% endif %}
+	</div>
+	<div class="t_location">
+		<i class="icon-map-marker"></i>
+		{{ result.city|truncate:10 }}
+	</div>
+</div>

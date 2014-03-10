@@ -1,0 +1,128 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+
+{% include "chats/discussion-js.html" %}
+<div class="chatPannel">
+	{% if request.user.id == task.user.id %}
+	<div class = "headerChat">
+		<div style="display: inline;">
+			<a class="back" id="back" href="javascript:getdiscussion('/chatlist/{{task.id}}/',false);" style="text-decoration:none">
+				<i style="text-decoration: none;" class="{% if request.session.django_language == 'ar' %}icon-circle-arrow-right{% else %}icon-circle-arrow-left{% endif %}"></i>
+			</a>
+		</div>
+		<h4 style="display:inline;">
+			<a href="{% url userprofiles_profile user.username %}" style="text-decoration:none">
+				{% thumbnail user.id|get_profile_pic "65x65" crop="center" as im %}
+		        	<img class="chatpic" src="{{ im.url }}" />
+			    {% endthumbnail %} {{user|truncate:15}}
+			</a>
+		</h4>
+		<br/>
+		<div class="recommendations">
+			<label class="smallLight" style="font-size:13px;"> <b style=" font-size: 16px; color: #f3592a;">{% if user.votes_up > 100 %} 100 + {%else%} {{user.votes_up}} {% endif %}</b> {% trans 'Recommendations' %}</label>
+		</div>
+		<div class="offer">
+			{% if task.status == "New" %}
+				{% if request.user.id == task.user.id %}
+					<button id="offer" class="btn">{% trans "CHOOSE OFFER" %}</button>
+				{% endif %}
+			{% elif bid.isAccepted %}
+				{% if user.id == bid.user.id and not bid.isReviewed %}
+					<button style="width: 97px;" class="btn cancelBtn" onclick="javascript:getdiscussion('/reviewing/{{user.id}}/{{bid.id}}/',false);">{% trans "REVIEW" %}</button>					
+				{% endif %}
+				<!--{% if request.user.id == task.user.id and task.reward == None and not bid.isPaied %}
+					<button style="width: 64px;" class="btn saveBtn" onclick="javascript:getdiscussion('/pay/{{bid.id}}/',false);">{% trans "PAY" %}</button>
+				{% endif %}-->
+			{% endif %}
+		</div>
+	</div>
+	<div id="chatWindow" class="innerChat">
+	{%elif bid.isAccepted and task.status != "review" %}
+	<div class = "headerChat">
+		<button id="ownerReview" class="btn cancelBtn" onclick="javascript:getdiscussion('/reviewing/{{user.id}}/{{bid.id}}/',false);">{% trans "REVIEW" %}</button>
+	</div>
+	<div id="chatWindow" class="innerChat" style="height: 420px;">
+	{%else%}
+	<div id="chatWindow" class="innerChat" style="height: 462px;">
+	{% endif %}
+		{%for msg in messages%}
+			<div id="msgContent" class="message">
+				{% ifnotequal request.user.id msg.sender.id %}
+					<div class="arrow-right">
+						<div class="arrow-rightOut">
+						</div>
+						<div class="arrow-rightIn">
+						</div>
+					</div>
+					{% thumbnail msg.sender.id|get_profile_pic "65x65" crop="center" as im %}
+				        <a class="senderfloat" href="{% url userprofiles_profile msg.sender.username %}" style="text-decoration:none">
+				        	<img class="chatpic" src="{{ im.url }}" />
+						</a>
+				    {% endthumbnail %}
+					<div class = "sender chatbox">
+						<p class="replace">{{msg.message}}</p>
+						<p class = "DateShow">{{msg.time.date}} &nbsp; | &nbsp; {{msg.time.time}}</p>
+					</div>
+				{% else %}
+					<div class="arrow-left">
+						<div class="arrow-leftOut">
+						</div>
+						<div class="arrow-leftIn">
+						</div>
+					</div>
+					{% thumbnail msg.sender.id|get_profile_pic "65x65" crop="center" as im %}
+						<a class="receiverfloat" href="{% url userprofiles_profile msg.sender.username %}" style="text-decoration:none">
+				       		<img class="chatpic" src="{{ im.url }}" />
+						</a>
+				    {% endthumbnail %}
+					<div class = "receiver chatbox">
+						<p class="replace">{{msg.message}}</p>
+						<p class = "DateShow">{{msg.time.date}} &nbsp; | &nbsp; {{msg.time.time}}</p>
+					</div>
+				{%endifnotequal%}
+			</div>
+			{% empty %}
+			{% if task.status == "New" %}
+				<label id="msghint"><h4 style="margin-bottom:8px;">{%trans "Ready for this shoghlanah ?"%}</h4><p class="smallLight">{% trans "Open discussion by sending a message to the owner" %}.</p><p class="smallLight" style="font-size: 12px;">{% trans "Only you and the owner can see this discussion" %}.</p> </label>
+			{% else %}
+				<label id="msghint">
+					{% thumbnail "1"|get_random_pic "65x65" crop="center" as im %}
+	            		<img class="propic" src="{{ im.url }}" />
+	            	{% endthumbnail %}
+					<h4 style="margin-bottom:8px;">{%trans "Sry, This task is assigned"%}</h4><p class="smallLight">{% trans "Find similar tasks" %} <a href="{% url similar task.id %}">{% trans "here" %}</a>.</p>
+				</label>
+			{% endif %}
+  		{%endfor%}
+
+  	</div>
+  	{%if task.status == "New" or bid.isAccepted or messages %}
+	<div class="inputField">
+		{% if bid.isAccepted or task.status == "New"%}
+	  	<form id="chatform" autocomplete="off" style = "margin:0 0 0px;" action="{% if bid %}/message/{{user.id}}/{{task.id}}/{{bid.id}}/sendMsg/{% else %}/message/{{user.id}}/{{task.id}}/sendMsg/{% endif %}" method="POST">
+			{% csrf_token %}
+			<textarea type="text" name="message" id="msg"></textarea>
+			{% if task.reward == None and bid %}
+			<div class="floatleft">
+				<b id="bidprice" class="money">{{bid.message}}</b> {% trans "EGP" %}
+				<div class="change-price">
+					{% if not bid.isAccepted and request.user.id == bid.user.id %}
+					<a id="changePrice" onClick="changeBid()" href="#"><i class="icon-pencil"></i>{% trans 'Change Bid' %}</a>
+					{% endif %}
+				</div>
+			</div>
+			{% endif %}
+			<button class = "btn senderfloat saveBtn" style="margin: 8px 4px;" disabled="true" autocomplete="off" type="submit" onClick="return test_msg();" id="sendBtn">{% trans "SEND" %}</button>
+		</form>
+		{% else %}
+		<label id="msghint" style="margin-top:10px;">
+		{% if request.user.id == task.user.id %}
+			<h4 style="margin-bottom:8px;">{%trans "You assigned the task to"%}</h4><p class="smallLight"><a href="javascript:getdiscussion('/message/{{acceptbid.user.id}}/{{task.id}}/{{acceptbid.id}}/')">{{acceptbid.user|truncate:15}}</a></p>
+		{% else %}
+			<h4 style="margin-bottom:8px;">{%trans "Sry, This task is assigned"%}</h4><p class="smallLight">{% trans "Find similar tasks" %} <a href="{% url similar task.id %}">{% trans "here" %}</a>.</p>
+		{% endif %}
+		</label>
+		{% endif %}
+	</div>
+	{% endif %}
+</div>

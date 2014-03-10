@@ -1,0 +1,204 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        _kmq.push(['record', 'Started Chatting and Bidding',{'Task':'{{task.title}}' ,'User':'{{request.user.email}}', 'RemoteUser':'{{user.email}}', 'Bid':'{{bid.id}}'}]);
+        _gaq.push(['_trackEvent', 'Task', 'Started Chatting and Bidding']);
+
+        $('#msg').on('input', function(){
+    		if ($(this).val().match(/\S/g) && $(this).val().length > 0){
+    			$('#sendBtn').removeAttr("disabled");
+    		} else {
+    			$('#sendBtn').attr("disabled", "disabled");
+    		}
+    	});
+    });
+    
+	var curr_bid; var scroll;
+	(function($) {
+		$(".replace").each(function(){
+			$(this).html($(this).html().replace("\n","<br>"));
+		});
+	    $.fn.hasScrollBar = function() {
+	        return this.get(0).scrollHeight > this.height();
+	    }
+	})(jQuery);
+	function ajaxSumbit(){
+		var bid = $('#bidchange').val();
+    // Replace all leading zeroes from number, unless its value is zero, then set its value directly to zero.
+    if(bid!=0){
+        bid = bid.replace(/^0+/, '');
+    } else{
+        bid = 0;
+    }
+		$.ajax({
+			type: 'POST',
+			url: '/bid/{{bid.id}}/'+bid+'/',
+			
+		});
+	}
+
+	$('#offer').click(function() {
+
+		$.ajax({
+			type: 'POST',
+			url: '/bid/{{bid.id}}/',
+            success: function(req){
+                $('#offer').remove();
+
+                $("#task-container").load("/task/{{bid.task_id}} #task-container");
+
+            }
+		});
+
+	});
+	
+	$("#msg").keydown(function(event) {
+		var v = $("#msg").val();
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if(keycode == 13 && $.trim(v) == "") {
+			event.preventDefault();
+		}
+		else{
+			$('#sendBtn').removeAttr('disabled');
+			if(keycode == 13){
+				if(event.shiftKey){
+
+				}
+				else{
+					event.preventDefault();
+					$('#msghint').remove();
+					$('#chatform').submit();
+				}
+			}
+		}
+   	});
+
+	function isNumberKey(evt){
+		var charCode = (evt.which) ? evt.which : event.keyCode
+		if(charCode == 13)
+			ajaxSumbit();
+		if (charCode > 31 && (charCode < 48 || charCode > 57))
+			return false;
+		return true;
+	}
+
+	function changeBid(){
+		$('#bidprice').html('<input style="width:55px;" value="'+curr_bid+'" type="text" onkeypress="return isNumberKey(event)" id="bidchange"/>');
+		$('.change-price').html('<a onClick="ajaxSumbit()" class="changeBid" id="doneBid" href="#"><i class="icon-save"></i></i>{% trans "Save Bid" %}</a>');
+    _kmq.push(['record', 'Changed Bid',{'Task':'{{task.title}}' ,'User':'{{request.user.email}}', 'RemoteUser':'{{user.email}}', 'Bid':'{{bid.id}}'}]);
+    _gaq.push(['_trackEvent', 'Task', 'Changed Bid']);
+	}
+
+	$(function(){
+		$('#chatWindow').scrollTop($('#chatWindow').prop("scrollHeight"));
+		{% if bid %}
+			curr_bid = '{{bid.message}}';
+		{% else %}
+			curr_bid = '{{task.price}}';
+		{% endif %}
+	    $('#chatform').submit(function(){
+	        var $this = $(this);
+	        $.ajax({
+	            url: $this.attr('action'),
+	            type: $this.attr('method'),
+	            data: $this.serialize(),
+	        });
+	        this.reset();
+	        return false;
+	    });
+	    $("#sendBtn").click(function() {
+			$('#msghint').remove();
+		    _kmq.push(['record', 'Started Bid',{'Task':'{{task.title}}' ,'User':'{{request.user.email}}', 'RemoteUser':'{{user.email}}', 'Bid':'{{bid.id}}'}]);
+        _gaq.push(['_trackEvent', 'Task', 'Started Bid']);
+		});
+	    scroll = $('#chatWindow').hasScrollBar();
+	    if(!scroll){
+	    	{% if request.session.django_language == 'ar' %}
+	    		$('.arrow-right').css("right","-67px");
+	    	{% else %}
+	    		$('.arrow-right').css("right","67px");
+	    	{% endif %}
+	    }
+	});
+
+	
+    //Pusher.channel_auth_endpoint = '/user/{{sender_user_name}}/message/{{receiver.id}}/auth'; 
+    //Pusher.channel_auth_transport = 'ajax';
+    var pusher = new Pusher('bbb92b9f5ce229452bee');
+    var channel = pusher.subscribe('channel_chat' + {{request.user.id}}+{{user.id}}+{{task.id}});
+    var channelBid = pusher.subscribe('channel_bid' + {{task.id}});
+
+	channelBid.bind('accept_bid', function(data) {
+		if(data.bid){
+			$('.change-price').remove();
+		}
+		    _kmq.push(['record', 'Accepted Bid',{'Task':'{{task.title}}' ,'User':'{{request.user.email}}', 'RemoteUser':'{{user.email}}', 'Bid':'{{bid.id}}'}]);
+        _gaq.push(['_trackEvent', 'Task', 'Accepted a Bid']);		    
+    });
+
+	channelBid.bind('bid', function(data) {
+		var curr_bid = data.bid_msg;
+		$('#bidprice').html('<b id="bidprice" class="money">'+data.bid_msg+'</b>');
+		$('.change-price').html('{% if not bid.isAccepted and request.user.id == bid.user.id %}<a id="changePrice" onClick="changeBid()" href="#"><i class="icon-pencil"></i>{% trans "Change Bid" %}</a>{% endif %}');
+
+	});
+
+    channel.bind('message', function(data) {
+    	
+    	var num = data.id;
+        var idString = num.toString();
+        var s = data.message;
+        s = s.replace("\n","<br>");
+        if (data.user == '{{request.user.username}}') {
+            var $message = $('<div id="msgContent" class="message"><div class="arrow-left"><div class="arrow-leftOut"></div><div class="arrow-leftIn"></div></div><a class="receiverfloat" href="{% url userprofiles_profile request.user.username %}" style="text-decoration:none;"><img class="chatpic" src="{{MEDIA_URL}}{{ request.user.id|get_thumb_pic }}" /></a>').appendTo('#chatWindow');
+            $('<div class="receiver chatbox"><p>'+s+'</p><p class = "DateShow senderDate">'+data.timestamp+'</p></div>').appendTo($message);
+        }
+        else {
+            var $message = $('<div id="msgContent" class="message"><div class="arrow-right"><div class="arrow-rightOut"></div><div class="arrow-rightIn"></div></div><a class="senderfloat" href="{% url userprofiles_profile user.username %}" style="text-decoration:none;"><img class="chatpic" src="{{MEDIA_URL}}{{ user.id|get_thumb_pic }}" /></a>').appendTo('#chatWindow');
+            $('<div class="sender chatbox"><p>'+s+'</p><p class = "DateShow senderDate">'+data.timestamp+'</p></div>').appendTo($message);
+        	}
+        $('#chatWindow').scrollTop($('#chatWindow').prop("scrollHeight"));
+    	if(!scroll){
+    		if($("#chatWindow").children().length < 6 ){
+    			if('{{request.user.id}}' == '{{task.user.id}}' && $("#chatWindow").children().length > 4){
+	    			{% if request.session.django_language == 'ar' %}
+			    		$('.arrow-right').css("right","-58px");
+			    	{% else %}
+			    		$('.arrow-right').css("right","58px");
+			    	{% endif %}
+			    	scroll = true;
+    			}
+    			else{
+		    		{% if request.session.django_language == 'ar' %}
+			    		$('.arrow-right').css("right","-67px");
+			    	{% else %}
+			    		$('.arrow-right').css("right","67px");
+			    	{% endif %}
+			    }
+    		}
+    		else{
+    			{% if request.session.django_language == 'ar' %}
+		    		$('.arrow-right').css("right","-58px");
+		    	{% else %}
+		    		$('.arrow-right').css("right","58px");
+		    	{% endif %}
+		    	scroll = true;
+    		}
+    	}
+    });
+
+	function test_msg(){
+		msg = $("#msg");
+		if (msg.val().match(/\S/)){
+			msg.removeClass('ErrorField');
+			return true;
+		} else {
+			msg.addClass('ErrorField');
+			msg.css('color','black')
+			return false;
+		}
+	}
+</script>

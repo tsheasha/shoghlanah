@@ -1,0 +1,66 @@
+#il_fi{
+	float : right;
+}
+
+.left{
+	width : 256px;
+	float : left;
+	border-right:thin solid rgba(0, 0, 0, 0.1);
+	padding-right : 25px;
+}
+
+#username{
+	height : 30px;
+	width : 256px;
+	margin-bottom: 10px;
+}
+
+#password{
+	height : 30px;
+	width : 256px;
+}
+
+#rem-log{
+	margin-top:20px
+}
+
+#login-btn{
+	float:right;
+}
+
+.right{
+	width : 240px;
+	margin-left : 263px;
+	padding-left : 35px;
+	padding-right : 5px;
+}
+
+#not_mem{
+	padding-top:10px;
+}
+
+#fb-btn{
+	margin-left:10px;
+	width:200px;
+}
+
+#twitter-btn{
+	margin-top: 10px;
+	margin-left:10px;
+	width:200px;
+}
+
+#google-btn{
+	margin-top: 10px;
+	margin-left:10px;
+	width:200px;
+}
+
+#email-link{
+	padding-top:20px;
+	margin-left:20px;
+}
+
+.modal-footer{
+	text-align:left;
+}

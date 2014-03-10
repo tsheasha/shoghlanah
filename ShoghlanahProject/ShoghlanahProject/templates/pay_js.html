@@ -1,0 +1,82 @@
+{% load i18n %}
+<script>
+	Stripe.setPublishableKey('{{publishable}}');
+
+	$(document).ready(function() {
+	  $("#user_form").submit(function() {
+    _kmq.push(['record', 'Payment',{'User':'{{request.user.email}}' ,'Task':'{{task.title}}', 'Bid':'{{bid.id}}'}]);   	  
+    _gaq.push(['_trackEvent', 'Task', 'Payment']);
+	    if ( $("#credit-card").is(":visible")) {
+	      var form = this;
+	      var card = {
+	        number:   $("#credit_card_number").val(),
+	        expMonth: $("#expiry_month").val(),
+	        expYear:  $("#expiry_year").val(),
+	        cvc:      $("#cvv").val()
+	      };
+
+	      Stripe.createToken(card, function(status, response) {
+	        if (status === 200) {
+	          $("#credit-card-errors").hide();
+	          $("#last_4_digits").val(response.card.last4);
+	          $("#stripe_token").val(response.id);
+	          form.submit();
+	          
+	        } else {
+	          var x = response.error.code
+	          var transx = '';
+	          switch (x){
+	          	case 'incorrect_number':
+	          		transx = '{%trans "The card number is incorrect"%}';
+	          		break;
+
+	          	case 'invalid_number':
+	          		transx = '{%trans "The card number is not a valid credit card number"%}';
+	          		break;
+
+	          	case 'invalid_expiry_month':
+	          		transx = '{%trans "The card expiration month is invalid"%}';
+	          		break;
+
+	          	case 'invalid_expiry_year':
+	          		transx = '{%trans "The card expiration year is invalid"%}';
+	          		break;
+
+	          	case 'invalid_cvc':
+	          		transx = '{%trans "The card security code is invalid"%}';
+	          		break;
+
+	          	case 'expired_card':
+	          		transx = '{%trans "The card has expired"%}';
+	          		break;
+
+	          	case 'incorrect_cvc':
+	          		transx = '{%trans "The card security code is incorrect"%}';
+	          		break;
+
+	          	case 'card_declined':
+	          		transx = '{%trans "The card was declined"%}';
+	          		break;
+
+	          	case 'missing':
+	          		transx = '{%trans "There is no card on a customer that is being charged"%}';
+	          		break;
+
+	          	case 'processing_error':
+	          		transx = '{%trans "An error occurred while processing the card"%}';
+	          		break;
+	          }
+	          $("#stripe-error-message").text(transx);
+	          $("#credit-card-errors").show();
+	          $("#user_submit").attr("disabled", false);
+	        }
+	      });
+	      return false;  
+	    } 
+	    return true;
+	    
+	  });
+	    
+	});
+
+</script>

@@ -1,0 +1,17 @@
+{% load get_user_info %}
+{% load i18n %}
+<div class="modal hide fade" id="mapModal" style="overflow: hidden;">
+	<div class="modal-header">
+		<div class="modal-close" data-dismiss="modal">
+			<label>X</label>
+		</div>
+		<label class="modal-title">
+			<a href="{% url viewTask task.id %}">{{task.title|truncate:35}}</a> {% trans 'Location'%}</label>
+	</div>
+	<div class="modal-body" style="padding:0px;">
+		<div id="map"></div>	
+	</div>
+	<div class="modal-footer">
+		<b id="modalloca" class="taskloca smallLight">{{task.address}}</b>		
+	</div>
+</div>

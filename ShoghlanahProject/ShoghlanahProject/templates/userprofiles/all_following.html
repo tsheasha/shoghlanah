@@ -1,0 +1,50 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+
+{% if all_following %}
+	<h3>{% trans "Following" %}</h3>
+	<div id="peocontainer">
+	{% for result in all_following %}
+	    <div class='pcard'>
+	    	{% if result.followed%}
+	        <a href="/accounts/profile/{{ result.followed.username }}/">
+	        {% else %}
+	        <a href="/skill/{{ result.followed_skill.id }}/">
+	        {% endif %}
+	            {% thumbnail result.followed.id|get_profile_pic "65x65" crop="center" as pic %}
+	                <img class="propic" src="{{ pic.url }}">
+	            {% endthumbnail %}
+	        </a>
+	        <div class='pinfo'>
+	        	{% if result.followed%}
+		            <a href="/accounts/profile/{{ result.followed.username }}/">
+		            	<h4>{{ result.followed|truncate:15}}</h4>
+		            </a>
+		            {% if not request.user.id == result.followed.id %}
+		                {% if not request.user.id|isFollowing:result.followed.id %} 
+		                    <span class="user-follow followbtn-{{result.followed.id}}" onClick="follow('{{ result.followed.username }}','{{result.followed.id}}');" value="follow">{% trans "FOLLOW" %}</span>
+		                {% else %}
+		                    <span class="user-unfollow followbtn-{{result.followed.id}}" onClick="follow('{{ result.followed.username }}','{{result.followed.id}}');" value="unfollow">{% trans "UNFOLLOW" %}</span>
+		                {% endif %}
+		            {% endif %}
+		        {% else %}
+		       		<a href="/skill/{{ result.followed_skill.id }}/">
+		       			<h4>{{ result.followed_skill.name|truncate:15}}</h4>
+		       		</a>
+		       		{% if not request.user.id == result.followed_skill.id %}
+		                {% if not request.user.id|isFollowingSkill:result.followed_skill.id %} 
+		                    <span class="user-follow followbtn-{{result.followed_skill.id}}" onClick="followskill('{{result.followed_skill.id}}');" value="follow">{% trans "FOLLOW" %}</span>
+		                {% else %}
+		                    <span class="user-unfollow followbtn-{{result.followed_skill.id}}" onClick="followskill('{{result.followed_skill.id}}');" value="unfollow">{% trans "UNFOLLOW" %}</span>
+		                {% endif %}
+			        {% endif %}
+	        	{% endif %}
+	        </div>
+	    </div>
+	{% endfor %}
+	</div>
+{% else %}
+	<br>
+	<h4 style="text-align: center;">{% trans "There are no following found" %}<h4>
+{% endif %}

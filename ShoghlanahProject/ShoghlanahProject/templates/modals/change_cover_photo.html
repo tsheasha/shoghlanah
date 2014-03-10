@@ -1,0 +1,40 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+
+<!-- Cover Photo Modal -->
+<form id="mg" name="editForm" method="post" action="/profile/{{request.user.username}}/edit/cover_photo/" enctype="multipart/form-data">{% csrf_token %}
+	<div id="cover-photo-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<div class="modal-close" data-dismiss="modal">
+				<label>X</label>
+			</div>
+			<label class="modal-title">{% trans "Change Cover Photo" %}</label>
+		</div>
+		<div class="modal-body">
+			<div id="edit-cp">
+				{% if editor.cover_picture %}
+					<div  class="gallery" id="edit-cp-preview">
+						{% thumbnail editor.id|get_cover_pic "155x110" crop="center" as im %}
+							<img src="{{ im.url }}">
+						{% endthumbnail %}
+						<a href="/profile/{{request.user.username}}/edit/delete_cover_picture/" id="delete-cp-link">{% trans "Delete" %}</a>
+					</div>
+				{% else %}
+					<div class="gallery" id="edit-cp-preview"><img src="{{STATIC_URL}}img/cover.png"></div>
+				{% endif %}
+				<div class="edit-choose" id="choose-cp" onclick="pushkm_cp();"><h4>{% trans "Choose the photo" %} </h4> {{ coverform.coverimage }}</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<div>
+				<div id="edit-save">
+					<button onclick="loads();" type="submit" data-load="{% trans 'Saving' %}" id="save_button" class="btn btn-primary 	middle">{% trans "SAVE" %}</button>
+				</div>
+				<div id="loading-edit">
+
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

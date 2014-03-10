@@ -1,0 +1,128 @@
+.roundabout-holder {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 12em;
+  width: 18em;
+}
+.roundabout-moveable-item {
+  height: 11em;
+  width: 12em;
+  cursor: pointer;
+  background-color: #000;
+  border: 5px solid #ccc;
+}
+
+.roundabout-in-focus {
+  cursor: auto;
+  opacity: 1;
+}
+
+#galleryControl{
+  width: 322px; 
+  height: 50px; 
+  margin: 12px; 
+  margin-left: -15px;
+}
+
+.hyp{
+  cursor: pointer; 
+  color:#08C;
+  display:inline;
+}
+
+.clicked{
+  color:#000;
+}
+
+.imgtitle{
+  background-color:#CCC;
+  text-align:center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.zoom{
+  color:#A7A4A4;;
+  z-index: 1;
+  background-color: #fff;
+  float: right;
+  position:relative;
+  margin: -17px;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  border-radius: 999px;
+  padding-top: 4px;
+  border-style: solid ;
+  border-color: #CCC;
+}
+
+.zoom:hover{
+  color:#000;
+  text-decoration:none;
+  border-color: #000;
+  background-color: #ccc;
+}
+
+.empty{
+  padding-top: 20px;
+  padding-bottom: 50px;
+  font-style: italic;
+  font-weight: bolder;
+  font-size: 14px;
+  color: #EA7C00;
+  padding-right: 30px;
+  text-align: center;
+}
+
+#file-uploader{
+  margin: 10px 5px;
+  width: 90%;
+}
+
+.qq-upload-drop-area{margin: -12px 0px}
+
+.pictures{
+  border: 4px solid #bbbabb;
+  margin: 3px;
+  margin-right:0px;
+}
+.picBig{
+  width: 262px;
+  height: 160px;
+}
+.picMedium{
+  width: 122px;
+  height: 157px;
+  position: absolute;
+}
+.picSmall{
+  width: 124px;
+  height: 72px;
+}
+
+.picModal{
+  width: 150px;
+  height: 150px;
+  margin: 8px;
+}
+
+.pic2{
+  position: relative;
+  right: 139px;
+  top: 86px;
+}
+
+#portfolioModal{
+  max-height: 605px;
+  width: 755px;
+  margin-left: -378px;
+  top: 43%;
+}
+
+#portfolioModal .modal-body{
+  padding: 15px; 
+  text-align: center; 
+  max-height: 515px;
+}

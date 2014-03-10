@@ -1,0 +1,122 @@
+#cover-photo {
+    /*background-image: url(http://www.wallpapergate.com/download/38758/1024x600/crop/planet-skeye-bright-wallpaper.jpg); */
+    background-repeat:no-repeat;
+    height: 295px;
+    width: 965px;
+    z-index:1;
+}
+#cover-image {
+    height: 295px;
+    width: 965px;
+
+    opacity: 0.4;
+}
+#cover-layer {
+    background: #45484d; /* Old browsers */
+    background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #45484d 0%,#000000 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+    background-repeat:no-repeat;
+    height: 295px;
+    width: 965px;
+    z-index:2;
+    margin-top: -295px;
+}
+#social{
+    float: right;
+    margin-right: 30px;
+   
+    height: 46px;
+}
+#edit-prfl {
+    font-size: 11.25pt;
+}
+#like-dislike {
+    position:absolute;
+    margin-top: -34px;
+    margin-left: 736px;
+    text-align: right;
+    min-width: 200px;
+}
+#like {
+    text-align: left;
+}
+#like:hover, #dislike:hover { opacity:0.75; cursor: pointer; }
+#reviews {
+    display: inline-block;
+    width: 65px;
+    text-align: right;
+    cursor: pointer;
+}
+#taskses {
+    display: inline-block;
+    width: 95px;
+    text-align: right;
+    cursor: pointer;
+}
+#following {
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+    cursor: pointer;
+}
+#followers {
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+    cursor: pointer;
+}
+
+.profile-follow{
+    padding: 5px 10px;
+    font-weight: 600;
+    color: white;
+    margin-left: 433px;
+    margin-top: 75px;
+    font-size: 14px;
+}
+
+#social-icons{
+    margin-top: 18px; 
+    direction: ltr;
+}
+#social > div:hover{
+    opacity: 0.7;
+}
+
+#change-profile-pic{
+    position: relative;
+    top: 66px;
+    left: 7px;
+    padding-right: 5px;
+    padding-left: 5px;
+    display: none;
+    background-image: none;
+    background-color: #ccc;
+    opacity: 1;
+    font-size: 14px;
+}
+
+#change-cover-photo{
+    width:auto;
+    position: relative;
+    top: 200px;
+    left: 10px;
+    display: none;
+    height:23px;
+    background-image: none;
+    background-color: #ccc;
+    font-size: 14px;
+    opacity: 1;
+}
+
+#edit-cp, #edit-pp{
+    position:relative;
+    top:-10px;
+}
+
+

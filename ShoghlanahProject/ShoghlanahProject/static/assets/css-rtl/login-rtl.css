@@ -1,0 +1,46 @@
+#il_fi{
+	float : left;
+}
+
+.left{
+	float : right;
+	border-left:thin solid rgba(0, 0, 0, 0.1);
+	border-right: 0px;
+	padding-left : 25px;
+	padding-right : 0px;
+}
+
+#login-btn{
+	float:left;
+}
+
+.right{
+	margin-right : 263px;
+	margin-left : 0px;
+	padding-left : 5px;
+	padding-right : 35px;
+}
+
+#fb-btn{
+	margin-right:10px;
+	margin-left:0px;
+}
+
+#twitter-btn{
+	margin-right:10px;
+	margin-left:0px;
+}
+
+#google-btn{
+	margin-right:10px;
+	margin-left:0px;
+}
+
+#email-link{
+	margin-right:20px;
+	margin-left:0px;
+}
+
+.modal-footer{
+	text-align:right;
+}

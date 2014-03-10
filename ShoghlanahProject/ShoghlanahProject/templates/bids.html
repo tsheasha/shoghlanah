@@ -1,0 +1,58 @@
+{% extends 'master.html' %}
+{% load i18n %}
+{% block dashboard %}
+<script>
+	function switchbidtab(){
+		$('#taskcount').hide();
+		$('#bidcount').show(); 
+	}
+
+	function switchshoghtab(){
+		$('#taskcount').show();
+		$('#bidcount').hide();
+	}
+</script>
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+	<label id="taskcount" class="biglight" style="padding:25px; {%if bactive %}display:none;{% endif %}">{%trans "Posted"%} <b>{{tasks|length}}</b> {%trans "Shoghlanahs"%}</label>
+	<label id="bidcount" class="biglight" style="padding:25px; {%if tactive %}display:none;{% endif %}">{%trans "Applied for "%}<b>{{bids|length}}</b> {%trans "Shoghlanahs"%}</label>
+	<ul id="search-nav-tabs" class="nav nav-tabs">
+		<li class="{%if tactive %} active {% endif %}">
+			<a id="tasktab" href="#tasks-tab" onclick="switchshoghtab();" data-toggle="tab">{%trans "Posted"%}</a>
+		</li>
+		<li class="{%if bactive %} active {% endif %}">
+			<a id="bidtab" href="#bids-tab" onclick="switchbidtab();" data-toggle="tab">{%trans "Applied"%}</a>
+		</li>
+	</ul>
+	<div class="tab-content" style="min-height:492px;">
+		<div class="tab-pane {%if tactive %} active {% endif %}" id="tasks-tab">
+			<div class="container">
+				{% if tasks %}
+					<div id="taskcontainer">
+						{% for result in tasks %}
+							{% include "listing_tasks.html" %}
+						{% endfor %}
+					</div>
+				{% else %}
+					<br>
+			    	<h4 style="text-align: center;">{% trans "You did not post any shoghlanah" %}</h4>
+				{% endif %}
+			</div>
+		</div>
+		<div class="tab-pane {%if bactive %} active {% endif %}" id="bids-tab">
+			<div class="container">
+				{% if bids %}
+					<div id="taskcontainer">
+						{% for result in bids %}
+							{% include "listing_tasks.html" %}
+						{% endfor %}
+					</div>
+				{% else %}
+					<br>
+			    	<h4 style="text-align: center;">{% trans "You did not apply for any shoghlanah" %}</h4>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock dashboard %}

@@ -1,0 +1,10 @@
+.navbar .nav > li{float:right;}
+.radio input[type="radio"],.checkbox input[type="checkbox"]{float:right;margin: 0px 5px 0px 6px;}
+.navbar .brand{float:right;}
+.navbar-fixed-top .container{ margin-right: 0px; margin-left: 197px;}
+.close{float:left;left: 0px;right:auto;}
+.navbar .nav.pull-right {float: left;}
+.navbar .nav {float: right;}
+.navbar .pull-right > li > .dropdown-menu, .navbar .nav > li > .dropdown-menu.pull-right {left: 0; right: auto;}
+.navbar .pull-right > li > .dropdown-menu::before, .navbar .nav > li > .dropdown-menu.pull-right::before {left: 12px;right: auto;}
+.navbar .pull-right > li > .dropdown-menu::after, .navbar .nav > li > .dropdown-menu.pull-right::after {left: 13px;right: auto;}

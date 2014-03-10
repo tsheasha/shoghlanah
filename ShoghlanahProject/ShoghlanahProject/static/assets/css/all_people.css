@@ -1,0 +1,39 @@
+div.pcard .user-follow{
+    background:#f3592a;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-weight: 600;
+    color: white;
+    margin: 0px;
+    float: none;
+}
+
+div.pcard .user-unfollow {
+    background: #0A5981;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-weight: 600;
+    color: white;
+    margin: 0px;
+    float: none;
+}
+
+.pcard{
+    margin: 20px -2px;
+    width: 272px;
+    display: inline-block;
+}
+.ppic{
+    float: left;
+
+}
+.pinfo{
+    padding-top: 5px;
+    width: 183px;
+    float: right;
+}
+.synctitle{
+    margin-bottom:28px;
+    color: #828282;
+    font-size: 18px;
+}

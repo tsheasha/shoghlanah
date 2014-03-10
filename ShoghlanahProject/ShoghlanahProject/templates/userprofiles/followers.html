@@ -1,0 +1,67 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+
+{% ifnotequal user viewed_user %}
+	{% if followers %}
+		<div class="followers-header">
+			<h4 style="color: #828282;">
+				{% trans "Mutual connections " %}
+				<a href="#modal-see_all" data-toggle="modal">&#40;{{ followers|length }}&#41;</a>
+			</h4>
+		</div>
+		<div style="display: inline-block;">
+		{% for f in followers %}
+			{% if forloop.counter < 5 %}
+				<div class="followers-div span1" align="center" onclick="window.location.href ='/accounts/profile/{{ f.username }}' ">
+					{% thumbnail f.id|get_profile_pic "65x65" crop="center" as pic %}
+						<div class="followers-pic" style="background: url({{ pic.url }}) no-repeat;background-size: cover;"></div>
+					{% endthumbnail %}
+				    <br/>
+				    <small>{{ f.first_name|truncatechars:9 }}</small>
+			    </div>
+			{% endif %}
+		{% endfor %}
+		</div>
+	{% endif %}
+{% endifnotequal %}
+
+<div class="modal hide fade" id="modal-see_all">
+    <div class="modal-close modal-close-followers" data-dismiss="modal">
+		<label>X</label>
+	</div>
+    <div class="modal-header">
+		{% ifequal user viewed_user %}
+			<h4>
+			{% ifequal task.user.gender "F" %}
+	        	{% if request.session.django_language == 'ar' %}
+	        		انتي تتابعين
+	        	{% else %}
+	        		You are following
+	        	{% endif %}
+	        {% else %}
+	        	{% trans "You are following" %}
+	        {% endifequal %}
+			</h4>
+		{% else %}
+		 	<h4>
+		 		{% ifequal task.user.gender "F" %}
+		        	{% if request.session.django_language == 'ar' %}
+		        		أنتي و
+		        	{% else %}
+		        		You and
+		        	{% endif %}
+		        {% else %}
+		        	{% trans "You and" %}
+		        {% endifequal %}
+		 		{{ viewed_user.first_name }} {% trans "are following" %}
+		 	</h4>
+		{% endifequal %} 
+	</div>
+
+    <div class="modal-body modal-followers well">
+    	{% with followers as users %}
+    	    {% include "renderPeople.html" %}
+    	{% endwith %}
+    </div>
+</div>

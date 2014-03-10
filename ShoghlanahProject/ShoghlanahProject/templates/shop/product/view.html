@@ -1,0 +1,38 @@
+{% extends 'master.html' %}
+{% load i18n %}
+{% block dashboard %}
+	<div>Product Owner: {{ product.user }}</div>
+	<div>Title: {{ product.title }}</div>
+	<div>Description: {{ product.description }}</div>
+	<div>Price: {{ product.price }}</div>
+	<div>Date added: {{ product.date }}</div>
+	<div>Images: {{ product.get_images|length }}</div>
+	<div>Main Image: {{ product.get_main_image }}</div>
+	<div>Reviews: {{ product.get_reviews|length }}</div>
+	<div>Stock: {{ product.stock }}</div>
+	
+	<a class="btn" href="{% url update_product product.id %}">Edit</a>
+	<a class="btn" href="{% url delete_product product.id %}">Delete</a>
+	<hr/>
+	
+	{% if product.get_images %}
+		{% for image in product.get_images %}
+			<img src="{{ image.image.url }}">
+			<br/>
+		{% endfor %}
+		<hr/>
+	{% endif %}
+
+	{% if product.get_main_image %}
+		<img src="{{ product.get_main_image.image.url }}">
+		<br/>
+		<hr/>
+	{% endif %}
+
+	{% if product.get_reviews %}
+		{% for review in product.get_reviews %}
+			{{ review.review.text }}
+			<br/>
+		{% endfor %}
+	{% endif %}
+{% endblock dashboard%}

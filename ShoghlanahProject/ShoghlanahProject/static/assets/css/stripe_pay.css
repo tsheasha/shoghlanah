@@ -1,0 +1,9 @@
+#pay_div{padding:0px 16px 32px; border-bottom: 2px solid #cacaca;}
+.form-stacked{margin-bottom:0px;}
+.form-stacked label{display:block;margin-bottom: 0px;float:none;width:auto; font-weight:600; font-family: 'Raleway', 'GESSMedium', sans-serif;line-height:20px;padding-top:0;}
+.form-stacked .clearfix{margin-bottom:14px;}
+.form-stacked div.error{padding-top:10px;padding-bottom:10px;padding-left:10px;margin-top:0;margin-left:-10px;}
+#stripe-error-message{padding: 5px 0px;margin-bottom: 10px;text-align: center;font-weight: bold;}
+.small{width: 156px;border-radius: 0px;border-color: #cacaca;height: 35px;font-family: 'Raleway', 'GESSMedium', sans-serif;}
+.input input{width:325px;}
+#stripehead{padding-bottom: 30px;}

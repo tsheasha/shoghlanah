@@ -1,0 +1,38 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+
+<!-- Profile Pic Modal -->
+<form id="mg" name="editForm" method="post" action="/profile/{{request.user.username}}/edit/profile_pic/" enctype="multipart/form-data">{% csrf_token %}
+	<div id="profile-pic-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<div class="modal-close" data-dismiss="modal">
+				<label>X</label>
+			</div>
+			<label class="modal-title">{% trans "Change Profile Picture" %}</label>
+		</div>
+		<div class="modal-body">
+			<div id="edit-pp">
+				<div class="gallery" id="edit-pp-preview">
+					{% thumbnail editor.id|get_profile_pic "110x110" crop="center" as im %}
+						<img id="edit-pp-img" style="border-radius:999px;" src="{{ im.url }}">
+					{% endthumbnail %}
+					{% if not default %}
+						<a href="/profile/{{request.user.username}}/edit/delete_profile_picture/" id="delete-pp-link">{% trans "Delete" %}</a>
+					{% endif %}
+				</div>
+				<div class="edit-choose" onclick="pushkm_pp();"><h4>{% trans "Choose the photo" %} </h4> {{ form.image }}</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<div>
+				<div id="edit-save">
+					<button onclick="loads();" type="submit" data-load="{% trans 'Saving' %}" id="save_button" class="btn btn-primary middle">{% trans "SAVE" %}</button>
+				</div>
+				<div id="loading-edit">
+
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,34 @@
+{% extends "master.html" %}
+{% block dashboard %}
+{% load i18n %}
+{% load get_user_info %}
+{% load get_skills %}
+
+<script type="text/javascript">
+$('#lol').ready(function(){
+    $('.olo').css("height",'10000px');
+    $('.ss-base-body').css("overflow-y",'hidden');
+});
+</script>
+
+<div style="text-align: center;height:1270px;">
+	<iframe src="https://docs.google.com/forms/d/1fMzMLgBCkhE_DhDpcSkQg4pwBCpBuHDf-KXs8gnyTbI/viewform?embedded=true" width="530px" height="1382px" frameborder="0" marginheight="0" marginwidth="0" id="lol" class="olo">Loading...</iframe>
+</div>
+<style type="text/css">
+	iframe {
+		
+		overflow-y:hidden;
+	}
+	body{
+		overflow-y:hidden;
+	}
+	html{
+		overflow-y:hidden;
+	}
+	.disclaimer {
+		height:0px;
+	}
+</style>
+
+
+{% endblock dashboard %}

@@ -1,0 +1,162 @@
+
+#username, #password, #email {
+	padding-right: 10px;
+	margin-left: 100px;
+}
+
+.regular-checkbox + label {
+	margin-left: 13px;
+	right: 0px;
+}
+
+.signup-info {
+	float:left;
+	margin-right:1px;
+}
+
+.invitation {
+	margin-right:50px;padding-right: 40px;padding-left: 40px;
+}
+
+.reg-well{
+	right:-377px;
+}	
+.fieldWrapper{
+	margin-right: 460px;
+}	
+
+.firstname{
+	right:100px;
+}
+
+.lastname{
+	right:335px;
+}
+
+.email input{
+	right:100px;
+}
+.password input{
+	right:100px;
+}
+
+.text {
+	margin-right: 20px;
+}
+.title {
+	margin-right: 56px;
+}
+.lang-all {
+	float: left;
+	right: 0px;
+}
+.logo {
+	float:right;margin-right:105px;
+}
+
+.logo-img {
+	float: right;right: 100px;
+}
+
+.logo-name {
+	float: right;
+}
+#login-form {
+	margin-right: 459px;
+}
+
+#username, #password, #email {
+	padding-left: 0px;
+	margin-right: 0px;
+	background-position: 15px 10px;
+
+}
+.regular-checkbox:checked + label:after {
+	right: -8px;
+}
+.forget-pass {
+	margin-left: 36px;
+	float: left;
+}
+
+.already {
+	right: 75px;
+}
+
+
+.btn-signup {
+	padding: 14px 33px;
+	margin-right: 295px;
+}
+
+.btn-signin {
+	right: 295px;
+	width: 114px;
+	padding: 14px 20px;
+}	
+.fb-button {
+	background-position: 237px 0px;
+	padding-left: 28px;
+	padding-right: 72px;
+	margin-right: -5px;
+}
+.signup-info {
+	float:left;
+	margin-right:1px;
+}
+
+.fb-pop-button {
+	margin-right: 1px;
+	padding: 8px 0px;
+	padding-right: 44px;
+	background-position: 153px 0px;
+}
+.btn-pop-signin {
+	right: 197px;
+	padding: 8px 12px;
+}
+.invitation {
+	margin-right:50px;
+}
+
+
+.reg-well {
+	right: -323px;
+}	
+.fieldWrapper{
+	margin-right: 460px;
+}	
+
+.firstname {
+	right: -467px;
+}
+
+.lastname {
+	right: -233px;
+}
+
+.email input {
+	right: -468px;
+}
+.password input {
+	right: -468px;
+}
+.remember_me{
+	margin-right: 12px;
+	right: -17px;
+}
+.err1{
+	right: 48px;
+}
+.err2{
+	right: 290px;
+}
+.err3{
+	right: 510px;
+}
+.err4{
+	right: 510px;
+}
+.err{
+	text-shadow:2px 2px 2px #A57C7C;
+}

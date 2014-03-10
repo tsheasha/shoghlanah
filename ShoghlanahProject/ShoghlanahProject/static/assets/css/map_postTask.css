@@ -1,0 +1,20 @@
+div#map_canvas {
+  height: 237px;
+  width: 326px;
+  border: 3px solid #ccc;
+  margin-right: 0px;
+}
+
+#gmaps-error {
+  color: #cc0000;
+}
+  
+#results {
+  color: #555;
+  padding-top: 10px;
+}
+
+#input #gmaps-output-latitude, #input #gmaps-output-longitude {
+  color: green;
+}
+

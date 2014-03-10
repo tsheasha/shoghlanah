@@ -1,0 +1,180 @@
+{% include 'modals/modal-chat.html' %}
+{% load thumbnail %}
+{% load get_user_info %}
+{% load i18n %} 
+<script type="text/javascript">
+    $(document).ready(function(){
+        window.static_url_new = "{{STATIC_URL}}"; 
+    });
+</script>
+    <link rel="stylesheet" href="{{STATIC_URL}}assets/css/filter.css" />
+{% if request.session.django_language == 'ar' %}
+  <script type="text/javascript" src="{{STATIC_URL}}assets/js/discover-rtl.js"></script>  
+  <link type="text/css" href="{{STATIC_URL}}assets/css-rtl/stream-rtl.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{STATIC_URL}}assets/css-rtl/filter-rtl.css" />
+
+{% else %}
+    <script type="text/javascript" src="{{STATIC_URL}}assets/js/discover.js"></script>
+    <link type="text/css" href="{{STATIC_URL}}assets/css/stream.css" rel="stylesheet" />
+
+{% endif %}
+
+<script type="text/javascript">
+    $(document).ready(function(){ 
+        _kmq.push(['record', 'Visited Discover Page',{'User':'{{request.user.email}}'}]);
+        _gaq.push(['_trackEvent', 'Task', 'Discovering a Task']);
+    });
+var filter_check = true;
+var pusher = new Pusher('bbb92b9f5ce229452bee');
+var channel_name = "discover";
+var channel = pusher.subscribe(channel_name);
+
+var main_channel = pusher.subscribe('stream');
+
+main_channel.bind('mainStream', function(data) {
+    remove_task(data.action);
+});
+
+channel.bind('discover_shoghlanah', function(data) {
+   load_latest();
+});
+
+
+$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+if(!options.crossDomain) {
+    if(options.data) {
+        options.data += "&";
+    } else {
+        options.data = "";
+    }
+    options.data += "csrfmiddlewaretoken={{csrf_token}}";
+}
+});
+  function dismissTip(){
+    $("#discover_tip").remove();
+  }
+</script>
+
+<!-- <div id='filter'>
+  <a id="filtericon" onclick="showfilters()" >
+    <i class="icon-filter" id="Ifilter" style="margin-bottom: -2px;" rel="tooltip" data-original-title='{% trans "Filter"%}'></i>
+  </a>
+  <div class="dock" style="display:none;">
+    <input type="radio" class="dock_radio" id="tasks" name="dock_radio" value='task'/>
+    <label class="inlinelabel" for='tasks' >
+      <img class="dock-img" src="{{STATIC_URL}}img/task_filter.png" alt="Tasks" rel="tooltip" data-original-title='{%trans "Shoghlanahs" %}'/>
+    </label>
+  </div>
+</div> -->
+  <div class='gradient-example' id='v-gradient'></div>
+{% if tip %}
+<div id="discover_tip">
+  <div class="tipclose" onclick="dismissTip();">
+    <label>X</label>
+  </div>
+  <img src='{{STATIC_URL}}assets/img/tip_popup.png' alt="Tip Bulb">
+  <label>{% trans "To update the home page with your interests, please follow profiles that matches your requirements" %}</label>
+</div>
+{% endif %}
+<div id="stream">
+  {% for item in stream %}
+		{% ifequal item.verb "task_post" %}
+	<div id="singleton" class="task{{item.id}}" >
+		{% else %}
+	<div id="singleton" >
+		{% endifequal %}
+
+
+          <a href ="/accounts/profile/{{item.actor.username}}/">
+      {% thumbnail item.actor.profile_picture "110x110" crop="center" as im %}
+          <div class="circular-image-stream" style="background: url({{ im.url }}); no-repeat; background-size: cover; display: inline-block;">
+          </div>
+      {% endthumbnail %}
+          </a> 
+
+        {% ifequal item.verb "task_post" %}
+        
+      <div class="circular-image-stream" id="task"></div>
+         
+      {% if item.action_object.price >= 0 %} 
+          <li id="posts" class="priceposts">
+      {% else %}      
+          <li id="posts" class="rewardposts">
+      {% endif %}
+    <div class="verticalLine"></div>
+          {% if item.action_object.price >= 0 %}
+          
+                  <div class="info" id="task-info-price">
+        
+          <i class="icon-map-marker"></i>
+           {% ifnotequal item.action_object.city "" %}                  
+          <p id="task-details-city-content">
+            {{item.action_object.city}}, {% trans "Egypt" %} </p>
+            
+            {% else %}
+          <p id="task-details-city-content">
+            {% trans "Egypt" %} </p>
+            
+            {% endifnotequal %}
+            <hr>
+            <p id="task-details">{% trans  "Willing to pay" %} </p>
+            <p id="task-details-price"> <font color="#f3592a" style="font-size: 32px;"> {{item.action_object.price|truncate:7}} </font> {% trans  "EGP" %} 
+            </p> 
+          {% endif %}
+          
+          {% if item.action_object.reward %}
+          
+                  <div class="info" id="task-info-reward">
+                  
+          <i class="icon-map-marker"></i>         
+           {% ifnotequal item.action_object.city "" %}                  
+          <p id="task-details-city-content">
+            {{item.action_object.city}}, {% trans "Egypt" %} </p>
+            
+            {% else %}
+          <p id="task-details-city-content">
+            {% trans "Egypt" %} </p>
+            
+            {% endifnotequal %}
+            <hr>
+
+            <img id="task-details-reward-img" width="45" height="45" src="{{MEDIA_URL}}{{item.action_object.reward.img}}"/>
+      
+            <p id="task-details-reward">{% trans  "Reward" %} </p>
+          {% endif %}
+                 
+        </div>
+        <div class="info-task">
+          <a href ="/accounts/profile/{{item.actor.username}}/">{{item.actor.first_name}} {{item.actor.last_name}} </a> 
+          
+        {% ifequal item.actor.gender "F" %}
+        {% if request.session.django_language == 'ar' %} تريد          
+        {% else %}
+        needs
+        {% endif %}
+        {% else %}
+        {% trans  "needs" %}
+        {% endifequal %}
+          
+          <a href ="/task/{{item.action_object.id}}/">{{item.action_object.title|truncate:40}}</a> 
+          
+          {% ifnotequal item.description "" %} 
+            <div> {{item.description}} </div>
+          {% endifnotequal %}
+            </div>
+
+        <div class="arrow1"><div class="arrow2"></div></div>
+
+      {% endifequal %}
+    <div class="timestamp" id="timestamp{{item.id}}" >{{item.timestamp.date}} &nbsp; | &nbsp; {{item.timestamp.time}}</div>
+          </li>    
+  </div>
+  {% endfor %}
+</div>
+</div>
+<div id="more" style="
+margin-left: 663px;
+position: absolute;
+width: 30px;
+height: 30px;">
+</div>

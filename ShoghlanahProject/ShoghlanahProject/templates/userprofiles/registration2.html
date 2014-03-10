@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+{% if request.session.django_language == 'ar' %}
+    <html dir="rtl">
+{% else %}
+    <html dir="ltr">
+{% endif %}
+    <head>
+        {% load i18n %}
+        <title>  Shoghlanah </title>
+        <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" />
+        <link rel="stylesheet" href="{{STATIC_URL}}css/jquery-ui-1.8.20.custom.css">
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.validate.css" />
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery-ui/jquery-ui-1.8.16.custom.css"/>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,200,600' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/fonts.css"/>
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap-edits.css"/>
+        {% if request.session.django_language == 'ar' %}
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap-edits-rtl.css"/>
+        {% endif %}
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/master.css"/>
+        {% if request.session.django_language == 'ar' %}
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/master-rtl.css"/>
+        {% endif %}
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css/registration-2.css"/>
+        {% if request.session.django_language == 'ar' %}
+            <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}assets/css-rtl/registration-rtl-2.css"/>
+        {% endif %}
+        <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/shadowbox/shadowbox.css">
+        <script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.8.0.min.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-1.8.23.custom.min.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/jquery.placeholder.min.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/noty/jquery.noty.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/noty/layouts/top.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/noty/themes/default.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/shadowbox/shadowbox.js"></script>
+        <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            Shadowbox.init();
+           
+            {% if error_message %}
+                $(window).load(function(){
+                    $('#myModal').modal('show');
+                });
+            {% endif %}
+            $(document).ready(function() {
+                     {% if success_message %}
+                    var n1 = noty({
+                            layout: 'top',
+                            text: '{{ success_message }}',
+                            type: 'success',
+                            timeout: '3500'
+                        });
+                    {% endif %}
+
+                    {% if error_message %}
+                    var n2 = noty({
+                        layout: 'top',
+                        text: '{{ error_message }}',
+                        type: 'error',
+                        timeout: '3500'
+                    });
+                     {% endif %}
+                    });
+        </script>
+    </head>
+    <!--body style="  background-size: 100% 100%;background-image: url('{{ STATIC_URL }}img/login/login{% if pic_num %}{{pic_num}}.png');{% else %}1.png');{% endif %}"-->
+     <body style="background-size: 100% 100%;background-image: url('{{ STATIC_URL }}img/login/login2-2.png');">    
+
+        <div id="container">
+        <div class="title">
+            {% if request.session.django_language == 'ar' %}
+                    <a class="lang-all"  href="/switch/en/?next={{request.get_full_path}}">English</a>
+                    <div>
+                        <a class="logo-img" href="/">
+                            <img src="{{STATIC_URL}}assets/img/Shoghlanah_logo2_ar.png" alt="Shoghlanah">
+                        </a>
+                    </div> 
+            {% else %} 
+                    <a class="lang-all" href="/switch/ar/?next={{request.get_full_path}}">عربي</a>
+                   <div>
+                        <a class="logo-img" href="/">
+                            <img src="{{STATIC_URL}}assets/img/Shoghlanah_logo2.png" alt="Shoghlanah">
+                        </a>
+                    </div> 
+            {% endif%}
+            
+    </div>
+       <div class="reg-well" id="login-form">   
+
+            <form action="{% url userprofiles_registration %}" method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="fieldWrapper">
+                    {% if form.first_name.errors %}
+                    <label class="err1 err" >{{ form.first_name.errors }}</label>
+                    {% endif %}
+                    <label class="firstname login-input-label">{{ form.first_name }}</label>
+                </div>
+                <div class="fieldWrapper">
+                    {% if form.last_name.errors %}
+                    <label class="err2 err">{{ form.last_name.errors }}</label>
+                    {% endif %}                    
+                    <label class="lastname login-input-label">{{ form.last_name }}</label>
+                </div>
+                <div class="fieldWrapper">
+                    {% if form.email.errors %}
+                    <label class="err3 err">{{ form.email.errors }}</label>
+                    {% endif %}                    
+                    <label class="email login-input-label">{{ form.email }}</label>
+                </div>
+                <div class="fieldWrapper">
+                    {% if form.password.errors %}
+                    <label class="err4 err">{{ form.password.errors }}</label>
+                    {% endif %}                    
+                    <label class="password login-input-label">{{ form.password }}</label>
+                </div>
+            {% if request.session.django_language == 'ar' %}
+
+                <input class="btn-signup register-button" type="submit" value="حساب جديد" />
+            </form>
+            <a class = "fb-button register-button" href="{% url facebook_login %}">{% trans "سجل الدخول بفيس بوك" %}</a>
+            
+            <label class = "already" >مشترك بالفعل؟ </label>
+             <a href="#myModal" role="button" class="register-button btn-signin" data-toggle="modal">{% trans "تسجيل الدخول" %}</a>
+
+             <div id="myModal" style= "width: 510px;height: 320px;overflow: hidden;display: block;border-radius: 17px;opacity: 0.9;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <div class="modal-body" style="padding-left: 70px;padding-right: 70px;padding-top: 68px;padding-bottom: 70px;">
+
+            <form action="/log_in/" method="post" class="form-login">
+                {% csrf_token %}
+                <input id="username" class="login-input-label username" type="text" name="username" maxlength="75" placeholder='{% trans "Email" %}' style="background-image: url({{STATIC_URL}}assets/img/01.png)"/>
+                <input id="password" type="password" class="login-input-label" name="password" maxlength="75" placeholder='{% trans "Password" %}' style="background-image: url({{STATIC_URL}}assets/img/02.png);">
+                <input class="regular-checkbox hidden" id="remember_me" type="checkbox" name="remember_me">
+                <label class="remember_me" for="remember_me"></label>
+                <label class="remember_me" style="display: inline;" for="remember_me">{% trans "تذكر كلمة العبور" %}</label>
+                <input class="register-button btn-pop-signin" id="login-btn" type="submit" value="{% trans 'تسجيل الدخول' %}">
+                <a class="forget-pass" href="{% url auth_password_reset %}">{% trans "نسيت كلمة العبور؟" %}</a>
+                <input type="hidden" name="next" value="{{next}}" />
+                <a class = "fb-pop-button register-button" href="{% url facebook_login %}">{% trans "دخول بفيس بوك"  %}</a>
+            </form>
+              </div>
+              </div>
+
+            {% else %} 
+
+                <input class="btn-signup register-button" type="submit" value="Sign up" />
+            </form>
+            <a class = "fb-button register-button" href="{% url facebook_login %}">{% trans "Sign Up With Facebook" %}</a>
+            
+            <label class = "already" > Already a Member?</label>
+            <a href="#myModal" role="button" class="register-button btn-signin" data-toggle="modal">{% trans "Log in" %}</a>
+
+
+            <div id="myModal" style= "width: 510px;height: 320px;overflow-y: hidden;overflow-x: auto;display: block;border-radius: 17px;opacity: 0.9;" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <div class="modal-body" style="padding-left: 70px;padding-right: 70px;padding-top: 68px;padding-bottom: 70px;">
+
+            <form action="/log_in/" method="post" class="form-login">
+                {% csrf_token %}
+                <input id="username" class="login-input-label username" type="text" name="username" maxlength="75" placeholder='{% trans "Email" %}' style="background-image: url({{STATIC_URL}}assets/img/01.png)"/>
+                <input id="password" type="password" class="login-input-label" name="password" maxlength="75" placeholder='{% trans "Password" %}' style="background-image: url({{STATIC_URL}}assets/img/02.png);">
+                <input class="regular-checkbox hidden" id="remember_me" type="checkbox" name="remember_me">
+                <label class="remember_me" for="remember_me"></label>
+                <label class="remember_me" style="display: inline;" for="remember_me">{% trans "Remember password" %}</label>
+                <input class="register-button btn-pop-signin" id="login-btn" type="submit" value="{% trans 'Log In' %}">
+                <a class="forget-pass" href="{% url auth_password_reset %}">{% trans "Forgot your password?" %}</a>
+                <input type="hidden" name="next" value="{{next}}" />
+                <a class = "fb-pop-button register-button" href="{% url facebook_login %}">{% trans "Facebook Log In" %}</a>
+            </form>
+              </div>
+              </div>
+            </div>
+            {% endif%}
+
+        </div>    

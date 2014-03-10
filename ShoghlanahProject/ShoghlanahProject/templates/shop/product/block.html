@@ -1,0 +1,31 @@
+<!-- a Product block -->
+
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+
+<div class="product">
+	<div class="product_picture">
+		{% thumbnail product.get_main_image.image "252x248" crop="center" as img %}
+			<img class= "prodpic" src="{{ img.url }}">
+		{% endthumbnail %}
+		
+	</div>
+
+	<div class="profile_picture">
+		{% thumbnail product.user.id|get_profile_pic "65x65" crop="center" as im %}
+			<img class="chatpic" src="{{ im.url }}" />
+		{% endthumbnail %}
+	</div>
+
+	<div class="information_box">
+		<div class = "product_name">
+		  <p class="information">{{ product.title }}</p>
+		</div>
+		<div class = "product_price">
+		  <p class="information">{{ product.price }} EGP</p>
+		</div>
+	</div>
+	
+</div>
+

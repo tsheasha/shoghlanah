@@ -1,0 +1,16 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+<div>
+	{% if results %}
+		<h3 style="text-align: center;">{% trans "Shoghlanahs" %}</h3>
+		<div id="taskcontainer">
+			{% for result in results %}
+				{% include "listing_tasks.html" %}
+			{% endfor %}
+		</div>
+	{% else %}
+		<br>
+    	<h4 style="text-align: center;">{% trans "There are no shoghlanahs found" %}</h4>
+	{% endif %}
+</div>

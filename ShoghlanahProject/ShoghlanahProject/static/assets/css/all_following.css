@@ -1,0 +1,20 @@
+#following-main-container {
+	margin-left: 35px;
+}
+.following-name {
+	margin-top: 16px;
+	margin-left:100px
+}
+.following-canvas-cntr {
+	min-width: 245px;
+	height: 105px;
+	max-width: 245px;
+	max-height: 105px;
+	display: inline-table;
+}
+.following-avtar {
+	border-style:solid;
+	border-color:rgb(183, 183, 183);
+	border-width:4px;border-radius:999px;
+	float:left;
+}

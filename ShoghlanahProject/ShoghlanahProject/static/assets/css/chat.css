@@ -1,0 +1,286 @@
+#chatContainer{
+	float: right;
+	width: 480px;
+	height: 602px;
+}
+
+.chatPannel{
+	overflow-x:hidden;
+}
+
+.headerChat{
+	padding: 30px 10px 22px;
+	border-bottom: 1px solid #cacaca;
+}
+
+.headerChat .chatpic{
+	margin-left: 8px;
+	margin-right: 2px;
+}
+
+.innerChat{
+	padding: 0px 14px;
+	overflow-y:auto;
+	overflow-x:hidden;
+	height: 363px;
+	margin-bottom: 5px;
+}
+
+.message{
+	margin: 20px -4px 0px;
+}
+
+.chatbox{
+	min-height: 38px;
+	width: 313px;
+	max-width: 313px;
+	border: 1px solid #cacaca;
+	border-radius: 0px;
+	word-wrap: break-word;
+	padding: 11px 5px;
+	position: relative;
+}
+
+.recommendations{
+	margin-left: 97px;
+	margin-top: -14px;
+}
+
+.back{
+	font-size: 30px;
+	margin: 11px 0px;
+}
+
+.circleBlue{
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    border-radius: 999px;
+    border: 2px solid;
+    padding: 8px;
+    background: white;
+    margin:10px;
+}
+.sender {
+	margin-left: 65px;
+	background: white;
+}
+
+.receiver {
+	margin-left: 67px;
+}
+
+.DateShow {
+	color: #868686;
+	position: absolute;
+	bottom: -3px;
+	margin-bottom: 0px;
+	font-size: 10px;
+	font-family: Helvetica;
+}
+
+.senderfloat{
+	float:right !important;
+}
+
+.receiverfloat{
+	float:left !important;
+	margin-left: -3px;
+}
+
+.arrow-left {
+	position: relative;
+	float: left;
+	left: 53px;
+	top: 12px;
+	width: 1px;
+	height: 10px;
+}
+
+.arrow-right {
+	position: relative;
+	float: right;
+	right: 58px;
+	top: 12px;
+	width: 0px;
+	height: 0px;
+}
+
+.arrow-leftOut {
+	position: relative;
+	left: 6px;
+	top: 4px;
+	height: 0px;
+	width: 0px;
+	z-index: 13;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-right: 10px solid #f2f2f2;
+}
+
+.arrow-rightOut {
+	position: relative;
+	right: 5px;
+	top: 4px;
+	height: 0px;
+	width: 0px;
+	z-index: 13;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid white;
+}
+
+.arrow-leftIn {
+	position: relative;
+	left: 5px;
+	top: -16px;
+	height: 0px;
+	width: 0px;
+	z-index: 12;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-right: 10px solid #cacaca;
+}
+
+
+.arrow-rightIn {
+	position: relative;
+	right: 4px;
+	top: -16px;
+	height: 0px;
+	width: 0px;
+	z-index: 12;
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid #cacaca;
+}
+
+.inputField{
+	border-top: 1px solid #B6B6B6;
+	padding:5px 15px;
+}
+
+#msg{
+	width: 435px;
+	max-width: 435px;
+	margin:10px 0px 0px;
+	height: 60px;
+}
+
+#offer{
+	width: auto;
+	background: #539635;
+	color: white;
+	font-size:14px;
+}
+
+.offer{
+	display: inline;
+	float: right;
+	margin: -48px;
+	margin-right: 10px;
+}
+
+.offer button{
+	margin: 0px;
+	margin-left: 9px;
+}
+
+#ownerReview {
+	margin: -20px 180px;
+}
+
+.change-price{
+	display: inline;
+}
+
+#msghint{
+	text-align: center;
+	margin-top: 190px;
+}
+
+
+/* chat.html */
+.listHeader{
+	padding: 30px 0px 18px;
+	font-size: 21px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.bidderinfo{
+	display: inline;
+	padding: 20px 20px 12px;
+	float: left;
+	min-width: 277px;
+}
+
+.bidderdetails{
+	float: right;
+	border-left: 1px solid #cacaca;
+	display: inline-block;
+	padding: 10px 0px;
+	max-width: 180px;
+	text-align:left;
+	min-width: 160px;
+}
+.bidprice{
+	padding: 20px 12px 0px;
+	padding-right: 18px;
+	border-top: 1px solid #cacaca;
+	min-height: 46px;
+}
+.bidprice .money{
+	font-size: 28px;
+}
+
+.listTable tr{
+	border-bottom: 1px solid #cacaca;
+	border-right: 1px solid #cacaca;
+	background: white;
+}
+
+.Rewardlight{
+	font-size: 21px;
+	color: #f3592a;
+	margin: 0px;
+	line-height: 30px;
+}
+
+/* chat.html */
+
+.formHeader {
+	font-family: 'Raleway', 'GESSMedium', sans-serif;
+	font-size: 26px;
+	font-weight: 600;
+	border-bottom: 2px solid #cacaca;
+	padding: 32px 0px 17px;
+	margin-bottom: 24px;
+	text-align: center;
+}
+
+.cancelBtn{
+    margin: 25px;
+    background:#0A5981 !important;
+    color:white !important;
+    float:right;
+}
+
+.saveBtn{
+    margin: 25px;
+    background:#f3592a !important;
+    color:white !important;
+    float: left;
+}
+
+.floatleft{
+	margin-top:10px;
+	float:left;
+}
+
+.chatloading{
+	text-align: center;
+	padding-top: 200px;
+	color: #0A5981;
+	font-weight: 600;
+	font-size: 18px;
+}

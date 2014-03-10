@@ -1,0 +1,221 @@
+{% load get_skills %}
+{% load get_user_info %}
+{% load i18n %}
+<script>
+function editTask(marker_place,map_place) {
+    $(document).ready(function(){ 
+        _kmq.push(['record', 'Visited Edit Task Page',{'User':'{{request.user.email}}', 'Task':'{{task.title}}'}]);
+        _gaq.push(['_trackEvent', 'Task', 'Visited Edit Task Page']);
+    });
+    var old_title;
+    var old_description;
+    var old_price;
+    var old_location;
+    var old_reward;
+    var old_tags;
+
+    if($("#taskdesc").attr("title") !== undefined){
+        old_description = $("#taskdesc").attr("title");
+        old_title = $("#title").text();
+        old_price = $("#money").text();
+        
+        temp_loca = $(".taskloca").attr("title");
+        split_loca = temp_loca.split('+');
+        old_location = split_loca[0];
+        old_lat = split_loca[1];
+        old_lng = split_loca[2];
+
+        old_reward = $("#rewardname").attr("title");
+        if($("#task_tags").attr("title")){
+            old_tags = $("#task_tags").attr("title").split(',');
+        }
+    }
+    else{
+        old_description = "{{task.description|trim}}"
+        old_title = "{{task.title|trim}}"
+        old_price = "{{task.price}}"
+        old_location = "{{task.address}}"
+        old_lng = "{{task.longitude}}"
+        old_lat = "{{task.latitude}}"
+        old_reward = "{{rewardPic.id}}"
+        old_tags = new Array();
+        var i = 0;
+        {% for tag in task.tags %}
+            old_tags[i++]="{{tag}}"
+        {% endfor %}
+    }
+    old_location = old_location.split(' ').join('&nbsp;');
+    old_description = old_description.split(' ').join('&nbsp;');
+    old_title = old_title.split(' ').join('&nbsp;');
+
+    $("#title").html('<input id="tname" type="text" placeholder="{% trans "what do you need" %}" value="'+old_title+'" style="width:320px; margin:0px;"/>');
+    jQuery("#tname").validate({
+        expression: "return test_task_name(VAL);",
+    });
+
+    if("{{task.price}}" !== null){
+        $("#money").html('<input id="tmoney" type="text" placeholder={% trans "EGP" %} value='+old_price+' style="width:100px;" />');
+    jQuery("#tmoney").validate({
+        expression: "if (VAL) return true; else return false;",
+    });
+
+    $("#tmoney").keydown(function(event) {
+        if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27) {
+        }
+        else {
+            if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 ) && (event.keyCode < 37 || event.keyCode > 40)) {
+                event.preventDefault(); 
+            }   
+        }
+    });
+    }
+
+    $('#taskdesc').html('<textarea id="tdesc" placeholder="{% trans "Describe in details" %}" style="height: 50px; max-height:50px; width:320px; max-width: 320px; margin: 0px;">'+old_description+'</textarea>');
+    
+    // {% if rewardPic != None %}
+    // jQuery("#tdesc").validate({
+    //     expression: "if (VAL) return true; else return false;",
+    // });
+    // var reward_radio ='';
+    // {% for r in request|get_rewards%}
+    //     reward_radio += '<input type="radio" id="rradio{{r.id}}" name="edit_reward" onClick="switchreward();" value={{r.id}} '
+    //     if ("{{r.id}}" === old_reward){
+    //         reward_radio += 'Checked />'
+    //     }
+    //     else{
+    //         reward_radio += ' />'
+    //     }
+    //     reward_radio += '<label class="inlinelabel" for="rradio{{r.id}}"><img id="rimg{{r.id}}" src="{{MEDIA_URL}}{{r.img}}" rel="tooltip" data-original-title={% if request.session.django_language == "ar" %}"{{r.ar_name}}"{% else %}"{{r.name}}"{%endif%}></label>'
+    // {% endfor %}
+    // $("#rewardpic").after('<div id="rewards_div">'+reward_radio+'</div>');
+    // $("#rewardpic").hide();
+    // $("#rewardname").hide();
+    
+    // {% endif %}
+
+    $("#task_tags").html('<input type="input" class="simplebox" id="edit-skills" name="skills" style="width:320px; margin:10px 0px 20px"/>');
+    if($("#skillsLabel").length > 0){
+        $("#task_tags").css('margin','0px');
+    }
+    var all_skills = {% get_json_skills %}
+    $("#edit-skills").tagit({
+        availableTags: all_skills,
+        allowSpaces: true,
+    });
+    {% if request.session.django_language == 'ar' %}
+    $(".simplebox").attr("placeholder", "أضف مهارة");
+    {% endif %}
+    for(var tag in old_tags){
+        $('.simplebox').val(old_tags[tag]);
+        var e = jQuery.Event("keydown");
+        e.which = 13;
+       $('.simplebox').trigger(e); 
+    }
+    $("#edit-skills").val(old_tags);
+    $(".taskloca").html('<input id="gmaps-input" class="gmaps-input" name="where" placeholder={% trans "Where" %} type="text"  value='+old_location+' /><input name="lat" style="display:none" id="gmaps-latitude" value='+old_lat+' /><input name="long" style="display:none" id="gmaps-longitude" value='+old_lng+' />');
+    jQuery(".gmaps-input").validate({
+        expression: "if (VAL) return true; else return false;",
+    });
+
+    $("#edit_icon").html('<a id="edit_link"><i class="icon-save"></i>    <label style="display:inline;"> {% trans "Save" %}</label></a>');
+    $("#show_map").html('<i class="icon-map-marker"></i>  <label style="display:inline;"> {% trans "Pin location" %}</label>');
+    $("#edit_link").click(function(){
+        ajaxEdit(marker_place,map_place);
+    });
+    switchMap(marker_place,map_place,".gmaps-input",'#gmaps-latitude','#gmaps-longitude');
+}
+function ajaxEdit(marker_place,map_place) {
+    // "edit_reward" : $('input[name=edit_reward]:checked').val(), -- removed reward
+    var r = $('input[name=edit_reward]:checked').val();
+    if ($('.ErrorField').length == 0){
+        $.ajax({
+            url: "/task/edit_task/{{task.id}}/?next={{request.get_full_path}}",
+            type: "POST",
+            data: {"edit_title" : $("#tname").val(), "edit_desc" : $("#tdesc").val(), "edit_price" : $("#tmoney").val(), "edit_location" : $("#gmaps-input").val(), "edit_lat" : $("#gmaps-latitude").val(), "edit_lng" : $("#gmaps-longitude").val(),  "edit_tags" : $("#edit-skills").val() },
+            success: function(data){
+                if (data.toLowerCase().indexOf("error:") >= 0){
+                    var data_temp = data.split("Error: ");
+                    noty({text: data_temp[1] , type:'error' , timeout: '3500'});
+                }else{
+                    
+                    noty({text:"{% trans 'The information is edited' %}", type:'success' , timeout: '3000'});
+                    _kmq.push(['record', 'Edited a task',{'Task':'{{task.title}}' ,'User':'{{request.user.email}}'}]);
+                    _gaq.push(['_trackEvent', 'Task', 'Edited a Task']);
+                    marker_place.setDraggable(false);
+                    map_place.setCenter(marker_place.getPosition());
+                    map_place.setZoom(13);
+                    $("#title").html($("#tname").val().replace(/&nbsp;/gi,' '));
+                    $("#rewardpic").show();  $("#rewardname").show();
+                    $("#rewards_div").remove();
+                    $("#rewardname").attr('title', r);
+                    var loca = [$("#gmaps-input").val(), $("#gmaps-latitude").val(), $("#gmaps-longitude").val()];
+                    loca = loca.join('+');
+                    $(".taskloca").attr('title',loca);
+                    $(".taskloca").html($("#gmaps-input").val().replace(/&nbsp;/gi,' '));
+                    if("{{task.price}}" !== null){
+                        money = $("#tmoney").val();
+                        // Replace all leading zeroes from number, unless its value is zero, then set its value directly to zero.
+                        if(money!=0){
+                            money = money.replace(/^0+/, '');
+                        } else{
+                            money = 0;
+                        }
+                        $("#money").html(money);
+                    }
+                    if($("#tdesc").val() != ""){
+                        $("#taskdesc").attr('title',$("#tdesc").val());
+                        $("#taskdesc").html($("#tdesc").val());
+                        $("#taskdesc").html($("#taskdesc").html().replace(/&nbsp;/gi,' '));
+                                $('#taskdesc').jTruncate({  
+                                    length: 100,  
+                                    minTrail: 0,  
+                                    moreText: "{% trans 'more'%}",  
+                                    lessText: "{% trans 'less'%}", 
+                                    moreAni: "slow",  
+                                    lessAni: "slow"  
+                                });
+                    }   
+                    else{ 
+                        $("#taskdesc").attr('title',"");
+                        $("#taskdesc").html("{% trans 'No details are given' %}{% trans ', click edit to add some details' %}");
+                    }
+
+                    if($("#edit-skills").val() != ''){
+                        temp_skill=$("#edit-skills").val().split(',');
+                        $("#task_tags").attr('title',temp_skill);
+                        var skill_html = '';
+                        for(var s in temp_skill){
+                            skill_html += '<div class="tag">'
+                            skill_html += temp_skill[s]
+                            skill_html += '</div>'
+                        }   
+                        $("#task_tags").html(skill_html);
+
+                    }
+                    else{
+                        
+                        $("#task_tags").attr('title',[]);
+                       $("#task_tags").html('');
+                    }
+                    // $("#task_tags").css('margin','10px 0px 20px');
+                    $("#edit_icon").html('<a id="edit_link"><i class="icon-pencil"></i>   <label style="display:inline;"> {% trans "Edit" %} </label></a>');
+                    $("#show_map").html('<i class="icon-map-marker"></i>  <label style="display:inline;"> {% trans "Show map" %}</label>');
+                    $("#edit_link").click(function(){
+                        editTask(marker_place,map_place);
+                    });
+                }
+            },
+            error: function(data){
+                noty({text: "{% trans 'Required field empty or invalid' %}" , type:'error' , timeout: '3000'});
+            }
+        })
+    }
+}
+function switchreward(){
+    var tmp = 'rimg' + $('input[name=edit_reward]:checked').val();
+    var selected = $("#"+tmp);
+    $("#rewardpic").attr('src',selected.attr('src'));
+    $("#rewardname").html(selected.attr('data-original-title'));
+}
+
+</script>

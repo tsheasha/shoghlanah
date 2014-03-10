@@ -1,0 +1,31 @@
+{% load i18n %}
+<link type="text/css" href="{{STATIC_URL}}assets/css/edit_profile.css" rel="stylesheet"/>
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/loading.css" media="screen">
+{% if request.session.django_language == 'ar' %}
+    <link type="text/css" href="{{STATIC_URL}}assets/css-rtl/edit_profile-rtl.css" rel="stylesheet"/>    
+{% endif %}
+<div id="changeEmail" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div style="text-align:center;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">{% trans "Change e-mail address" %}</h3>
+        </div>
+        <div class="modal-body">
+            <form action="." method="post">
+                {% csrf_token %}
+                <fieldset>
+                    {{ form.as_p }}
+                </fieldset>
+                <fieldset class="submit-row">
+                    <p><button type="submit">{% trans "Change Email" %}</button></p>
+                </fieldset>
+            
+        </div>
+        <div class="modal-footer" style="text-align:center;">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn btn-primary">Save changes</button>
+            <button type="submit" class="btn btn-primary">{% trans "Change Email" %}</button>
+            </form>
+        </div>
+    </div>
+</div>

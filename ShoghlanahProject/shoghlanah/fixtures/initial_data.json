@@ -1,0 +1,261 @@
+[
+    {
+        "pk": 2,
+        "model": "shoghlanah.country",
+        "fields": {
+            "name": "Germany",
+            "arabic_name": "المانيا"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "shoghlanah.country",
+        "fields": {
+            "name": "Egypt",
+            "arabic_name": "مصر"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "shoghlanah.city",
+        "fields": {
+            "country": 1,
+            "name": "Cairo",
+            "arabic_name": "القاهرة"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "shoghlanah.city",
+        "fields": {
+            "country": 1,
+            "name": "Alexandria",
+            "arabic_name": "الاسكندرية"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "shoghlanah.city",
+        "fields": {
+            "country": 1,
+            "name": "Aswan",
+            "arabic_name": "أسوان"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "shoghlanah.city",
+        "fields": {
+            "country": 1,
+            "name": "Asyut",
+            "arabic_name": "أسيوط"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "shoghlanah.city",
+        "fields": {
+            "country": 1,
+            "name": "Gharbia",
+            "arabic_name": "الغربية"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "shoghlanah.city",
+        "fields": {
+            "country": 1,
+            "name": "Helwan",
+            "arabic_name": "حلوان"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "shoghlanah.city",
+        "fields": {
+            "country": 1,
+            "name": "Ismailia",
+            "arabic_name": "الإسماعيلية"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "shoghlanah.city",
+        "fields": {
+            "country": 1,
+            "name": "Luxor",
+            "arabic_name": "الأقصر"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "shoghlanah.city",
+        "fields": {
+            "country": 1,
+            "name": "Matruh",
+            "arabic_name": "مطروح"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "shoghlanah.city",
+        "fields": {
+            "country": 1,
+            "name": "North Coast",
+            "arabic_name": "الساحل الشمالي"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "shoghlanah.city",
+        "fields": {
+            "country": 1,
+            "name": "Portsaid",
+            "arabic_name": "بورسعيد"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "shoghlanah.city",
+        "fields": {
+            "country": 1,
+            "name": "Suez",
+            "arabic_name": "السويس"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "shoghlanah.city",
+        "fields": {
+            "country": 1,
+            "name": "Red Sea",
+            "arabic_name": "البحر الأحمر"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "Nasr City",
+            "arabic_name": "مدينة نصر"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "New Cairo",
+            "arabic_name": "التجمع الخامس"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "6th of October",
+            "arabic_name": "٦ أكتوبر"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "Agouza",
+            "arabic_name": "العجوزة"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "Al Rehab",
+            "arabic_name": "الرحاب"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "Al Sheikh Zayed",
+            "arabic_name": "الشيخ زايد"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "Dokki",
+            "arabic_name": "الدقي"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "Downtown",
+            "arabic_name": "وسط البلد"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "El Zamalek",
+            "arabic_name": "الزمالك"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "Garden City",
+            "arabic_name": "جاردن سيتي"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "Giza",
+            "arabic_name": "ألجيزة"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "Heliopolis",
+            "arabic_name": "هليوبوليس"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "Maadi",
+            "arabic_name": "المعادي"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "shoghlanah.region",
+        "fields": {
+            "city": 1,
+            "name": "Mohandeseen",
+            "arabic_name": "المهندسين"
+        }
+    }
+]

@@ -1,0 +1,74 @@
+.dock div{
+	display:inline;
+	padding: 0px 6px;
+}
+.dock-img{
+	width: 30px;
+	height: 30px;
+	border: 1px solid WHITE;
+	-webkit-border-radius: 999px;
+	-moz-border-radius: 999px;
+	border-radius: 999px;
+	overflow: hidden;
+}
+
+#filter{
+    z-index: 1;
+	display:block; 
+	margin-left: 112px; 
+	margin-top: 12px;
+	position: absolute;
+}
+
+
+#Ifilter {
+    margin-top: -11px;
+    margin-left: -8px;
+    position: absolute;
+}
+
+#filtericon{
+	float:left;
+	border-radius: 35px;
+    width: 4px;
+    height: 4px;
+	border: 2px solid #1785be;
+	background:rgba(255, 255, 255, 1);
+	font-size: 26px;
+	padding: 14px;
+	text-decoration: none;
+	cursor:pointer;
+}
+.dock{
+	display:inline-block; 
+	float:left;
+	background:rgba(255, 255, 255, 1);
+	border: 2px solid #1785be;
+	border-radius: 32px;
+	margin-left:-1px;
+	border-bottom-left-radius: 0px;
+	border-top-left-radius: 0px;
+}
+
+.dock input[type="radio"] {
+    display:none; 
+}
+
+.dock label img{
+	opacity:0.5;
+	filter:alpha(opacity=50); /* For IE8 and earlier */
+	background-position: 0 0;
+}
+
+.dock label img:hover{
+	opacity:1.0;
+	filter:alpha(opacity=100); /* For IE8 and earlier */
+	background-position: 0 -37px;
+}
+
+
+.dock input[type="radio"]:checked + label img { 
+    opacity:1.0;
+	filter:alpha(opacity=100);
+}​
+

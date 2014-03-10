@@ -1,0 +1,478 @@
+{% extends "master.html" %}
+{% block dashboard %}
+{% load get_user_info %}
+{% load get_skills %}
+{% load i18n %} 
+{% load thumbnail %}
+	<link type="text/css" href="{{STATIC_URL}}assets/css/edit_profile.css" rel="stylesheet"/>
+	{% if request.session.django_language == 'ar' %}
+		<link type="text/css" href="{{STATIC_URL}}assets/css-rtl/edit_profile-rtl.css" rel="stylesheet"/>
+	{% endif %}
+	<!-- Skills Tag-it CSS-->
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/jquery.tagit.css"/>
+	<!-- Skills Tag-it CSS-->
+	
+	<script type="text/javascript" src="{{STATIC_URL}}assets/js/edit_profile.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}js/noty/themes/default.js"></script>
+	<!-- Skills Javascript-->
+	<script type="text/javascript" src="{{STATIC_URL}}js/tag-it.js" charset="utf-8"></script>
+
+	<script type="text/javascript">
+    
+	var emailChecker = false;
+	var numberChecker = false;
+	var emailEmpty = false;
+	var numberInvalid = false;
+
+
+	function checkMobileNumber() {
+		if (!isNaN($("#mobile_number").val())) {
+			{% if editor.mobile_number %}
+				if (($("#mobile_number").val()) == "{{ editor.mobile_number }}") {
+					{% if editor.isVerified %}
+						document.getElementById('edit-pi-verify-no').innerHTML = '<img id="verified-img" width="25px" src="{{STATIC_URL}}assets/img/profile-info/Verified.png"/>'
+					{% else %}
+						{% if editor.isRequest_Verification %}
+							document.getElementById('edit-pi-verify-no').innerHTML = "<span class='label label-success'>{% trans 'Verification Request Sent' %}</span>"
+						{% else %}
+							document.getElementById('edit-pi-verify-no').innerHTML = '<button id="verify_button_number" type="button" class="btn btn-info btn-small" onClick="verifyMobileNumber();">{% trans "VERIFY" %}</button>'
+						{% endif %}
+					{% endif %}
+				}
+				else{
+					document.getElementById('edit-pi-verify-no').innerHTML = '<button id="verify_button_number" type="button" class="btn btn-info btn-small" onClick="verifyMobileNumber();">{% trans "VERIFY" %}</button>';
+					if ($("#mobile_number").val() == "") {
+						/*document.getElementById('verify_button_number').disabled = true;*/
+						/*document.getElementById('edit-pi-verify-no').innerHTML = "<span class='label label-important'>{% trans 'Enter a valid number' %}</span>";*/
+						document.getElementById('edit-pi-verify-no').innerHTML = '<button id="verify_button_number" type="button" class="btn btn-info btn-small" disabled="true" onClick="verifyMobileNumber();">{% trans "VERIFY" %}</button>';
+					}
+				}
+			{% else %}
+				if ($("#mobile_number").val() == "") {
+					/*document.getElementById('verify_button_number').disabled = true;*/
+					/*document.getElementById('edit-pi-verify-no').innerHTML = "<span class='label label-important'>{% trans 'Enter a valid number' %}</span>";*/
+					document.getElementById('edit-pi-verify-no').innerHTML = '<button id="verify_button_number" type="button" class="btn btn-info btn-small" disabled="true" onClick="verifyMobileNumber();">{% trans "VERIFY" %}</button>';
+				}
+				else {
+					/*document.getElementById('verify_button_number').disabled = false;*/
+					document.getElementById('edit-pi-verify-no').innerHTML = '<button id="verify_button_number" type="button" class="btn btn-info btn-small" onClick="verifyMobileNumber();">{% trans "VERIFY" %}</button>';
+				}
+			{% endif %}
+		}
+		else {
+			/*document.getElementById('verify_button_number').disabled = true;*/
+			document.getElementById('edit-pi-verify-no').innerHTML = "<span class='label label-important'>{% trans 'Enter a valid number' %}</span>";
+		}
+
+	}
+
+	function checkNumberDuplicates() {
+		$.ajax({
+	        url: "/check_number_duplicates/",
+	        type: "POST",
+	        data: {
+	        	"mobile_number" : $("#mobile_number").val()
+	        },
+	        success: function(data){
+	            if (data == "true") {
+	            	document.getElementById('edit-pi-verify-no').innerHTML = "<span class='label label-important'>{% trans 'Phone already in use' %}</span>";
+	            	$('#save_button').attr('disabled','disabled');
+	            	numberChecker = true;
+	            }
+	            else {
+	            	numberChecker = false;
+	            	/*checkMobileNumber();*/
+	            	if (emailChecker) {
+	            		$('#save_button').attr('disabled','disabled');
+	            	}
+	            	else {
+	            		if (!emailEmpty && !numberInvalid) {
+	            			$('#save_button').removeAttr('disabled');	
+	            		}
+	            	}
+	            }
+	        }
+        })
+    }
+
+
+    function verifyMobileNumber() {
+    	document.getElementById('edit-pi-verify-no').innerHTML = "<span class='label label-info'>{% trans 'Sending Verification Request' %}</span>";
+      	/*document.getElementById('verify_button_number').disabled = true;
+		document.getElementById('verify_button_number').innerHTML = "{% trans 'Sending Verification Request' %}";*/
+        $.ajax({
+	        url: "/profile/{{request.user.username}}/verify/mobile_number/",
+	        type: "POST",
+	        data: {
+	        	"mobile_number" : $("#mobile_number").val()
+	        },
+	        success: function(data){
+	            /*document.getElementById('verify_button_number').disabled = true;
+	            document.getElementById('verify_button_number').innerHTML = "{% trans 'Verification Request Sent' %}";*/
+	            document.getElementById('edit-pi-verify-no').innerHTML = "<span class='label label-success'>{% trans 'Verification Request Sent' %}</span>";
+	        }
+        })
+    }
+
+    /*function load(id) {
+    	var the_id = '#' + id;
+    	$(the_id).attr("disabled", "true");
+    	document.getElementById(id).innerHTML = document.getElementById(id).getAttribute('data-load');
+    	$['#mg'].submit();
+    	return false;
+    }*/
+    $(document).ready(function() {
+    	var curr_marker; var curr_map;
+	    var all_skills = {% get_json_skills %}
+        $("#prfl-skills").tagit({
+        availableTags: all_skills,
+        allowSpaces: true,
+        });
+        {% if request.session.django_language == 'ar' %}
+        $(".simplebox").attr("placeholder", "أضف مهارة");
+        {% endif %}
+
+		old_tags = new Array();
+		var i = 0;
+		{% for tag in editor.tags %}
+			old_tags[i++]="{{tag}}"
+		{% endfor %}
+
+		for(var tag in old_tags){
+			$('.simplebox').val(old_tags[tag]);
+			var e = jQuery.Event("keydown");
+			e.which = 13;
+			$('.simplebox').trigger(e);
+		}
+		$("#prfl-skills").val(old_tags);
+		$("#map").css({height: 210 ,width: 310});
+		geocoder = new google.maps.Geocoder();
+		var location = $('#gmaps-in').val();
+		var lng = $('#gmaps-longitude').val();
+		var lat = $('#gmaps-latitude').val();
+		if( lat.indexOf(",") !== -1 ){
+			lat=lat.replace(",",".");
+			lng=lng.replace(",",".");
+		}
+		if(lat == 200.0 || lng == 200.0){
+			if(location != ""){
+				geocoder.geocode( { 'address': location }, function(results, status) {
+				    if (status == google.maps.GeocoderStatus.OK) {
+				        lat = results[0].geometry.location.lat();
+				        lng = results[0].geometry.location.lng();
+				    }else{
+				    	lng = 200.0
+				    	lat = 200.0
+				    } 
+				    json_map = map_initialize(lat,lng,true,'map');
+				    curr_marker = json_map.marker;
+				    curr_map = json_map.map;
+				    switchMap(curr_marker ,curr_map ,"#gmaps-in",'#gmaps-latitude','#gmaps-longitude');
+				});
+			}
+			else{
+			    lng = 200.0
+			    lat = 200.0
+			    json_map = map_initialize(lat,lng,true,'map');
+			    curr_marker = json_map.marker;
+			    curr_map = json_map.map;
+			    switchMap(curr_marker ,curr_map ,"#gmaps-in",'#gmaps-latitude','#gmaps-longitude');
+			}
+		}else{
+			json_map = map_initialize(lat,lng,true,'map');
+		    curr_marker = json_map.marker;
+		    curr_map = json_map.map;
+		    switchMap(curr_marker ,curr_map ,"#gmaps-in",'#gmaps-latitude','#gmaps-longitude');
+		}
+		$("#get_loca").click(function(){
+			getLocation(function(latlng){
+				position = latlng.split(',');
+				curr_marker.setPosition(new google.maps.LatLng(position[0], position[1]));
+				geocode_lookup( 'latLng', curr_marker.position, "#gmaps-in", curr_map, curr_marker);
+				curr_map.setCenter(curr_marker.position);
+            	curr_map.setZoom(13);
+		     });
+		});
+		$('#gmaps-longitude').val(lng);
+		$('#gmaps-latitude').val(lat);
+
+    });
+    </script>
+
+    <!-- Tab Menu -->
+   	<ul class="nav nav-tabs" id="edit_tabs">
+   		{% if active_tab == 1 %}
+   		<li class="active">
+   		{% else %}
+   		<li>
+   		{% endif %}
+			<a class='tab' data-toggle="tab" href="#profile-tab">{% trans "Profile Edits" %}</a>
+   		</li>
+   		{% if active_tab == 2 %}
+   		<li class="active">
+   		{% else %}
+   		<li>
+   		{% endif %}
+   			<a class='tab' data-toggle="tab" href="#account-settings-tab">{% trans "Account Settings" %}</a>
+   		</li>
+   	</ul>
+
+   	<div id='edit-content' class='tab-content'>
+	   	<!-- Base Profile Tab -->
+	   	{% if active_tab == 1 %}
+	   	<div id="profile-tab" class="tab-pane fade active in">
+	   	{% else %}
+	   	<div id="profile-tab" class="tab-pane fade">
+	   	{% endif %}
+			<div class="base-edit">
+				<table id="edit" class="table-bordered">
+					<tr>
+						<td>
+							<form id="mg" name="editForm" method="post" action="/profile/{{request.user.username}}/edit/save/" enctype="multipart/form-data">{% csrf_token %}
+							<div class="the-even-row" style="padding-bottom: 120px; border: 0px;">
+								<div class="edit-head">{% trans "Profile Picture" %}</div>
+								<div  class="gallery" id="edit-pp-preview"><span></span>{% thumbnail editor.id|get_profile_pic "110x110" crop="center" as im %}<img style="border-radius:999px;" src="{{ im.url }}">{% endthumbnail %} {% if not default %}<br/><a href="/profile/{{request.user.username}}/edit/delete_profile_picture/">{% trans "Delete" %}</a>{% endif %}</div>
+								<div class="edit-choose" onclick="pushkm_pp();"><h4>{% trans "Choose the photo" %} </h4> {{ form.image }}</div>
+							</div>
+						<!--	<div class="span5" style="float:right; margin-top:0px; margin-right:0px;"><canvas id="canvas" width="300" height="300"></div> -->
+						</td>
+					</tr>
+						<tr>
+							<td>
+								<div class="the-even-row" style="padding-bottom:180px; height: 32px;">
+									<div class="edit-head">{% trans "Personal Info" %}</div>
+									<div class="edit-body">
+										<div class="edit-pi-correction"><div class="edit-label">{% trans 'First Name' %}:</div>
+										<br/><input id="first_name" type="text" name="first_name" maxlength="32" class="input-xlarge pers-info-input" value="{{editor.first_name}}"></div>
+										<div class="edit-pi-correction"><div class="edit-label">{% trans 'Last Name' %}:</div>
+										<br/><input id="last_name" type="text" name="last_name" maxlength="32" class="input-xlarge pers-info-input" value="{{editor.last_name}}"></div>
+										<br/>
+										{% if editor.job_title %}
+											<div class="edit-pi-correction"><div class="edit-label">{% trans 'Job Title' %}:</div>
+										<br/><input id="job_title" type="text" name="job_title" maxlength="32" class="input-xlarge pers-info-input" value="{{editor.job_title}}"></div>
+										{% else %}
+											<div class="edit-pi-correction"><div class="edit-label">{% trans 'Job Title' %}:</div>
+										<br/><input id="job_title" type="text" name="job_title" maxlength="32" class="input-xlarge pers-info-input" value=""></div>
+										{% endif %}
+										{% if editor.mobile_number %}
+											<div id="edit-pi-no"><div class="edit-label">{% trans 'Mobile Number' %}:</div>
+										<br/><input onkeyup="checkMobileNumber();" id="mobile_number" type="text" name="mobile_number" maxlength="11" placeholder="01XXXXXXXXX" class="input-xlarge pers-info-input" value="{{editor.mobile_number}}"><span class="note"></span></div>
+											<div id="edit-pi-verify-no">
+												{% if editor.isVerified %}
+													<img id="verified-img" width="25px" src="{{STATIC_URL}}assets/img/profile-info/Verified.png"/>
+												{% endif %}
+											</div>
+										{% else %}
+											<div id="edit-pi-no"><div class="edit-label">{% trans 'Mobile Number' %}:</div>
+										<br/><input onkeyup="checkMobileNumber();" id="mobile_number" type="text" name="mobile_number" maxlength="11" placeholder="01XXXXXXXXX" class="input-xlarge pers-info-input" value=""><span class="note"></span></div>
+											<div id="edit-pi-verify-no">
+												{% if editor.isVerified %}
+													<img id="verified-img" width="25px" src="{{STATIC_URL}}assets/img/profile-info/Verified.png"/>
+												{% endif %}
+											</div>
+										{% endif %}
+										<br/>
+										<div class="gender">									
+											<label class="radiogender">
+												<input class="regular-radio" type="radio" name="gender" value="male" style="display: none;" id="optionsRadios1" {% if editor.gender == "M" %}Checked{% endif %}/>
+												<label for="optionsRadios1"></label>{% trans "Male" %}
+											</label>
+											
+											<label class="radiogender"> 
+												<input class="regular-radio" type="radio" name="gender" value="female" id="optionsRadios2" style="display: none;" {% if editor.gender == "F" %}Checked{% endif %}/>
+												<label for="optionsRadios2"></label>{% trans "Female" %}
+											</label>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="the-even-row" style="padding-bottom:175px">
+									<div class="edit-head">{% trans "About Me" %}</div>
+									<div class="edit-body">
+										<div class="edit-label">{% trans "Talk about yourself" %}:</div>
+										<br/>
+										{% if editor.about != 'None' %}
+											<textarea maxlength="256" id="about_me" type="text" name="about_me" style="height:100px;width:380px;resize:none;">{{editor.about}}</textarea>
+										{% else %}
+											<textarea maxlength="256" id="about_me" type="text" name="about_me" style="height:100px;width:380px;resize:none;margin-bottom:0px"></textarea>
+										{% endif %}
+										<label for="edit-label" class="labelhint">
+											<b>{%trans "Tip: "%}</b>{% trans "Providing more details will help you having" %}
+											<br/>
+											{% trans "the appropriate applicants" %}
+										</label>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="the-even-row" style="padding-bottom:150px;">
+									<!-- Skills -->
+									<div class="edit-head">{% trans "Skills" %}</div>
+									<div class="edit-body">
+										<div style="margin: 0 0 0 0;" class="edit-label">{% trans "You are good at" %}:</div>
+										<br/>
+										<div id='prfl-skillsDiv' class="tag-height" style="width: 390px;">
+											<input type="input" class="simplebox" id='prfl-skills' name='skills'/>
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="the-even-row" style="padding-bottom:323px">
+									<!-- <div id="edit-n-head">{% trans "Location and Address" %}</div> -->
+									<div class="edit-head">{% trans "Location" %}</div>
+									<div class="edit-body">
+										<div class="edit-label">{% trans "Your Address" %}:</div>
+										<br/>
+										{% if editor.location %}
+											<input id="gmaps-in" name="where" type="text" style="width:300px;" value="{{editor.location}}"/>
+							        	{% else %}
+							        		<input id="gmaps-in" name="where" type="text" style="width:300px;"/>
+							        	{% endif %}
+										<a id="get_loca" rel="tooltip" data-original-title='{% trans "My Location"%}' data-placement="top">
+								    		<i class="icon-map-marker" ></i>
+								    	</a>
+										<input name="lat" style="display:none" id='gmaps-latitude' value="{{editor.latitude}}">
+						        		<input name="lng" style="display:none" id='gmaps-longitude' value="{{editor.longitude}}"/>
+										<div id="map"></div>
+										<label for="map" class="labelhint">
+											<b>{%trans "Tip: "%}</b>{% trans "Double click to bring the pin where u need" %}
+										</label>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="the-even-row" style="height: 192px;">
+									<div class="edit-head">{% trans "Social Networks" %}</div>
+									<div id="edit-snl-middle">
+										<div>
+											<img src="{{STATIC_URL}}img/00fb.png" height="30px;" width="33px;">{% trans "Facebook" %}
+										</div>
+										<div style="margin-top:14px">
+											<img src="{{STATIC_URL}}img/00tw.png" height="30px;" width="36px;">{% trans "Twitter" %}
+										</div>
+										<div style="margin-top:14px">
+											<img src="{{STATIC_URL}}img/00gplus.png" height="30px;" width="36px;">{% trans "Google+" %}
+										</div>
+										<div style="margin-top:14px">
+											<img src="{{STATIC_URL}}img/00in.png" height="30px;" width="36px;">{% trans "Linkedin" %}
+										</div>
+									</div>
+									<div class="edit-last" style="margin-top:0px">
+										{% if facebook_link %}
+											<span>
+												<a class="input-xlarge social-input-link" href="{% url facebook_disconnect %}">{% trans "Disconnect" %}</a>
+											</span>
+										{% else %}
+											<a class="input-xlarge social-input-link" href="{% url facebook_login %}">{% trans "Connect" %}</a>
+										{% endif %}
+										<br/><br/>
+										{% if twitter_link %}
+											<span>
+												<a class="input-xlarge social-input-link" href="{% url twitter_disconnect %}">{% trans "Disconnect" %}</a>
+											</span>
+										{% else %}
+											<a class="input-xlarge social-input-link" href="{% url twitter_login %}">{% trans "Connect" %}</a>
+										{% endif %}
+										<br/><br/>
+										<input id="google_plus" type="text" placeholder="{% trans 'Type your link here' %}" name="google_plus" maxlength="128" class="input-xlarge social-input" value="{{google_plus_link}}">
+										<br/>
+										{% if linkedin_link %}
+											<span>
+												<a class="input-xlarge social-input-link" href="{% url linkedin_disconnect %}">{% trans "Disconnect" %}</a>
+											</span>
+										{% else %}
+											<a class="input-xlarge social-input-link" href="{% url linkedin_login %}">{% trans "Connect" %}</a>
+										{% endif %}
+										<br/>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div id="edit-cp" class="the-even-row">
+									<div class="edit-head">{% trans "Cover Picture" %}</div>
+									{% if editor.cover_picture %}
+										<div  class="gallery" id="edit-cp-preview"><span></span>{% thumbnail editor.id|get_cover_pic "155x110" crop="center" as im %}<img src="{{ im.url }}">{% endthumbnail %}<a href="/profile/{{request.user.username}}/edit/delete_cover_picture/">{% trans "Delete" %}</a></div>
+									{% else %}
+										<div class="gallery" id="edit-cp-preview"><img src="{{STATIC_URL}}img/cover.png"></div>
+									{% endif %}
+										<div class="edit-choose" onclick="pushkm_cp();"><h4>{% trans "Choose the photo" %} </h4> {{ coverform.coverimage }}</div>
+								</div>
+							<!--	<div class="span5" style="float:right; margin-top:0px; margin-right:0px;"><canvas id="canvas" width="300" height="300"></div> -->
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="the-even-row">
+									<div id="edit-save">
+										<button onclick="loads();" type="submit" data-load="{% trans 'Saving' %}" id="save_button" class="btn btn-primary middle">{% trans "SAVE" %}</button>
+									</div>
+									<div id="loading-edit">
+
+									</div>
+								</div>
+							</td>
+						</tr>
+					</form>
+				</table>
+			</div>
+		</div>
+		<!-- End of Base Profile Tab -->
+		<!-- Account Settings Tab -->
+		{% if active_tab == 1 %}
+		<div id="account-settings-tab" class="tab-pane fade">
+		{% else %}
+		<div id="account-settings-tab" class="tab-pane fade active in">
+		{% endif %}
+			{% include 'userprofiles/email_change.html' %}
+		</div>
+		<!-- End of Acount Settings Tab -->
+	</div>
+	<script type="text/javascript">
+	jQuery(function () {
+
+	    jQuery("#mobile_number").validate({
+		 expression:"if (!VAL) {return true;} else { if (($('#mobile_number').val()).length != 11) {$('#save_button').attr('disabled','disabled');$('#verify_button_number').attr('disabled','disabled');return false;} else { if (!isNaN(VAL)) {numberInvalid=false;checkNumberDuplicates();return true;} else{ $('#save_button').attr('disabled','disabled');numberInvalid=true; return false;}}}",
+		 message:""
+		});
+
+	    jQuery("#first_name").validate({
+	         expression:"if ( VAL) {$('#save_button').removeAttr('disabled');return true;} else{ $('#save_button').attr('disabled','disabled'); return false;}",
+	         message:""
+	       });
+
+	    jQuery("#last_name").validate({
+             expression:"if ( VAL) {$('#save_button').removeAttr('disabled');return true;} else{ $('#save_button').attr('disabled','disabled'); return false;}",
+             message:""
+           });
+
+	  });
+	</script>
+	<script type="text/javascript">
+	function pushkm_pp(){
+        _kmq.push(['record', 'Changed Profile Picture',{'User':'{{request.user.email}}'}]);
+        _gaq.push(['_trackEvent','Edit Profile', 'Changed Profile Picture']);
+	}
+	function pushkm_cp(){
+        _kmq.push(['record', 'Changed Cover Photo',{'User':'{{request.user.email}}'}]);
+        _gaq.push(['_trackEvent','Edit Profile', 'Changed Cover Photo']);
+	}
+		function loads(){
+        _kmq.push(['record', 'Edited Profile',{'User':'{{request.user.email}}'}]);
+        _gaq.push(['_trackEvent', 'Edit Profile', 'Edited Profile']);
+			document.getElementById('loading-edit').innerHTML = '<div class="loadingbody"><span></span><span class="load-1"></span><span class="load-2"></span><span class="load-3"></span><span class="load-4"></span><span class="load-5"></span><span class="load-6"></span></div>';
+		}
+	</script>
+
+{% endblock dashboard %}

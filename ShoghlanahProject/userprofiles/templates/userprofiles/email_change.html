@@ -1,0 +1,67 @@
+{% load i18n %}
+<link type="text/css" href="{{STATIC_URL}}assets/css/edit_profile.css" rel="stylesheet"/>
+<link rel="stylesheet" href="{{STATIC_URL}}assets/css/loading.css" media="screen">
+{% if request.session.django_language == 'ar' %}
+    <link type="text/css" href="{{STATIC_URL}}assets/css-rtl/edit_profile-rtl.css" rel="stylesheet"/>
+{% endif %}
+
+{% block dashboard %}
+<style type="text/css">
+    .errorlist {
+        margin: 0 0 0 0;
+    }
+    .errorlist li {
+        list-style: none;
+        color: red;
+        line-height: 20px;
+    }
+</style>
+    <div class="base-edit">
+        <table id="edit" class="table-bordered">
+            <tr>
+                <td>
+                    <div style="text-align:center;margin-top:20px;">
+                        <h3>{% trans "Change e-mail address" %}</h3>
+                        <form id="emailForm" action="/accounts/settings/email_change/" method="post">
+                            {% csrf_token %}
+                            <fieldset>
+                                {{ email_form.as_p }}
+                            </fieldset>
+                            <fieldset class="submit-row">
+                                <button id="changeemail" class="btn btn-primary middle" type="submit">{% trans "Change e-mail address" %}</button>
+                                <!-- <a onClick='alert("loool");$("#emailForm").submit();' id="changeemail" class="btn btn-primary middle">{% trans "Change e-mail address" %}</a> -->
+                            </fieldset>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="the-even-row" style="text-align:center;margin-top:20px;">
+                        <h3>{% trans "Change password" %}</h3>
+                        <form id="passForm" action="/accounts/settings/password_change/" method="post">
+                            {% csrf_token %}
+                            {% if not password_length_valid or not password_format_valid %}
+                                <ul class="errorlist">
+                                    {% if not password_length_valid %}
+                                        <li>{% trans "The password must be at least 8 characters long" %}.</li></ul>
+                                    {% endif %}
+                                    {% if not password_format_valid %}
+                                        <li>{% trans "Only characters, numbers and symbols are allowed." %}.</li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+                            <fieldset>
+                                {{ password_form.as_p }}
+                            </fieldset>
+                            <fieldset class="submit-row">
+                                <button id="changepass" class="btn btn-primary middle" type="submit">{% trans "Change password" %}</button>
+                                <!-- <p><a onClick='alert("rofl");$("#passForm").submit();' id="changepass" class="btn btn-primary middle">{% trans "Change password" %}</a></p> -->
+                            </fieldset>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endblock dashboard %}

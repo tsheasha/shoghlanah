@@ -1,0 +1,122 @@
+#chatContainer{
+	float: left;
+}
+
+.headerChat .chatpic{
+	margin-right: 8px;
+	margin-left: 2px;
+}
+.recommendations{
+	margin-right: 97px;
+	margin-left: 0px;
+}
+.sender {
+	margin-left: 0px;
+	margin-right: 65px;
+}
+
+.receiver {
+	margin-right: 67px;
+	margin-left: 0px;
+}
+
+.senderfloat{
+	float:left !important;
+}
+
+.receiverfloat{
+	float:right !important;
+	margin-right: -3px;
+	margin-left: 0px;
+}
+
+.arrow-left {
+	float: right;
+	right: 53px;
+	left:0px;
+}
+
+.arrow-right {
+	float: left;
+	right: -58px;
+}
+
+.arrow-leftOut {
+	right: 7px;
+	left:0px;
+	border-left: 9px solid #f2f2f2;
+	border-right:0px;
+}
+
+.arrow-rightOut {
+	left: auto;
+	right: -6px;
+	border-right: 9px solid white;
+	border-left: 0px;
+}
+
+
+.arrow-leftIn {
+	left: 0px;
+	right: 5px;
+	border-left: 10px solid #cacaca;
+	border-right: 0px;
+}
+
+
+
+.arrow-rightIn {
+	right: -5px;
+	left: auto;
+	border-right: 10px solid #cacaca;
+	border-left: 0px;
+}
+
+.offer{
+	float: left;
+	margin: -48px;
+	margin-left: 10px;
+}
+
+.offer button{
+	margin: 0px;
+	margin-right: 9px;
+}
+
+/* chat.html */
+
+.bidderinfo{
+	float: right;
+	text-align: right;
+}
+
+.bidderdetails{
+	float: left;
+	border-left: 0px solid #cacaca;
+	border-right: 1px solid #cacaca;
+	text-align:right;
+}
+.bidprice{
+	padding-left: 18px;
+	padding-right: 12px;
+}
+
+.listTable tr{
+	border-right: 0px solid #cacaca;
+	border-left: 1px solid #cacaca;
+}
+
+/* chat.html */
+
+.cancelBtn{
+    float:left;
+}
+
+.saveBtn{
+    float: right;
+}
+
+.floatleft{
+	float:right;
+}
+

@@ -1,0 +1,81 @@
+{% load get_chat %}
+{% load thumbnail %}
+{% load get_user_info %}
+{% load i18n %}
+<script type="text/javascript">
+	function getdiscussion(url , unsubscribe){
+		$('#chatContainer').html('<div class="chatloading"><div class="loadingbody"><span class="load-1"></span><span class="load-2"></span><span class="load-3"></span><span class="load-4"></span><span class="load-5"></span><span class="load-6"></span></div><span>{% trans "Loading" %}</span></div>');
+		console.log('in get');
+		var unsubscribe =typeof unsubscribe !== 'undefined' ? unsubscribe : false;
+		$.ajax({
+            url: url,
+           	type: "GET",
+            success:function(data) {
+            	$('#chatContainer').html(data);
+                _kmq.push(['record', 'Started Chat',{'Task':'{{task.title}}' ,'User':'{{request.user.email}}', 'RemoteUser':'{{user.email}}'}]);
+                _gaq.push(['_trackEvent', 'Task', 'Started Chat']);                
+            	if(unsubscribe){
+            		pusher.unsubscribe('channel_chat' + {{request.user.id}}+{{user.id}}+{{task.id}});
+            	}
+            },
+        });
+	}
+</script>
+<div class="chatPannel">
+	{% if request.user.id == task.user.id %}
+		{% if bids %}
+		<label class="listHeader">{% trans "Opened Discussions" %}</label>
+		<table class="table table-hover listTable">
+			<tbody>
+				{% for bid in bids %}
+					<tr style="cursor: pointer;" onclick="getdiscussion('/message/{{bid.user.id}}/{{task.id}}/{{bid.id}}/')">
+						<td style="padding:0px;">
+							<div class="bidderinfo">
+								<a href="{% url userprofiles_profile bid.user.username %}" style="text-decoration:none">
+									{% thumbnail bid.user.id|get_profile_pic "65x65" crop="center" as im %}
+						            	<img class="propic" src="{{ im.url }}" />
+						            {% endthumbnail %}
+						            <h4 style="display:inline;">{{bid.user|truncate:15}}</h4>
+						        </a>
+					    	</div>
+					    	<div class="bidderdetails">
+						    	<div style="padding: 2px 12px 6px;">
+								{% if bid.isAccepted %}
+									<label class="biglight" style="color:#33a02e;">{% trans "Accepted" %}</label>
+								{% else %}
+									<label class="biglight" >{% trans "Bidder" %}</label>
+								{% endif %}
+								</div>
+								<div class="bidprice">
+									{% if task.reward == None %}
+									<label class="money" style="display:inline; word-wrap: break-word;">{{ bid.message|truncate:6}}</label>
+									<label class="smallLight" style="display:inline;">{% trans "EGP" %}</label>
+									{% else %}
+									<label class="Rewardlight" style="word-wrap: break-word;">
+										{% if request.session.django_language == 'ar' %}{{task.reward.ar_name}}{% else %}{{task.reward.name}}{%endif%}
+									</label>
+									{% endif %}
+								</div>
+							
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+		<label class="listHeader">{% trans "No Discussions"%}</label>			
+		{% endif %}
+	{% else %}
+		<script>
+			{% if bids %}
+				getdiscussion('/message/{{task.user.id}}/{{task.id}}/{{bids.id}}/') ;
+			{% else %}
+				getdiscussion('/message/{{task.user.id}}/{{task.id}}/');
+			{% endif %}
+		</script>
+	{% endif %}
+</div>
+
+
+

@@ -1,0 +1,142 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load get_user_info %}
+{% ifnotequal tasks|length  0 %}
+
+<div id="skill-stream">
+		<div class='gradient-example' id='v-gradient'></div>
+
+	{% for item in tasks %}
+	
+	<div id="singleton" class="task{{item.id}}" >
+
+		<a href ="/accounts/profile/{{item.user.username}}/">
+		{% thumbnail item.user.id|get_profile_pic "110x110" crop="center" as im %}
+			 <div class="circular-image-stream" style="background: url({{ im.url }}); no-repeat; background-size: cover; display: inline-block;">
+			 </div>
+		{% endthumbnail %}
+		</a>
+		  
+		<div class="circular-image-stream" id="task"></div>
+			
+		{% if item.price >= 0 %} 
+			 <li id="posts" class="priceposts">
+		{% else %}      
+			 <li id="posts" class="rewardposts">
+		{% endif %}
+	 <div class="verticalLine"></div>
+			 {% if item.price >= 0 %}
+			 
+						<div class="info" id="task-info-price">
+		  
+			 <img width="16" height="16" id="locationPin" src="{{STATIC_URL}}img/locationPin.png">
+			  {% ifnotequal item.city "" %}                  
+			 <p id="task-details-city-content">
+				{{item.city}}, {% trans "Egypt" %} </p>
+				
+				{% else %}
+			 <p id="task-details-city-content">
+				{% trans "Egypt" %} </p>
+				
+				{% endifnotequal %}
+				<hr>
+				<p id="task-details">{% trans  "Willing to pay" %} </p>
+				<p id="task-details-price"> <font color="#f3592a" style="font-size: 32px;"> {{item.price|truncate:7}} </font> {% trans  "EGP" %} 
+				</p> 
+			 {% endif %}
+			 
+			 {% if item.reward %}
+			 
+						<div class="info" id="task-info-reward">
+						
+			 <img width="16" height="16" id="locationPin" src="{{STATIC_URL}}img/locationPin.png">         
+			  {% ifnotequal item.city "" %}                  
+			 <p id="task-details-city-content">
+				{{item.city}}, {% trans "Egypt" %} </p>
+				
+				{% else %}
+			 <p id="task-details-city-content">
+				{% trans "Egypt" %} </p>
+				
+				{% endifnotequal %}
+				<hr>
+
+				<img id="task-details-reward-img" width="45" height="45" src="{{MEDIA_URL}}{{item.reward.img}}"/>
+		
+				<p id="task-details-reward">{% trans  "Reward" %} </p>
+			 {% endif %}
+			 </div>
+					  
+
+		  <div class="info-task">
+			 <a href ="/accounts/profile/{{item.user.username}}/">{{item.user.first_name}} {{item.user.last_name}} </a> 
+			 
+		  {% ifequal item.user.gender "F" %}
+		  {% if request.session.django_language == 'ar' %} تريد          
+		  {% else %}
+		  needs
+		  {% endif %}
+		  {% else %}
+		  {% trans  "needs" %}
+		  {% endifequal %}
+			 
+			 <a href ="/task/{{item.id}}/">{{item.title|truncate:28}}</a> 
+		  </div>
+		  <div class="arrow1"><div class="arrow2"></div></div>
+	 <div class="timestamp" id="timestamp{{item.id}}" >{{item.start_date.date}} &nbsp; | &nbsp; {{item.start_date.time}}</div>
+			 </li>
+  </div>
+ {% endfor %}
+
+</div>
+	{% else %}
+<div class="tasks">
+		<h4 style="text-align: center;">{% trans "There are no shoghlanahs related to this Skill" %}<h4>
+</div>
+{% endifnotequal%}
+
+<div class="users">
+
+	<div class="followers-header">
+		<h4 class="followers-title">
+			{% trans "Professionals" %}  
+		{% if users|length > 0 %}
+			<a href="#modal-see_all" data-toggle="modal">({{ users|length }})</a>
+		{% else %}	
+			<a href="#" data-toggle="#">(0)</a>
+		{% endif %}
+				</h4> 
+	</div>
+
+
+<div id="wrapper">
+<div id="columns">
+	{% for item in users %}
+		{% if forloop.counter < 8 %}
+				{% thumbnail item.profile_picture "65x65" crop="center" as pic %}
+					<div id="pin" class="circular-image-stream" style="background: url({{ pic.url }}) no-repeat;background-size: cover;" onclick="window.location.href ='/accounts/profile/{{item.username }}' "></div>
+				{% endthumbnail %}
+		{% endif %}
+	{% endfor %}
+		  </div>
+</div>
+</div>
+
+<div class="span7" id="lower-container1" style="display:none;text-align: center;margin-top: 39px;">
+	<div>
+	{% include "renderPeople.html" %}
+	</div>
+</div>
+
+<div class="modal hide fade" id="modal-see_all">
+	 <div class="modal-close modal-close-followers" data-dismiss="modal">
+		<label>X</label>
+	</div>
+	 <div class="modal-header">
+			<h4>{% trans "Professionals" %}</h4>
+	</div>
+
+	 <div class="modal-body modal-followers well">
+			 {% include "renderPeople.html" %}
+	 </div>
+</div>
