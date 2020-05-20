@@ -11,7 +11,7 @@ django-openid-auth==0.4
 django-session-security==2.0.3
 django-storages==1.1.5
 gunicorn==0.15.0
-httplib2==0.7.5
+httplib2==0.18.0
 oauth2==1.5.211
 psycopg2==2.4.5
 pyelasticsearch==0.2
